@@ -11,6 +11,15 @@ public typealias DSNPUserId = String
 
 // ---------------------------------
 
+extension Decodable {
+    init(data: Data, using decoder: JSONDecoder = .init()) throws {
+        self = try decoder.decode(Self.self, from: data)
+    }
+    init(json: String, using decoder: JSONDecoder = .init()) throws {
+        try self.init(data: Data(json.utf8), using: decoder)
+    }
+}
+
 struct Note: Codable {
     public private(set) var context: String = "https://www.w3.org/ns/activitystreams"
     public private(set) var type: String = "Note"
@@ -27,6 +36,11 @@ struct Note: Codable {
     // HC: Hashtag
     public var tag: [Hashtag]?
     public var location: Location?
+    
+    private enum CodingKeys: String, CodingKey {
+        case context = "@context"
+        case type, content, mediaType, name, published, attachment, tag, location
+    }
 }
 
 struct Profile: Codable {
@@ -41,6 +55,11 @@ struct Profile: Codable {
     // Array of Hashtags or Mentions
     // HC: Hashtag
     public var tag: [Hashtag]?
+    
+    private enum CodingKeys: String, CodingKey {
+        case context = "@context"
+        case type, name, icon, summary, published, location, tag
+    }
 }
 
 // ---------------------------------
@@ -52,7 +71,7 @@ struct Hashtag: Tag, Codable {
     public var name: String
 }
 
-struct Mention: Tag {
+struct Mention: Tag, Codable {
     public var name: String?
     public private(set) var type: String = "Mention"
     public var id: DSNPUserId

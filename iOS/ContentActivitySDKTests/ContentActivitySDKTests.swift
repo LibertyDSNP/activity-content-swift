@@ -42,10 +42,95 @@ class ContentActivitySDKTests: XCTestCase {
     
     
     
+    
+    func testInitFromJSON_Note() {
+        let json = """
+{
+  "@context" : "https://www.w3.org/ns/activitystreams",
+  "attachment" : [
+    {
+      "name" : "ImageLink Name",
+      "type" : "Image",
+      "url" : [
+        {
+          "hash" : [
+            {
+              "algorithm" : "keecak",
+              "value" : "0x1234"
+            }
+          ],
+          "height" : 400,
+          "href" : "http://www.example.com",
+          "mediaType" : "image/png",
+          "type" : "Link",
+          "width" : 400
+        }
+      ]
+    }
+  ],
+  "content" : "This is a note",
+  "location" : {
+    "accuracy" : 50,
+    "altitude" : 25,
+    "latitude" : 123.23000335693359,
+    "longitude" : -45.234001159667969,
+    "name" : "Location Name",
+    "radius" : 100,
+    "type" : "Place",
+    "units" : "cm"
+  },
+  "mediaType" : "text/plain",
+  "name" : "Sample Name",
+  "published" : 662014588.692433,
+  "tag" : [
+    {
+      "name" : "#hashtag"
+    }
+  ],
+  "type" : "Note"
+}
+"""
+        let object = object(with: Note.self, json: json)
+        print(object!)
+    }
+    
+    func testInitFromJSON_Hash() {
+        let json = """
+{
+  "algorithm" : "keecak",
+  "value" : "0x1234"
+}
+"""
+        let object = object(with: Hash.self, json: json)
+        print(object!)
+    }
+    
+    func testInitFromJSON_ImageLink() {
+        let json = """
+{
+  "hash" : [
+    {
+      "algorithm" : "keecak",
+      "value" : "0x1234"
+    }
+  ],
+  "height" : 400,
+  "href" : "http://www.example.com",
+  "mediaType" : "image/png",
+  "type" : "Link",
+  "width" : 400
+}
+"""
+        let object = object(with: ImageLink.self, json: json)
+        print(object!)
+    }
+    
+
+    
     private func json<T: Encodable>(object: T) -> String? {
         do {
             let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
             let jsonData = try encoder.encode(object)
             return String(data: jsonData, encoding: .utf8)
         } catch {
@@ -54,4 +139,14 @@ class ContentActivitySDKTests: XCTestCase {
         }
     }
     
+    private func object<T: Decodable>(with: T.Type, json: String) -> T? {
+        do {
+            let decoder = JSONDecoder()
+            let root = try decoder.decode(T.self, from: Data(json.utf8))
+            return root
+        } catch {
+            print(error)
+            return nil
+        }
+    }
 }

@@ -17,6 +17,15 @@
 		C72A56E42773E6B300CC4712 /* ContentActivitySDKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A56E32773E6B300CC4712 /* ContentActivitySDKUITests.swift */; };
 		C72A56E62773E6B300CC4712 /* ContentActivitySDKUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A56E52773E6B300CC4712 /* ContentActivitySDKUITestsLaunchTests.swift */; };
 		C72A56F42773E6DB00CC4712 /* ContentActivityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A56F32773E6DB00CC4712 /* ContentActivityFactory.swift */; };
+		C72A56F9277A647200CC4712 /* SwiftKeccak in Frameworks */ = {isa = PBXBuildFile; productRef = C72A56F8277A647200CC4712 /* SwiftKeccak */; };
+		C72A56FD277A6A9200CC4712 /* HashUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A56FC277A6A9200CC4712 /* HashUtil.swift */; };
+		C72A56FF277A6AC600CC4712 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A56FE277A6AC600CC4712 /* Note.swift */; };
+		C72A5701277A6AD600CC4712 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5700277A6AD600CC4712 /* Profile.swift */; };
+		C72A5703277A6AE500CC4712 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5702277A6AE500CC4712 /* Tag.swift */; };
+		C72A5705277A6B0300CC4712 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5704277A6B0300CC4712 /* Location.swift */; };
+		C72A5707277A6B1A00CC4712 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5706277A6B1A00CC4712 /* Attachment.swift */; };
+		C72A5709277A6B3400CC4712 /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5708277A6B3400CC4712 /* Hash.swift */; };
+		C72A570B277A6B5200CC4712 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A570A277A6B5200CC4712 /* Types.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +60,14 @@
 		C72A56E32773E6B300CC4712 /* ContentActivitySDKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentActivitySDKUITests.swift; sourceTree = "<group>"; };
 		C72A56E52773E6B300CC4712 /* ContentActivitySDKUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentActivitySDKUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C72A56F32773E6DB00CC4712 /* ContentActivityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentActivityFactory.swift; sourceTree = "<group>"; };
+		C72A56FC277A6A9200CC4712 /* HashUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashUtil.swift; sourceTree = "<group>"; };
+		C72A56FE277A6AC600CC4712 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		C72A5700277A6AD600CC4712 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		C72A5702277A6AE500CC4712 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		C72A5704277A6B0300CC4712 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C72A5706277A6B1A00CC4712 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		C72A5708277A6B3400CC4712 /* Hash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
+		C72A570A277A6B5200CC4712 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72A56F9277A647200CC4712 /* SwiftKeccak in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,8 +152,32 @@
 			isa = PBXGroup;
 			children = (
 				C72A56F32773E6DB00CC4712 /* ContentActivityFactory.swift */,
+				C72A56FA277A6A7600CC4712 /* Models */,
+				C72A56FB277A6A7F00CC4712 /* Util */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		C72A56FA277A6A7600CC4712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C72A5706277A6B1A00CC4712 /* Attachment.swift */,
+				C72A5708277A6B3400CC4712 /* Hash.swift */,
+				C72A5704277A6B0300CC4712 /* Location.swift */,
+				C72A56FE277A6AC600CC4712 /* Note.swift */,
+				C72A5700277A6AD600CC4712 /* Profile.swift */,
+				C72A5702277A6AE500CC4712 /* Tag.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C72A56FB277A6A7F00CC4712 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C72A56FC277A6A9200CC4712 /* HashUtil.swift */,
+				C72A570A277A6B5200CC4712 /* Types.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +196,9 @@
 			dependencies = (
 			);
 			name = ContentActivitySDK;
+			packageProductDependencies = (
+				C72A56F8277A647200CC4712 /* SwiftKeccak */,
+			);
 			productName = ContentActivitySDK;
 			productReference = C72A56BF2773E6AD00CC4712 /* ContentActivitySDK.app */;
 			productType = "com.apple.product-type.application";
@@ -226,6 +271,9 @@
 				Base,
 			);
 			mainGroup = C72A56B62773E6AD00CC4712;
+			packageReferences = (
+				C72A56F7277A647200CC4712 /* XCRemoteSwiftPackageReference "SwiftKeccak" */,
+			);
 			productRefGroup = C72A56C02773E6AD00CC4712 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,10 +317,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72A5709277A6B3400CC4712 /* Hash.swift in Sources */,
+				C72A5703277A6AE500CC4712 /* Tag.swift in Sources */,
+				C72A56FD277A6A9200CC4712 /* HashUtil.swift in Sources */,
+				C72A570B277A6B5200CC4712 /* Types.swift in Sources */,
 				C72A56F42773E6DB00CC4712 /* ContentActivityFactory.swift in Sources */,
 				C72A56C72773E6AD00CC4712 /* ViewController.swift in Sources */,
+				C72A5707277A6B1A00CC4712 /* Attachment.swift in Sources */,
+				C72A5705277A6B0300CC4712 /* Location.swift in Sources */,
+				C72A5701277A6AD600CC4712 /* Profile.swift in Sources */,
 				C72A56C32773E6AD00CC4712 /* AppDelegate.swift in Sources */,
 				C72A56C52773E6AD00CC4712 /* SceneDelegate.swift in Sources */,
+				C72A56FF277A6AC600CC4712 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +692,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C72A56F7277A647200CC4712 /* XCRemoteSwiftPackageReference "SwiftKeccak" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bitflying/SwiftKeccak.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C72A56F8277A647200CC4712 /* SwiftKeccak */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C72A56F7277A647200CC4712 /* XCRemoteSwiftPackageReference "SwiftKeccak" */;
+			productName = SwiftKeccak;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C72A56B72773E6AD00CC4712 /* Project object */;
 }

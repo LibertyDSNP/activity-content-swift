@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  ContentActivitySDK
 //
-//  Created by Rigo Carbajal on 12/22/21.
+//  Created by Unfinished on 12/22/21.
 //
 
 import UIKit

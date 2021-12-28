@@ -9,40 +9,33 @@ import Foundation
 
 class VerificationUtil {
     
+    static private let kDsnpUserUriRegex = #"^dsnp:\/\/[1-9][0-9]{0,19}$"#
+    static private let kHrefRegex = #"^https?:\/\/.+"#
+    static private let kISO8601Regex = #"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d{1,})?(Z|[+-][01][0-9]:[0-5][0-9])?$"#
+    static private let kDurationRegex = #"^-?P(([0-9]+Y)?([0-9]+M)?([0-9]+D)?(T([0-9]+H)?([0-9]+M)?([0-9]+(\.[0-9]+)?S)?)?)$"#
+    
     static func isValid(dsnpUserUri: Any?) -> Bool {
-        guard let dsnpUserUri = dsnpUserUri as? String
-        else {
-            return false
-        }
-
-        return dsnpUserUri.range(of: #"^dsnp:\/\/[1-9][0-9]{0,19}$"#, options: .regularExpression) != nil
+        return self.matches(regex: kDsnpUserUriRegex, value: dsnpUserUri)
     }
     
     static func isValid(href: Any?) -> Bool {
-        guard let href = href as? String
-        else {
-            return false
-        }
-
-        return href.range(of: #"^https?:\/\/.+"#, options: .regularExpression) != nil
+        return self.matches(regex: kHrefRegex, value: href)
     }
-
+    
     static func isValid(published: Any?) -> Bool {
-        guard let published = published as? String
-        else {
-            return false
-        }
-
-        return published.range(of: #"^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d{1,})?(Z|[+-][01][0-9]:[0-5][0-9])?$"#, options: .regularExpression) != nil
+        return self.matches(regex: kISO8601Regex, value: published)
     }
     
     static func isValid(duration: Any?) -> Bool {
-        guard let duration = duration as? String
+        return self.matches(regex: kDurationRegex, value: duration)
+    }
+    
+    private static func matches(regex: String, value: Any?) -> Bool {
+        guard let value = value as? String
         else {
             return false
         }
-
-        return duration.range(of: #"^-?P(([0-9]+Y)?([0-9]+M)?([0-9]+D)?(T([0-9]+H)?([0-9]+M)?([0-9]+(\.[0-9]+)?S)?)?)$"#, options: .regularExpression) != nil
+        
+        return value.range(of: regex, options: .regularExpression) != nil
     }
-
 }

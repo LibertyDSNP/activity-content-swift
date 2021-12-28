@@ -26,6 +26,8 @@
 		C72A5707277A6B1A00CC4712 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5706277A6B1A00CC4712 /* Attachment.swift */; };
 		C72A5709277A6B3400CC4712 /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5708277A6B3400CC4712 /* Hash.swift */; };
 		C72A570B277A6B5200CC4712 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A570A277A6B5200CC4712 /* Types.swift */; };
+		C72A570D277A8CE200CC4712 /* VerificationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A570C277A8CE200CC4712 /* VerificationUtil.swift */; };
+		C72A570F277A8E8600CC4712 /* ValidationUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A570E277A8E8600CC4712 /* ValidationUtilTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		C72A5706277A6B1A00CC4712 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		C72A5708277A6B3400CC4712 /* Hash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		C72A570A277A6B5200CC4712 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		C72A570C277A8CE200CC4712 /* VerificationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationUtil.swift; sourceTree = "<group>"; };
+		C72A570E277A8E8600CC4712 /* ValidationUtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtilTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				C72A56D92773E6B300CC4712 /* ContentActivitySDKTests.swift */,
+				C72A570E277A8E8600CC4712 /* ValidationUtilTests.swift */,
 			);
 			path = ContentActivitySDKTests;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 			children = (
 				C72A56FC277A6A9200CC4712 /* HashUtil.swift */,
 				C72A570A277A6B5200CC4712 /* Types.swift */,
+				C72A570C277A8CE200CC4712 /* VerificationUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72A570D277A8CE200CC4712 /* VerificationUtil.swift in Sources */,
 				C72A5709277A6B3400CC4712 /* Hash.swift in Sources */,
 				C72A5703277A6AE500CC4712 /* Tag.swift in Sources */,
 				C72A56FD277A6A9200CC4712 /* HashUtil.swift in Sources */,
@@ -336,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72A570F277A8E8600CC4712 /* ValidationUtilTests.swift in Sources */,
 				C72A56DA2773E6B300CC4712 /* ContentActivitySDKTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

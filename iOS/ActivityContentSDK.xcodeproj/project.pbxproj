@@ -156,9 +156,9 @@
 		C72A574C277D1E7700CC4712 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C72A574D277D1E7700CC4712 /* Util */,
-				C72A5751277D1E7700CC4712 /* Models */,
 				C72A5758277D1E7700CC4712 /* ActivityContentFactory.swift */,
+				C72A5751277D1E7700CC4712 /* Models */,
+				C72A574D277D1E7700CC4712 /* Util */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -167,8 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				C72A574E277D1E7700CC4712 /* HashUtil.swift */,
-				C72A574F277D1E7700CC4712 /* VerificationUtil.swift */,
 				C72A5750277D1E7700CC4712 /* Types.swift */,
+				C72A574F277D1E7700CC4712 /* VerificationUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -176,11 +176,11 @@
 		C72A5751277D1E7700CC4712 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C72A5752277D1E7700CC4712 /* Location.swift */,
-				C72A5753277D1E7700CC4712 /* Hash.swift */,
 				C72A5754277D1E7700CC4712 /* Attachment.swift */,
-				C72A5755277D1E7700CC4712 /* Profile.swift */,
+				C72A5753277D1E7700CC4712 /* Hash.swift */,
+				C72A5752277D1E7700CC4712 /* Location.swift */,
 				C72A5756277D1E7700CC4712 /* Note.swift */,
+				C72A5755277D1E7700CC4712 /* Profile.swift */,
 				C72A5757277D1E7700CC4712 /* Tag.swift */,
 			);
 			path = Models;

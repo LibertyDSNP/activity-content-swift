@@ -10,7 +10,7 @@ import XCTest
 
 class HashTests: XCTestCase {
     
-    func testPrintHash() {
+    func testHashEncode() {
         let hash = Hash(algorithm: "keecak", value: "0x1234")
         
         let json = """
@@ -21,11 +21,9 @@ class HashTests: XCTestCase {
             """
         
         XCTAssertEqual(TestUtil.json(object: hash), json)
-        
-        print(TestUtil.json(object: hash)!)
     }
     
-    func testInitFromJSON_Hash() {
+    func testHashDecode() {
         let json = """
             {
               "algorithm" : "keecak",

@@ -10,7 +10,7 @@ import XCTest
 
 class NoteTests: XCTestCase {
     
-    func testPrintNotePartial() {
+    func testNoteEncodePartial() {
         let note = Note(content: "This is a note",
                         mediaType: "text/plain",
                         name: nil,
@@ -31,7 +31,7 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(TestUtil.json(object: note), json)
     }
     
-    func testPrintNoteFull() {
+    func testNoteEncodeull() {
         let note = Note(content: "This is a note",
                         mediaType: "text/plain",
                         name: "Sample Name",
@@ -91,7 +91,7 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(TestUtil.json(object: note), json)
     }
     
-    func testInitFromJSON_Note() {
+    func testNoteDecode() {
         let json = """
             {
               "@context" : "https://www.w3.org/ns/activitystreams",

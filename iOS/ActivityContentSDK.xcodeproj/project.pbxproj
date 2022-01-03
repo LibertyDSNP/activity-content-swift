@@ -30,6 +30,8 @@
 		C72A5769277D1EDA00CC4712 /* SwiftKeccak in Frameworks */ = {isa = PBXBuildFile; productRef = C72A5768277D1EDA00CC4712 /* SwiftKeccak */; };
 		C72A576B2783A73000CC4712 /* NoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A576A2783A73000CC4712 /* NoteTests.swift */; };
 		C72A576D2783AC2C00CC4712 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A576C2783AC2C00CC4712 /* TestUtil.swift */; };
+		C72A576F2783AD2700CC4712 /* HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A576E2783AD2700CC4712 /* HashTests.swift */; };
+		C72A57712783ADB800CC4712 /* HashUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57702783ADB800CC4712 /* HashUtilTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationUtilTests.swift; sourceTree = "<group>"; };
 		C72A576A2783A73000CC4712 /* NoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTests.swift; sourceTree = "<group>"; };
 		C72A576C2783AC2C00CC4712 /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
+		C72A576E2783AD2700CC4712 /* HashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTests.swift; sourceTree = "<group>"; };
+		C72A57702783ADB800CC4712 /* HashUtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashUtilTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,10 +146,8 @@
 		C72A5732277D1E3100CC4712 /* ActivityContentSDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */,
-				C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */,
-				C72A576A2783A73000CC4712 /* NoteTests.swift */,
-				C72A576C2783AC2C00CC4712 /* TestUtil.swift */,
+				C72A57722783AE0E00CC4712 /* Source */,
+				C72A57752783AE4700CC4712 /* Util */,
 			);
 			path = ActivityContentSDKTests;
 			sourceTree = "<group>";
@@ -190,6 +192,42 @@
 				C72A5757277D1E7700CC4712 /* Tag.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C72A57722783AE0E00CC4712 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */,
+				C72A57732783AE1500CC4712 /* Models */,
+				C72A57742783AE1C00CC4712 /* Util */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		C72A57732783AE1500CC4712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C72A576E2783AD2700CC4712 /* HashTests.swift */,
+				C72A576A2783A73000CC4712 /* NoteTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C72A57742783AE1C00CC4712 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C72A57702783ADB800CC4712 /* HashUtilTests.swift */,
+				C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		C72A57752783AE4700CC4712 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C72A576C2783AC2C00CC4712 /* TestUtil.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,7 +391,9 @@
 				C72A576B2783A73000CC4712 /* NoteTests.swift in Sources */,
 				C72A5766277D1EB200CC4712 /* ValidationUtilTests.swift in Sources */,
 				C72A5765277D1EB200CC4712 /* ActivityContentSDKTests.swift in Sources */,
+				C72A57712783ADB800CC4712 /* HashUtilTests.swift in Sources */,
 				C72A576D2783AC2C00CC4712 /* TestUtil.swift in Sources */,
+				C72A576F2783AD2700CC4712 /* HashTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,14 +7,24 @@
 
 import Foundation
 
-protocol Tag {}
+class Tag {}
 
-struct Hashtag: Tag, Codable {
+class Hashtag: Tag, Codable {
     public var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
 }
 
-struct Mention: Tag, Codable {
+class Mention: Tag, Codable {
     public var name: String?
     public private(set) var type: String = "Mention"
     public var id: DSNPUserId
+    
+    init(name: String?,
+         id: DSNPUserId) {
+        self.name = name
+        self.id = id
+    }
 }

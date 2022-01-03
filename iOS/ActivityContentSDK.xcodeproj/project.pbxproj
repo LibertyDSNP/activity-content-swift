@@ -28,6 +28,8 @@
 		C72A5765277D1EB200CC4712 /* ActivityContentSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */; };
 		C72A5766277D1EB200CC4712 /* ValidationUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */; };
 		C72A5769277D1EDA00CC4712 /* SwiftKeccak in Frameworks */ = {isa = PBXBuildFile; productRef = C72A5768277D1EDA00CC4712 /* SwiftKeccak */; };
+		C72A576B2783A73000CC4712 /* NoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A576A2783A73000CC4712 /* NoteTests.swift */; };
+		C72A576D2783AC2C00CC4712 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A576C2783AC2C00CC4712 /* TestUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		C72A5758277D1E7700CC4712 /* ActivityContentFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContentFactory.swift; sourceTree = "<group>"; };
 		C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContentSDKTests.swift; sourceTree = "<group>"; };
 		C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationUtilTests.swift; sourceTree = "<group>"; };
+		C72A576A2783A73000CC4712 /* NoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTests.swift; sourceTree = "<group>"; };
+		C72A576C2783AC2C00CC4712 /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 			children = (
 				C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */,
 				C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */,
+				C72A576A2783A73000CC4712 /* NoteTests.swift */,
+				C72A576C2783AC2C00CC4712 /* TestUtil.swift */,
 			);
 			path = ActivityContentSDKTests;
 			sourceTree = "<group>";
@@ -344,8 +350,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72A576B2783A73000CC4712 /* NoteTests.swift in Sources */,
 				C72A5766277D1EB200CC4712 /* ValidationUtilTests.swift in Sources */,
 				C72A5765277D1EB200CC4712 /* ActivityContentSDKTests.swift in Sources */,
+				C72A576D2783AC2C00CC4712 /* TestUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

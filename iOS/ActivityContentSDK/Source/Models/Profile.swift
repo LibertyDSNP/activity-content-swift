@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Profile: Codable {
+class Profile: Codable {
     public private(set) var context: String = "https://www.w3.org/ns/activitystreams"
     public private(set) var type: String = "Profile"
     public var name: String?

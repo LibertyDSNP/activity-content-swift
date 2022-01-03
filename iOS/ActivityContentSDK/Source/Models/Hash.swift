@@ -7,7 +7,13 @@
 
 import Foundation
 
-struct Hash: Codable {
+class Hash: Codable {
     public var algorithm: String
     public var value: String
+    
+    init(algorithm: String,
+         value: String) {
+        self.algorithm = algorithm
+        self.value = value
+    }
 }

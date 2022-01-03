@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Note: Codable {
+class Note: Codable {
     public private(set) var context: String = "https://www.w3.org/ns/activitystreams"
     public private(set) var type: String = "Note"
     public var content: String
@@ -27,5 +27,21 @@ struct Note: Codable {
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
         case type, content, mediaType, name, published, attachment, tag, location
+    }
+    
+    init(content: String,
+         mediaType: String,
+         name: String?,
+         published: Date?,
+         attachment: [ImageAttachment]?,
+         tag: [Hashtag]?,
+         location: Location?) {
+        self.content = content
+        self.mediaType = mediaType
+        self.name = name
+        self.published = published
+        self.attachment = attachment
+        self.tag = tag
+        self.location = location
     }
 }

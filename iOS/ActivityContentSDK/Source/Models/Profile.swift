@@ -59,7 +59,7 @@ class Profile: Codable {
      
      - Requires: MUST follow Tag Type
      */
-    public var tag: [Hashtag]?
+    public var tag: [Tag]?
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"

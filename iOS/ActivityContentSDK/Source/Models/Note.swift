@@ -59,7 +59,7 @@ class Note: Codable {
      
      - Requires: MUST follow Tag Type
      */
-    public var tag: [Hashtag]?
+    public var tag: [Tag]?
     
     /**
      For location
@@ -87,5 +87,43 @@ class Note: Codable {
         self.attachment = attachment
         self.tag = tag
         self.location = location
+    }
+    
+    enum DrinkTypeKey: CodingKey {
+            case type
+        }
+    
+    enum DrinkTypes: String, Decodable {
+           case mention = "Mention"
+       }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.context = try container.decode(String.self, forKey: .context)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.content = try container.decode(String.self, forKey: .content)
+        self.mediaType = try container.decode(String.self, forKey: .mediaType)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.published = try container.decode(Date.self, forKey: .published)
+        self.attachment = try container.decode([ImageAttachment].self, forKey: .attachment)
+        
+        var tagsArrayForType = try container.nestedUnkeyedContainer(forKey: .tag)
+        var tags = [Tag]()
+        var tagsArray = tagsArrayForType
+        while(!tagsArrayForType.isAtEnd) {
+            let tag = try tagsArrayForType.nestedContainer(keyedBy: DrinkTypeKey.self)
+            let type = try tag.decodeIfPresent(DrinkTypes.self, forKey: DrinkTypeKey.type)
+            switch type {
+            case .mention:
+                print("found mention")
+                tags.append(try tagsArray.decode(Mention.self))
+            case .none:
+                print("found hashtag")
+                tags.append(try tagsArray.decode(Hashtag.self))
+            }
+        }
+        self.tag = tags
+        
+        self.location = try container.decode(Location.self, forKey: .location)
     }
 }

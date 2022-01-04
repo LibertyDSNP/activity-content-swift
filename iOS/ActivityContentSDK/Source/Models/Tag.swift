@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Tags: Codable {
+class TagArray: Codable {
+    
+    let tags: [Tag]
     
     enum TagsTypeKey: CodingKey {
         case type
@@ -17,9 +19,9 @@ class Tags: Codable {
         case mention = "Mention"
     }
     
-    static public func parse(container: UnkeyedDecodingContainer) throws -> [Tag]? {
-        var container = container
-        var tags = [Tag]()
+    required init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        var tags: [Tag] = []
         var tagsArray = container
         while (!container.isAtEnd) {
             let tag = try container.nestedContainer(keyedBy: TagsTypeKey.self)
@@ -31,7 +33,8 @@ class Tags: Codable {
                 tags.append(try tagsArray.decode(Hashtag.self))
             }
         }
-        return tags.isEmpty ? nil : tags
+        
+        self.tags = tags
     }
 }
 

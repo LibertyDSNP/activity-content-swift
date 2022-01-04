@@ -99,9 +99,10 @@ class Note: Codable {
         self.published = try container.decode(Date.self, forKey: .published)
         self.attachment = try container.decode([ImageAttachment].self, forKey: .attachment)
         
-        let tagsArrayForType = try container.nestedUnkeyedContainer(forKey: .tag)
-        self.tag = try Tags.parse(container: tagsArrayForType)
-
+        // Tags array is heterogeneous, and so must be parsed based on tag type.
+        let tagArray = try container.decode(TagArray.self, forKey: .tag)
+        self.tag = tagArray.tags.isEmpty ? nil : tagArray.tags
+        
         self.location = try container.decode(Location.self, forKey: .location)
     }
 }

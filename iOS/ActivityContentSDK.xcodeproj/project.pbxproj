@@ -33,6 +33,7 @@
 		C72A576F2783AD2700CC4712 /* HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A576E2783AD2700CC4712 /* HashTests.swift */; };
 		C72A57712783ADB800CC4712 /* HashUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57702783ADB800CC4712 /* HashUtilTests.swift */; };
 		C72A57772783AEF800CC4712 /* AttachmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57762783AEF800CC4712 /* AttachmentTests.swift */; };
+		C72A57792783E4AE00CC4712 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57782783E4AE00CC4712 /* TagTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		C72A576E2783AD2700CC4712 /* HashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTests.swift; sourceTree = "<group>"; };
 		C72A57702783ADB800CC4712 /* HashUtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashUtilTests.swift; sourceTree = "<group>"; };
 		C72A57762783AEF800CC4712 /* AttachmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTests.swift; sourceTree = "<group>"; };
+		C72A57782783E4AE00CC4712 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				C72A57762783AEF800CC4712 /* AttachmentTests.swift */,
 				C72A576E2783AD2700CC4712 /* HashTests.swift */,
 				C72A576A2783A73000CC4712 /* NoteTests.swift */,
+				C72A57782783E4AE00CC4712 /* TagTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C72A57792783E4AE00CC4712 /* TagTests.swift in Sources */,
 				C72A576B2783A73000CC4712 /* NoteTests.swift in Sources */,
 				C72A5766277D1EB200CC4712 /* ValidationUtilTests.swift in Sources */,
 				C72A5765277D1EB200CC4712 /* ActivityContentSDKTests.swift in Sources */,

@@ -29,8 +29,6 @@ class AttachmentTests: XCTestCase {
             }
             """
         
-        print(TestUtil.json(object: imageLink)!)
-        
         XCTAssertEqual(TestUtil.json(object: imageLink), json)
     }
     

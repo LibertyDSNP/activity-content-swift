@@ -88,9 +88,7 @@ class NoteTests: XCTestCase {
             }
             """
         
-        print(TestUtil.json(object: note)!)
-        
-//        XCTAssertEqual(TestUtil.json(object: note), json)
+        XCTAssertEqual(TestUtil.json(object: note), json)
     }
     
     func testNoteDecode() {

@@ -88,15 +88,7 @@ class Note: Codable {
         self.tag = tag
         self.location = location
     }
-    
-    enum DrinkTypeKey: CodingKey {
-            case type
-        }
-    
-    enum DrinkTypes: String, Decodable {
-           case mention = "Mention"
-       }
-    
+
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.context = try container.decode(String.self, forKey: .context)
@@ -109,23 +101,7 @@ class Note: Codable {
         
         let tagsArrayForType = try container.nestedUnkeyedContainer(forKey: .tag)
         self.tag = try Tags.parse(container: tagsArrayForType)
-        
-//        var tags = [Tag]()
-//        var tagsArray = tagsArrayForType
-//        while(!tagsArrayForType.isAtEnd) {
-//            let tag = try tagsArrayForType.nestedContainer(keyedBy: DrinkTypeKey.self)
-//            let type = try tag.decodeIfPresent(DrinkTypes.self, forKey: DrinkTypeKey.type)
-//            switch type {
-//            case .mention:
-//                print("found mention")
-//                tags.append(try tagsArray.decode(Mention.self))
-//            case .none:
-//                print("found hashtag")
-//                tags.append(try tagsArray.decode(Hashtag.self))
-//            }
-//        }
-//        self.tag = tags
-        
+
         self.location = try container.decode(Location.self, forKey: .location)
     }
 }

@@ -63,6 +63,12 @@ class Profile: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
-        case type, name, icon, summary, published, location, tag
+        case type,
+             name,
+             icon,
+             summary,
+             published,
+             location,
+             tag
     }
 }

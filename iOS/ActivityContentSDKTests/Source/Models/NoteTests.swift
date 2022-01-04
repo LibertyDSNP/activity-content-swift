@@ -102,7 +102,7 @@ class NoteTests: XCTestCase {
               "@context" : "https://www.w3.org/ns/activitystreams",
               "attachment" : [
                 {
-                  "name" : "ImageLink Name",
+                  "name" : "Image Name",
                   "type" : "Image",
                   "url" : [
                     {
@@ -113,12 +113,53 @@ class NoteTests: XCTestCase {
                         }
                       ],
                       "height" : 400,
-                      "href" : "http://www.example.com",
+                      "href" : "http://www.example.com/image.png",
                       "mediaType" : "image/png",
                       "type" : "Link",
                       "width" : 400
                     }
                   ]
+                },
+                {
+                  "name" : "Link Name",
+                  "type" : "Link",
+                  "href" : "http://www.example.com"
+                },
+                {
+                 "name" : "Video Name",
+                 "type" : "Video",
+                 "url" : [
+                   {
+                     "hash" : [
+                       {
+                         "algorithm" : "keecak",
+                         "value" : "0x1234"
+                       }
+                     ],
+                     "height" : 400,
+                     "href" : "http://www.example.com/video.mp4",
+                     "mediaType" : "video/mp4",
+                     "type" : "Link",
+                     "width" : 400
+                   }
+                 ]
+                },
+                {
+                 "name" : "Audio Name",
+                 "type" : "Audio",
+                 "url" : [
+                   {
+                     "hash" : [
+                       {
+                         "algorithm" : "keecak",
+                         "value" : "0x1234"
+                       }
+                     ],
+                     "href" : "http://www.example.com/audio.mp3",
+                     "mediaType" : "audio/mp3",
+                     "type" : "Link"
+                   }
+                 ]
                 }
               ],
               "content" : "This is a note",
@@ -153,8 +194,11 @@ class NoteTests: XCTestCase {
         let object = TestUtil.object(with: Note.self, json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
-        XCTAssertEqual(object?.attachment?.count, 1)
-        XCTAssertEqual(object?.attachment?.first?.name, "ImageLink Name")
+        XCTAssertEqual(object?.attachment?.count, 4)
+        XCTAssertEqual((object?.attachment?[0] as? ImageAttachment)?.name, "Image Name")
+        XCTAssertEqual((object?.attachment?[1] as? Link)?.name, "Link Name")
+        XCTAssertEqual((object?.attachment?[2] as? VideoAttachment)?.name, "Video Name")
+        XCTAssertEqual((object?.attachment?[3] as? AudioAttachment)?.name, "Audio Name")
         XCTAssertEqual(object?.content, "This is a note")
         XCTAssertNotNil(object?.location)
         XCTAssertEqual(object?.location?.accuracy, 50)

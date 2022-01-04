@@ -52,7 +52,7 @@ class Note: Codable {
      
      - Requires: MUST be one of the Supported Attachments
      */
-    public var attachment: [ImageAttachment]?
+    public var attachment: [Attachment]?
     
     /**
      Array of tags/mentions
@@ -70,7 +70,14 @@ class Note: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
-        case type, content, mediaType, name, published, attachment, tag, location
+        case type,
+             content,
+             mediaType,
+             name,
+             published,
+             attachment,
+             tag,
+             location
     }
     
     init(content: String,
@@ -88,7 +95,7 @@ class Note: Codable {
         self.tag = tag
         self.location = location
     }
-
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.context = try container.decode(String.self, forKey: .context)
@@ -97,7 +104,10 @@ class Note: Codable {
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
         self.name = try container.decode(String.self, forKey: .name)
         self.published = try container.decode(Date.self, forKey: .published)
-        self.attachment = try container.decode([ImageAttachment].self, forKey: .attachment)
+        
+        // Attachments array is heterogeneous, and so must be parsed based on tag type.
+        let attachmentsArray = try container.decode(AttachmentsArray.self, forKey: .attachment)
+        self.attachment = attachmentsArray.attachments.isEmpty ? nil : attachmentsArray.attachments
         
         // Tags array is heterogeneous, and so must be parsed based on tag type.
         let tagArray = try container.decode(TagArray.self, forKey: .tag)

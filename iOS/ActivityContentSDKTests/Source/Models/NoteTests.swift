@@ -135,7 +135,13 @@ class NoteTests: XCTestCase {
               "tag" : [
                 {
                   "name" : "#hashtag"
+                },
+                {
+                  "name" : "Mention Name",
+                  "type" : "Mention",
+                  "id" : "dsnp://user"
                 }
+            
               ],
               "type" : "Note"
             }
@@ -152,8 +158,9 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(object?.mediaType, "text/plain")
         XCTAssertEqual(object?.name, "Sample Name")
         XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.6924329)
-        XCTAssertEqual(object?.tag?.count, 1)
-        XCTAssertEqual((object?.tag?.first as? Hashtag)?.name, "#hashtag")
+        XCTAssertEqual(object?.tag?.count, 2)
+        XCTAssertEqual((object?.tag?[0] as? Hashtag)?.name, "#hashtag")
+        XCTAssertEqual((object?.tag?[1] as? Mention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Note")
     }
 }

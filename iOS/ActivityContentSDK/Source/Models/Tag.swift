@@ -9,6 +9,10 @@ import Foundation
 
 class Tags: Codable {
     
+    let tags: [Tag]
+    
+    private enum TagsKeys: String, CodingKey { case tag }
+    
     enum TagsTypeKey: CodingKey {
         case type
     }
@@ -17,6 +21,45 @@ class Tags: Codable {
         case mention = "Mention"
     }
     
+    static public func parse(container: UnkeyedDecodingContainer) throws -> [Tag]? {
+        var tagsArrayForType = container
+        var tags = [Tag]()
+        var tagsArray = tagsArrayForType
+        while(!tagsArrayForType.isAtEnd) {
+            let tag = try tagsArrayForType.nestedContainer(keyedBy: TagsTypeKey.self)
+            let type = try tag.decodeIfPresent(TagTypes.self, forKey: TagsTypeKey.type)
+            switch type {
+            case .mention:
+                print("found mention")
+                tags.append(try tagsArray.decode(Mention.self))
+            case .none:
+                print("found hashtag")
+                tags.append(try tagsArray.decode(Hashtag.self))
+            }
+        }
+        return tags.isEmpty ? nil : tags
+    }
+    
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: TagsKeys.self)
+//        var tagsArrayForType = try container.nestedUnkeyedContainer(forKey: .tag)
+//        var tags = [Tag]()
+//        var tagsArray = tagsArrayForType
+//        while(!tagsArrayForType.isAtEnd) {
+//            let tag = try tagsArrayForType.nestedContainer(keyedBy: TagsTypeKey.self)
+//            let type = try tag.decodeIfPresent(TagTypes.self, forKey: TagsTypeKey.type)
+//            switch type {
+//            case .mention:
+//                print("found mention")
+//                tags.append(try tagsArray.decode(Mention.self))
+//            case .none:
+//                print("found hashtag")
+//                tags.append(try tagsArray.decode(Hashtag.self))
+//            }
+//        }
+//
+//        self.tags = tags
+//    }
 }
 
 class Tag: Codable {

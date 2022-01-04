@@ -78,7 +78,7 @@ class Note: Codable {
          name: String?,
          published: Date?,
          attachment: [ImageAttachment]?,
-         tag: [Hashtag]?,
+         tag: [Tag]?,
          location: Location?) {
         self.content = content
         self.mediaType = mediaType
@@ -107,22 +107,24 @@ class Note: Codable {
         self.published = try container.decode(Date.self, forKey: .published)
         self.attachment = try container.decode([ImageAttachment].self, forKey: .attachment)
         
-        var tagsArrayForType = try container.nestedUnkeyedContainer(forKey: .tag)
-        var tags = [Tag]()
-        var tagsArray = tagsArrayForType
-        while(!tagsArrayForType.isAtEnd) {
-            let tag = try tagsArrayForType.nestedContainer(keyedBy: DrinkTypeKey.self)
-            let type = try tag.decodeIfPresent(DrinkTypes.self, forKey: DrinkTypeKey.type)
-            switch type {
-            case .mention:
-                print("found mention")
-                tags.append(try tagsArray.decode(Mention.self))
-            case .none:
-                print("found hashtag")
-                tags.append(try tagsArray.decode(Hashtag.self))
-            }
-        }
-        self.tag = tags
+        let tagsArrayForType = try container.nestedUnkeyedContainer(forKey: .tag)
+        self.tag = try Tags.parse(container: tagsArrayForType)
+        
+//        var tags = [Tag]()
+//        var tagsArray = tagsArrayForType
+//        while(!tagsArrayForType.isAtEnd) {
+//            let tag = try tagsArrayForType.nestedContainer(keyedBy: DrinkTypeKey.self)
+//            let type = try tag.decodeIfPresent(DrinkTypes.self, forKey: DrinkTypeKey.type)
+//            switch type {
+//            case .mention:
+//                print("found mention")
+//                tags.append(try tagsArray.decode(Mention.self))
+//            case .none:
+//                print("found hashtag")
+//                tags.append(try tagsArray.decode(Hashtag.self))
+//            }
+//        }
+//        self.tag = tags
         
         self.location = try container.decode(Location.self, forKey: .location)
     }

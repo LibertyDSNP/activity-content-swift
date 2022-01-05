@@ -8,14 +8,34 @@
 import Foundation
 
 class VideoAttachment: BaseAttachment {
+    
+    /**
+     Identifies the type of the object
+     
+     - Requires: MUST be set to Video
+     */
     public private(set) var type: String = "Video"
+
+    /**
+     An array of links for given image content in different formats
+     
+     - Requires: MUST be a Video Link AND MUST have at least one supported video MIME type
+     */
     public var url: [VideoLink]
+    
+    /**
+     The display name for the video
+     */
     public var name: String?
+    
+    /**
+     Approximate duration of the video
+     */
     public var duration: TimeInterval?
     
     init(url: [VideoLink],
-         name: String?,
-         duration: TimeInterval?) {
+         name: String? = nil,
+         duration: TimeInterval? = nil) {
         self.url = url
         self.name = name
         self.duration = duration

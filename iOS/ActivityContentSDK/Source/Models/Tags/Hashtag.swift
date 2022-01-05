@@ -8,6 +8,10 @@
 import Foundation
 
 class Hashtag: BaseTag {
+    
+    /**
+     The text of the tag
+     */
     public var name: String
     
     init(name: String) {

@@ -8,7 +8,17 @@
 import Foundation
 
 class AudioLink: BaseLink {
+    
+    /**
+     MIME type of href content
+     */
     public var mediaType: String
+    
+    /**
+     Array of hashes for linked content validation
+     
+     - Requires: MUST include at least one supported hash
+     */
     public var hash: [Hash]
     
     init(href: URL,

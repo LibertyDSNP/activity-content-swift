@@ -8,14 +8,34 @@
 import Foundation
 
 class AudioAttachment: BaseAttachment {
+    
+    /**
+     Identifies the type of the object
+     
+     - Requires: MUST be set to Audio
+     */
     public private(set) var type: String = "Audio"
+    
+    /**
+     An array of links for given audio content in different formats
+     
+     - Requires: MUST be an Audio Link AND MUST have at least one supported audio MIME type
+     */
     public var url: [AudioLink]
+    
+    /**
+     The display name for the audio file
+     */
     public var name: String?
+    
+    /**
+     Approximate duration of the audio
+     */
     public var duration: TimeInterval?
     
     init(url: [AudioLink],
-         name: String?,
-         duration: TimeInterval?) {
+         name: String? = nil,
+         duration: TimeInterval? = nil) {
         self.url = url
         self.name = name
         self.duration = duration

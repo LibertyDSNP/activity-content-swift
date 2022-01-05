@@ -8,17 +8,33 @@
 import Foundation
 
 class ImageAttachment: BaseAttachment {
+    
+    /**
+     Identifies the type of the object
+     
+     - Requires: MUST be set to Image
+     */
     public private(set) var type: String = "Image"
+    
+    /**
+     An array of links for given image content in different formats
+     
+     - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
+     */
     public var url: [ImageLink]
+    
+    /**
+     The display name or alt text for the image
+     */
     public var name: String?
     
     init(url: [ImageLink],
-         name: String?) {
+         name: String? = nil) {
         self.url = url
         self.name = name
         super.init()
     }
-    
+
     private enum CodingKeys: String, CodingKey {
         case type
         case url

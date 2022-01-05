@@ -8,7 +8,19 @@
 import Foundation
 
 class BaseLink: BaseAttachment {
+    
+    /**
+     Identifies the type of the object
+     
+     - Requires: MUST be set to Link
+     */
     public private(set) var type: String = "Link"
+    
+    /**
+     The URL for the given link
+     
+     - Requires: MUST be a Supported URL Schema
+     */
     public var href: URL
     
     init(href: URL) {

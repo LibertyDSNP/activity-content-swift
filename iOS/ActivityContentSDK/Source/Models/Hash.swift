@@ -8,7 +8,15 @@
 import Foundation
 
 class Hash: Codable {
+    
+    /**
+     The algorithm of the given hash
+     */
     public var algorithm: String
+    
+    /**
+     Hash value serialization
+     */
     public var value: String
     
     init(algorithm: String,

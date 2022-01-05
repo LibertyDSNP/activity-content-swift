@@ -8,16 +8,34 @@
 import Foundation
 
 class VideoLink: BaseLink {
+    
+    /**
+     MIME type of href content
+     */
     public var mediaType: String
+    
+    /**
+     Array of hashes for linked content validation
+     
+     - Requires: MUST include at least one supported hash
+     */
     public var hash: [Hash]
+    
+    /**
+     A hint as to the rendering height in device-independent pixels
+     */
     public var height: Float?
+    
+    /**
+     A hint as to the rendering width in device-independent pixels
+     */
     public var width: Float?
     
     init(href: URL,
          mediaType: String,
          hash: [Hash],
-         height: Float?,
-         width: Float?) {
+         height: Float? = nil,
+         width: Float? = nil) {
         self.mediaType = mediaType
         self.hash = hash
         self.height = height

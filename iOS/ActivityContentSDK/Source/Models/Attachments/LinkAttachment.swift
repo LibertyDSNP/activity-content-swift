@@ -8,10 +8,14 @@
 import Foundation
 
 class LinkAttachment: BaseLink {
+    
+    /**
+     The display name for the link
+     */
     public var name: String?
     
     init(href: URL,
-         name: String?) {
+         name: String? = nil) {
         self.name = name
         super.init(href: href)
     }

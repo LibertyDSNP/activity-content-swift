@@ -8,20 +8,20 @@
 import Foundation
 
 class AttachmentsArray: Codable {
-
+    
     let attachments: [Attachment]
-
+    
     enum AttachmentsTypeKey: CodingKey {
         case type
     }
-
+    
     enum AttachmentTypes: String, Decodable {
         case audio = "Audio"
         case image = "Image"
         case video = "Video"
         case link = "Link"
     }
-
+    
     required init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
         var attachments: [Attachment] = []
@@ -42,7 +42,7 @@ class AttachmentsArray: Codable {
                 break
             }
         }
-
+        
         self.attachments = attachments
     }
 }
@@ -92,23 +92,6 @@ class AudioAttachment: Attachment {
     }
 }
 
-class AudioLink: Codable {
-    public private(set) var type: String = "Link"
-    public var href: URL
-    public var mediaType: String
-    public var hash: [Hash]
-    
-    init(href: URL,
-         mediaType: String,
-         hash: [Hash]) {
-        self.href = href
-        self.mediaType = mediaType
-        self.hash = hash
-    }
-}
-
-// ---
-
 class ImageAttachment: Attachment {
     public private(set) var type: String = "Image"
     public var url: [ImageLink]
@@ -144,29 +127,6 @@ class ImageAttachment: Attachment {
         try container.encode(self.name, forKey: .name)
     }
 }
-
-class ImageLink: Codable {
-    public private(set) var type: String = "Link"
-    public var href: URL
-    public var mediaType: String
-    public var hash: [Hash]
-    public var height: Float?
-    public var width: Float?
-    
-    init(href: URL,
-         mediaType: String,
-         hash: [Hash],
-         height: Float?,
-         width: Float?) {
-        self.href = href
-        self.mediaType = mediaType
-        self.hash = hash
-        self.height = height
-        self.width = width
-    }
-}
-
-// ---
 
 class VideoAttachment: Attachment {
     public private(set) var type: String = "Video"
@@ -210,9 +170,97 @@ class VideoAttachment: Attachment {
     }
 }
 
-class VideoLink: Codable {
+// ---
+
+class BaseLink: Attachment {
     public private(set) var type: String = "Link"
     public var href: URL
+    
+    init(href: URL) {
+        self.href = href
+        super.init()
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case href
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let superdecoder = try container.superDecoder()
+        self.type = try container.decode(String.self, forKey: .type)
+        self.href = try container.decode(URL.self, forKey: .href)
+        try super.init(from: superdecoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.type, forKey: .type)
+        try container.encode(self.href, forKey: .href)
+    }
+}
+
+class Link: BaseLink {
+    public var name: String?
+    
+    init(href: URL,
+         name: String?) {
+        self.name = name
+        super.init(href: href)
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case name
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try? container.decode(String.self, forKey: .name)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+    }
+}
+
+class AudioLink: BaseLink {
+    public var mediaType: String
+    public var hash: [Hash]
+    
+    init(href: URL,
+         mediaType: String,
+         hash: [Hash]) {
+        self.mediaType = mediaType
+        self.hash = hash
+        super.init(href: href)
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case mediaType
+        case hash
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.mediaType = try container.decode(String.self, forKey: .mediaType)
+        self.hash = try container.decode([Hash].self, forKey: .hash)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mediaType, forKey: .mediaType)
+        try container.encode(self.hash, forKey: .hash)
+    }
+}
+
+class ImageLink: BaseLink {
     public var mediaType: String
     public var hash: [Hash]
     public var height: Float?
@@ -223,48 +271,79 @@ class VideoLink: Codable {
          hash: [Hash],
          height: Float?,
          width: Float?) {
-        self.href = href
         self.mediaType = mediaType
         self.hash = hash
         self.height = height
         self.width = width
-    }
-}
-
-// ---
-
-class Link: Attachment {
-    public private(set) var type: String = "Link"
-    public var href: URL
-    public var name: String?
-    
-    init(href: URL,
-         name: String?) {
-        self.href = href
-        self.name = name
-        super.init()
+        super.init(href: href)
     }
     
     private enum CodingKeys: String, CodingKey {
-        case type
-        case href
-        case name
+        case mediaType
+        case hash
+        case height
+        case width
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let superdecoder = try container.superDecoder()
-        self.type = try container.decode(String.self, forKey: .type)
-        self.href = try container.decode(URL.self, forKey: .href)
-        self.name = try? container.decode(String.self, forKey: .name)
-        try super.init(from: superdecoder)
+        self.mediaType = try container.decode(String.self, forKey: .mediaType)
+        self.hash = try container.decode([Hash].self, forKey: .hash)
+        self.height = try container.decode(Float.self, forKey: .height)
+        self.width = try container.decode(Float.self, forKey: .width)
+        try super.init(from: decoder)
     }
     
     override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.type, forKey: .type)
-        try container.encode(self.href, forKey: .href)
-        try container.encode(self.name, forKey: .name)
+        try container.encode(self.mediaType, forKey: .mediaType)
+        try container.encode(self.hash, forKey: .hash)
+        try container.encode(self.height, forKey: .height)
+        try container.encode(self.width, forKey: .width)
+    }
+}
+
+class VideoLink: BaseLink {
+    public var mediaType: String
+    public var hash: [Hash]
+    public var height: Float?
+    public var width: Float?
+    
+    init(href: URL,
+         mediaType: String,
+         hash: [Hash],
+         height: Float?,
+         width: Float?) {
+        self.mediaType = mediaType
+        self.hash = hash
+        self.height = height
+        self.width = width
+        super.init(href: href)
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case mediaType
+        case hash
+        case height
+        case width
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.mediaType = try container.decode(String.self, forKey: .mediaType)
+        self.hash = try container.decode([Hash].self, forKey: .hash)
+        self.height = try container.decode(Float.self, forKey: .height)
+        self.width = try container.decode(Float.self, forKey: .width)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mediaType, forKey: .mediaType)
+        try container.encode(self.hash, forKey: .hash)
+        try container.encode(self.height, forKey: .height)
+        try container.encode(self.width, forKey: .width)
     }
 }

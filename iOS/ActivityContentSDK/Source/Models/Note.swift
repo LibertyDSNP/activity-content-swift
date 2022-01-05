@@ -52,14 +52,14 @@ class Note: Codable {
      
      - Requires: MUST be one of the Supported Attachments
      */
-    public var attachment: [Attachment]?
+    public var attachment: [BaseAttachment]?
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    public var tag: [Tag]?
+    public var tag: [BaseTag]?
     
     /**
      For location
@@ -85,7 +85,7 @@ class Note: Codable {
          name: String?,
          published: Date?,
          attachment: [ImageAttachment]?,
-         tag: [Tag]?,
+         tag: [BaseTag]?,
          location: Location?) {
         self.content = content
         self.mediaType = mediaType

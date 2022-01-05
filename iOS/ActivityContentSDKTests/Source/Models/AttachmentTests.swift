@@ -37,7 +37,7 @@ class AttachmentTests: XCTestCase {
     }
     
     func testLinkEncode() {
-        let link = Link(href: URL(string: "http://www.example.com")!, name: "Link Name")
+        let link = LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
         
         let json = """
             {
@@ -57,7 +57,7 @@ class AttachmentTests: XCTestCase {
               "type" : "Link"
             }
             """
-        let object = TestUtil.object(with: Link.self, json: json)
+        let object = TestUtil.object(with: LinkAttachment.self, json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")

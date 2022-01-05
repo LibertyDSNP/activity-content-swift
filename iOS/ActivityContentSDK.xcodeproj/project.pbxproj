@@ -20,10 +20,10 @@
 		C72A575B277D1E7700CC4712 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5750277D1E7700CC4712 /* Types.swift */; };
 		C72A575C277D1E7700CC4712 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5752277D1E7700CC4712 /* Location.swift */; };
 		C72A575D277D1E7700CC4712 /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5753277D1E7700CC4712 /* Hash.swift */; };
-		C72A575E277D1E7700CC4712 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5754277D1E7700CC4712 /* Attachment.swift */; };
+		C72A575E277D1E7700CC4712 /* BaseAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5754277D1E7700CC4712 /* BaseAttachment.swift */; };
 		C72A575F277D1E7700CC4712 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5755277D1E7700CC4712 /* Profile.swift */; };
 		C72A5760277D1E7700CC4712 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5756277D1E7700CC4712 /* Note.swift */; };
-		C72A5761277D1E7700CC4712 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5757277D1E7700CC4712 /* Tag.swift */; };
+		C72A5761277D1E7700CC4712 /* BaseTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5757277D1E7700CC4712 /* BaseTag.swift */; };
 		C72A5762277D1E7700CC4712 /* ActivityContentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5758277D1E7700CC4712 /* ActivityContentFactory.swift */; };
 		C72A5765277D1EB200CC4712 /* ActivityContentSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */; };
 		C72A5766277D1EB200CC4712 /* ValidationUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */; };
@@ -34,6 +34,18 @@
 		C72A57712783ADB800CC4712 /* HashUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57702783ADB800CC4712 /* HashUtilTests.swift */; };
 		C72A57772783AEF800CC4712 /* AttachmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57762783AEF800CC4712 /* AttachmentTests.swift */; };
 		C72A57792783E4AE00CC4712 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57782783E4AE00CC4712 /* TagTests.swift */; };
+		C72A577C2785230100CC4712 /* AudioAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A577B2785230100CC4712 /* AudioAttachment.swift */; };
+		C72A577E2785231800CC4712 /* ImageAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A577D2785231800CC4712 /* ImageAttachment.swift */; };
+		C72A57802785231F00CC4712 /* VideoAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A577F2785231F00CC4712 /* VideoAttachment.swift */; };
+		C72A57822785232B00CC4712 /* LinkAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57812785232B00CC4712 /* LinkAttachment.swift */; };
+		C72A57842785236F00CC4712 /* BaseLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57832785236F00CC4712 /* BaseLink.swift */; };
+		C72A5786278523AF00CC4712 /* AudioLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5785278523AF00CC4712 /* AudioLink.swift */; };
+		C72A5788278523BC00CC4712 /* ImageLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5787278523BC00CC4712 /* ImageLink.swift */; };
+		C72A578A278523CB00CC4712 /* VideoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A5789278523CB00CC4712 /* VideoLink.swift */; };
+		C72A578C278523EC00CC4712 /* AttachmentsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A578B278523EC00CC4712 /* AttachmentsArray.swift */; };
+		C72A578F2785246400CC4712 /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A578E2785246400CC4712 /* Hashtag.swift */; };
+		C72A57912785246A00CC4712 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57902785246A00CC4712 /* Mention.swift */; };
+		C72A57932785248900CC4712 /* TagsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57922785248900CC4712 /* TagsArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,10 +83,10 @@
 		C72A5750277D1E7700CC4712 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		C72A5752277D1E7700CC4712 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C72A5753277D1E7700CC4712 /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
-		C72A5754277D1E7700CC4712 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		C72A5754277D1E7700CC4712 /* BaseAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAttachment.swift; sourceTree = "<group>"; };
 		C72A5755277D1E7700CC4712 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C72A5756277D1E7700CC4712 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		C72A5757277D1E7700CC4712 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		C72A5757277D1E7700CC4712 /* BaseTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTag.swift; sourceTree = "<group>"; };
 		C72A5758277D1E7700CC4712 /* ActivityContentFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContentFactory.swift; sourceTree = "<group>"; };
 		C72A5763277D1EB200CC4712 /* ActivityContentSDKTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityContentSDKTests.swift; sourceTree = "<group>"; };
 		C72A5764277D1EB200CC4712 /* ValidationUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationUtilTests.swift; sourceTree = "<group>"; };
@@ -84,6 +96,18 @@
 		C72A57702783ADB800CC4712 /* HashUtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashUtilTests.swift; sourceTree = "<group>"; };
 		C72A57762783AEF800CC4712 /* AttachmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTests.swift; sourceTree = "<group>"; };
 		C72A57782783E4AE00CC4712 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		C72A577B2785230100CC4712 /* AudioAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAttachment.swift; sourceTree = "<group>"; };
+		C72A577D2785231800CC4712 /* ImageAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAttachment.swift; sourceTree = "<group>"; };
+		C72A577F2785231F00CC4712 /* VideoAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAttachment.swift; sourceTree = "<group>"; };
+		C72A57812785232B00CC4712 /* LinkAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAttachment.swift; sourceTree = "<group>"; };
+		C72A57832785236F00CC4712 /* BaseLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLink.swift; sourceTree = "<group>"; };
+		C72A5785278523AF00CC4712 /* AudioLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLink.swift; sourceTree = "<group>"; };
+		C72A5787278523BC00CC4712 /* ImageLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLink.swift; sourceTree = "<group>"; };
+		C72A5789278523CB00CC4712 /* VideoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLink.swift; sourceTree = "<group>"; };
+		C72A578B278523EC00CC4712 /* AttachmentsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsArray.swift; sourceTree = "<group>"; };
+		C72A578E2785246400CC4712 /* Hashtag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashtag.swift; sourceTree = "<group>"; };
+		C72A57902785246A00CC4712 /* Mention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
+		C72A57922785248900CC4712 /* TagsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,12 +212,12 @@
 		C72A5751277D1E7700CC4712 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C72A5754277D1E7700CC4712 /* Attachment.swift */,
+				C72A577A278522F000CC4712 /* Attachments */,
 				C72A5753277D1E7700CC4712 /* Hash.swift */,
 				C72A5752277D1E7700CC4712 /* Location.swift */,
 				C72A5756277D1E7700CC4712 /* Note.swift */,
 				C72A5755277D1E7700CC4712 /* Profile.swift */,
-				C72A5757277D1E7700CC4712 /* Tag.swift */,
+				C72A578D2785240600CC4712 /* Tags */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +258,34 @@
 				C72A576C2783AC2C00CC4712 /* TestUtil.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		C72A577A278522F000CC4712 /* Attachments */ = {
+			isa = PBXGroup;
+			children = (
+				C72A578B278523EC00CC4712 /* AttachmentsArray.swift */,
+				C72A577B2785230100CC4712 /* AudioAttachment.swift */,
+				C72A5785278523AF00CC4712 /* AudioLink.swift */,
+				C72A5754277D1E7700CC4712 /* BaseAttachment.swift */,
+				C72A57832785236F00CC4712 /* BaseLink.swift */,
+				C72A577D2785231800CC4712 /* ImageAttachment.swift */,
+				C72A5787278523BC00CC4712 /* ImageLink.swift */,
+				C72A57812785232B00CC4712 /* LinkAttachment.swift */,
+				C72A577F2785231F00CC4712 /* VideoAttachment.swift */,
+				C72A5789278523CB00CC4712 /* VideoLink.swift */,
+			);
+			path = Attachments;
+			sourceTree = "<group>";
+		};
+		C72A578D2785240600CC4712 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				C72A5757277D1E7700CC4712 /* BaseTag.swift */,
+				C72A578E2785246400CC4712 /* Hashtag.swift */,
+				C72A57902785246A00CC4712 /* Mention.swift */,
+				C72A57922785248900CC4712 /* TagsArray.swift */,
+			);
+			path = Tags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,17 +426,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C72A5761277D1E7700CC4712 /* Tag.swift in Sources */,
+				C72A57822785232B00CC4712 /* LinkAttachment.swift in Sources */,
+				C72A57802785231F00CC4712 /* VideoAttachment.swift in Sources */,
+				C72A57932785248900CC4712 /* TagsArray.swift in Sources */,
+				C72A578C278523EC00CC4712 /* AttachmentsArray.swift in Sources */,
+				C72A5761277D1E7700CC4712 /* BaseTag.swift in Sources */,
 				C72A5721277D1E2E00CC4712 /* ViewController.swift in Sources */,
 				C72A575F277D1E7700CC4712 /* Profile.swift in Sources */,
-				C72A575E277D1E7700CC4712 /* Attachment.swift in Sources */,
+				C72A575E277D1E7700CC4712 /* BaseAttachment.swift in Sources */,
+				C72A578A278523CB00CC4712 /* VideoLink.swift in Sources */,
 				C72A575D277D1E7700CC4712 /* Hash.swift in Sources */,
+				C72A577C2785230100CC4712 /* AudioAttachment.swift in Sources */,
+				C72A57912785246A00CC4712 /* Mention.swift in Sources */,
+				C72A5786278523AF00CC4712 /* AudioLink.swift in Sources */,
+				C72A57842785236F00CC4712 /* BaseLink.swift in Sources */,
 				C72A5762277D1E7700CC4712 /* ActivityContentFactory.swift in Sources */,
 				C72A571D277D1E2E00CC4712 /* AppDelegate.swift in Sources */,
+				C72A578F2785246400CC4712 /* Hashtag.swift in Sources */,
 				C72A575A277D1E7700CC4712 /* VerificationUtil.swift in Sources */,
 				C72A575B277D1E7700CC4712 /* Types.swift in Sources */,
 				C72A5760277D1E7700CC4712 /* Note.swift in Sources */,
+				C72A5788278523BC00CC4712 /* ImageLink.swift in Sources */,
 				C72A571F277D1E2E00CC4712 /* SceneDelegate.swift in Sources */,
+				C72A577E2785231800CC4712 /* ImageAttachment.swift in Sources */,
 				C72A5759277D1E7700CC4712 /* HashUtil.swift in Sources */,
 				C72A575C277D1E7700CC4712 /* Location.swift in Sources */,
 			);

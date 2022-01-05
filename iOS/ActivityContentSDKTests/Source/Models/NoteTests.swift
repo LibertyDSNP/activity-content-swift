@@ -37,7 +37,11 @@ class NoteTests: XCTestCase {
                         name: "Sample Name",
                         published: Date(timeIntervalSince1970: 1640321788.6924329),
                         attachment: [
-                            ImageAttachment(url: [ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "ImageLink Name")],
+                            ImageAttachment(url: [ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
+                            VideoAttachment(url: [VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
+                            AudioAttachment(url: [AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
+                            LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
+                        ],
                         tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://user")],
                         location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
         
@@ -46,7 +50,7 @@ class NoteTests: XCTestCase {
               "@context" : "https:\\/\\/www.w3.org\\/ns\\/activitystreams",
               "attachment" : [
                 {
-                  "name" : "ImageLink Name",
+                  "name" : "Image Name",
                   "type" : "Image",
                   "url" : [
                     {
@@ -63,6 +67,49 @@ class NoteTests: XCTestCase {
                       "width" : 400
                     }
                   ]
+                },
+                {
+                  "duration" : 30,
+                  "name" : "Video Name",
+                  "type" : "Video",
+                  "url" : [
+                    {
+                      "hash" : [
+                        {
+                          "algorithm" : "keecak",
+                          "value" : "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345"
+                        }
+                      ],
+                      "height" : 400,
+                      "href" : "http:\\/\\/www.example.com",
+                      "mediaType" : "video\\/mp4",
+                      "type" : "Link",
+                      "width" : 400
+                    }
+                  ]
+                },
+                {
+                  "duration" : 30,
+                  "name" : "Audio Name",
+                  "type" : "Audio",
+                  "url" : [
+                    {
+                      "hash" : [
+                        {
+                          "algorithm" : "keecak",
+                          "value" : "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345"
+                        }
+                      ],
+                      "href" : "http:\\/\\/www.example.com",
+                      "mediaType" : "video\\/mp4",
+                      "type" : "Link"
+                    }
+                  ]
+                },
+                {
+                  "href" : "http:\\/\\/www.example.com",
+                  "name" : "Link Name",
+                  "type" : "Link"
                 }
               ],
               "content" : "This is a note",

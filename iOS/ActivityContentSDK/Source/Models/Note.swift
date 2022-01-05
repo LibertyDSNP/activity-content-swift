@@ -84,7 +84,7 @@ class Note: Codable {
          mediaType: String,
          name: String?,
          published: Date?,
-         attachment: [ImageAttachment]?,
+         attachment: [BaseAttachment]?,
          tag: [BaseTag]?,
          location: Location?) {
         self.content = content

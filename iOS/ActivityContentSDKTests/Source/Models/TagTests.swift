@@ -32,10 +32,10 @@ class TagTests: XCTestCase {
         
         let object = TestUtil.object(with: TagArray.self, json: json)
         XCTAssertNotNil(object)
-        XCTAssertEqual(object?.tags.count, 4)
-        XCTAssertEqual((object?.tags[0] as? Hashtag)?.name, "#hashtag1")
-        XCTAssertEqual((object?.tags[1] as? Mention)?.id, "dsnp://user1")
-        XCTAssertEqual((object?.tags[2] as? Hashtag)?.name, "#hashtag2")
-        XCTAssertEqual((object?.tags[3] as? Mention)?.id, "dsnp://user2")
+        XCTAssertEqual(object?.tags?.count, 4)
+        XCTAssertEqual((object?.tags?[0] as? Hashtag)?.name, "#hashtag1")
+        XCTAssertEqual((object?.tags?[1] as? Mention)?.id, "dsnp://user1")
+        XCTAssertEqual((object?.tags?[2] as? Hashtag)?.name, "#hashtag2")
+        XCTAssertEqual((object?.tags?[3] as? Mention)?.id, "dsnp://user2")
     }
 }

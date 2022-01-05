@@ -9,7 +9,7 @@ import Foundation
 
 class TagArray: Codable {
     
-    let tags: [BaseTag]
+    let tags: [BaseTag]?
     
     enum TagsTypeKey: CodingKey {
         case type
@@ -34,6 +34,6 @@ class TagArray: Codable {
             }
         }
         
-        self.tags = tags
+        self.tags = tags.isEmpty ? nil : tags
     }
 }

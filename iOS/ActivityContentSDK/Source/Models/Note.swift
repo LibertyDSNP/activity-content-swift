@@ -82,11 +82,11 @@ class Note: Codable {
     
     init(content: String,
          mediaType: String,
-         name: String?,
-         published: Date?,
-         attachment: [BaseAttachment]?,
-         tag: [BaseTag]?,
-         location: Location?) {
+         name: String? = nil,
+         published: Date? = nil,
+         attachment: [BaseAttachment]? = nil,
+         tag: [BaseTag]? = nil,
+         location: Location? = nil) {
         self.content = content
         self.mediaType = mediaType
         self.name = name
@@ -102,17 +102,17 @@ class Note: Codable {
         self.type = try container.decode(String.self, forKey: .type)
         self.content = try container.decode(String.self, forKey: .content)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.published = try container.decode(Date.self, forKey: .published)
+        self.name = try? container.decode(String.self, forKey: .name)
+        self.published = try? container.decode(Date.self, forKey: .published)
         
         // Attachments array is heterogeneous, and so must be parsed based on tag type.
-        let attachmentsArray = try container.decode(AttachmentsArray.self, forKey: .attachment)
-        self.attachment = attachmentsArray.attachments.isEmpty ? nil : attachmentsArray.attachments
+        let attachmentsArray = try? container.decode(AttachmentsArray.self, forKey: .attachment)
+        self.attachment = attachmentsArray?.attachments
         
         // Tags array is heterogeneous, and so must be parsed based on tag type.
-        let tagArray = try container.decode(TagArray.self, forKey: .tag)
-        self.tag = tagArray.tags.isEmpty ? nil : tagArray.tags
+        let tagArray = try? container.decode(TagArray.self, forKey: .tag)
+        self.tag = tagArray?.tags
         
-        self.location = try container.decode(Location.self, forKey: .location)
+        self.location = try? container.decode(Location.self, forKey: .location)
     }
 }

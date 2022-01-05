@@ -71,4 +71,33 @@ class Profile: Codable {
              location,
              tag
     }
+    
+    init(name: String? = nil,
+         icon: [ImageLink]? = nil,
+         summary: String? = nil,
+         published: Date? = nil,
+         location: Location? = nil,
+         tag: [BaseTag]? = nil) {
+        self.name = name
+        self.icon = icon
+        self.summary = summary
+        self.published = published
+        self.location = location
+        self.tag = tag
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.context = try container.decode(String.self, forKey: .context)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.name = try? container.decode(String.self, forKey: .name)
+        self.icon = try? container.decode([ImageLink].self, forKey: .icon)
+        self.summary = try? container.decode(String.self, forKey: .summary)
+        self.published = try? container.decode(Date.self, forKey: .published)
+        self.location = try? container.decode(Location.self, forKey: .location)
+        
+        // Tags array is heterogeneous, and so must be parsed based on tag type.
+        let tagArray = try? container.decode(TagArray.self, forKey: .tag)
+        self.tag = tagArray?.tags
+    }
 }

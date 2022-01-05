@@ -46,6 +46,7 @@
 		C72A578F2785246400CC4712 /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A578E2785246400CC4712 /* Hashtag.swift */; };
 		C72A57912785246A00CC4712 /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57902785246A00CC4712 /* Mention.swift */; };
 		C72A57932785248900CC4712 /* TagsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57922785248900CC4712 /* TagsArray.swift */; };
+		C72A579527852A8400CC4712 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A579427852A8400CC4712 /* ProfileTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		C72A578E2785246400CC4712 /* Hashtag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hashtag.swift; sourceTree = "<group>"; };
 		C72A57902785246A00CC4712 /* Mention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
 		C72A57922785248900CC4712 /* TagsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsArray.swift; sourceTree = "<group>"; };
+		C72A579427852A8400CC4712 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				C72A57762783AEF800CC4712 /* AttachmentTests.swift */,
 				C72A576E2783AD2700CC4712 /* HashTests.swift */,
 				C72A576A2783A73000CC4712 /* NoteTests.swift */,
+				C72A579427852A8400CC4712 /* ProfileTests.swift */,
 				C72A57782783E4AE00CC4712 /* TagTests.swift */,
 			);
 			path = Models;
@@ -464,6 +467,7 @@
 				C72A5765277D1EB200CC4712 /* ActivityContentSDKTests.swift in Sources */,
 				C72A57772783AEF800CC4712 /* AttachmentTests.swift in Sources */,
 				C72A57712783ADB800CC4712 /* HashUtilTests.swift in Sources */,
+				C72A579527852A8400CC4712 /* ProfileTests.swift in Sources */,
 				C72A576D2783AC2C00CC4712 /* TestUtil.swift in Sources */,
 				C72A576F2783AD2700CC4712 /* HashTests.swift in Sources */,
 			);

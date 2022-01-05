@@ -9,7 +9,7 @@ import Foundation
 
 class AttachmentsArray: Codable {
     
-    let attachments: [BaseAttachment]
+    let attachments: [BaseAttachment]?
     
     enum AttachmentsTypeKey: CodingKey {
         case type
@@ -43,6 +43,6 @@ class AttachmentsArray: Codable {
             }
         }
         
-        self.attachments = attachments
+        self.attachments = attachments.isEmpty ? nil : attachments
     }
 }

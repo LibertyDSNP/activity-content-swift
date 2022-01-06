@@ -14,8 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let note = ActivityContent.createNote(content: "This is content", mediaType: "text/plain")
-        
-        print(note)
+        print(note!)
     }
 
 

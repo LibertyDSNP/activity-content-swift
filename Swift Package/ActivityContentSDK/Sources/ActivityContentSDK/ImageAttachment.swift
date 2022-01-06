@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ImageAttachment: BaseAttachment {
+public class ImageAttachment: BaseAttachment {
     
     /**
      Identifies the type of the object
@@ -50,7 +50,7 @@ class ImageAttachment: BaseAttachment {
         try super.init(from: superdecoder)
     }
     
-    override func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.type, forKey: .type)

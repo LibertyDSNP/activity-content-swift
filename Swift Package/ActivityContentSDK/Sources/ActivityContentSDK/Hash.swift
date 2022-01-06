@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Hash: Codable {
+public class Hash: Codable {
     
     /**
      The algorithm of the given hash

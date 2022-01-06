@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AudioLink: BaseLink {
+public class AudioLink: BaseLink {
     
     /**
      MIME type of href content
@@ -41,7 +41,7 @@ class AudioLink: BaseLink {
         try super.init(from: decoder)
     }
     
-    override func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mediaType, forKey: .mediaType)

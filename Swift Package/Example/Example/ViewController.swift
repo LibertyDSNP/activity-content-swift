@@ -38,5 +38,6 @@ class ViewController: UIViewController {
             attachment: attachments,
             tag: tags,
             location: location)
+        
     }
 }

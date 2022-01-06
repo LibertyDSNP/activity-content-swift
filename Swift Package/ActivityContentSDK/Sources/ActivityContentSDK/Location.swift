@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum LocationUnits: String, Codable {
+public enum LocationUnits: String, Codable {
     case cm, feet, inches, km, m, miles
 }
 
-class Location: Codable {
+public class Location: Codable {
     
     /**
      Identifies the type of the object

@@ -7,5 +7,5 @@
 
 import Foundation
 
-class BaseTag: Codable {
+public class BaseTag: Codable {
 }

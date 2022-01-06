@@ -23,7 +23,7 @@ class BaseLink: BaseAttachment {
      */
     public var href: URL
     
-    init(href: URL) {
+    public init(href: URL) {
         self.href = href
         super.init()
     }

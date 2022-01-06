@@ -16,6 +16,7 @@
 		C72A57FC27866F3F00CC4712 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A57FB27866F3F00CC4712 /* ExampleTests.swift */; };
 		C72A580627866F3F00CC4712 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A580527866F3F00CC4712 /* ExampleUITests.swift */; };
 		C72A580827866F3F00CC4712 /* ExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A580727866F3F00CC4712 /* ExampleUITestsLaunchTests.swift */; };
+		C77E49F3278671EA0024CEE1 /* ActivityContentSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C77E49F2278671EA0024CEE1 /* ActivityContentSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77E49F3278671EA0024CEE1 /* ActivityContentSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +163,9 @@
 			dependencies = (
 			);
 			name = Example;
+			packageProductDependencies = (
+				C77E49F2278671EA0024CEE1 /* ActivityContentSDK */,
+			);
 			productName = Example;
 			productReference = C72A57E127866F3A00CC4712 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -644,6 +649,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C77E49F2278671EA0024CEE1 /* ActivityContentSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ActivityContentSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C72A57D927866F3A00CC4712 /* Project object */;
 }

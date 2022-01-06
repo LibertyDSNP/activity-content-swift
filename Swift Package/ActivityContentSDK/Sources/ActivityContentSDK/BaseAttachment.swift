@@ -7,5 +7,5 @@
 
 import Foundation
 
-class BaseAttachment: Codable {
+public class BaseAttachment: Codable {
 }

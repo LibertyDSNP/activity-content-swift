@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Note: Codable {
+public class Note: Codable {
     
     /**
      JSON-LD @context
@@ -52,21 +52,21 @@ class Note: Codable {
      
      - Requires: MUST be one of the Supported Attachments
      */
-    public var attachment: [BaseAttachment]?
+    public private(set) var attachment: [BaseAttachment]?
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    public var tag: [BaseTag]?
+    public private(set) var tag: [BaseTag]?
     
     /**
      For location
      
      - Requires: MUST follow Location Type
      */
-    public var location: Location?
+    public private(set) var location: Location?
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
@@ -96,7 +96,7 @@ class Note: Codable {
         self.location = location
     }
     
-    required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.context = try container.decode(String.self, forKey: .context)
         self.type = try container.decode(String.self, forKey: .type)

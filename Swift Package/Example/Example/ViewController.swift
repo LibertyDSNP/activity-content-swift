@@ -13,6 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let hash = ActivityContent.createHash(algorithm: "keccak256", value: "0x1234")
+        let imageLink = ActivityContent.createImageLink(href: URL(string: "http://www.example.com/image.png")!, mediaType: "image/png", hash: [hash], height: 200, width: 300)
+        let imageAttachment = ActivityContent.createImageAttachment(url: [imageLink], name: "Image Attachment")
+        let attachments = [imageAttachment]
+        
+        let hashtag = ActivityContent.createHashtag(name: "#hashtag")
+        let tags = [hashtag]
+        
         let location = ActivityContent.createLocation(
             name: "Location",
             accuracy: 50,
@@ -27,8 +35,8 @@ class ViewController: UIViewController {
             mediaType: "text/plain",
             name: "Sample Name",
             published: Date(timeIntervalSince1970: 1640321788.6924329),
-            attachment: nil,
-            tag: nil,
+            attachment: attachments,
+            tag: tags,
             location: location)
     }
 }

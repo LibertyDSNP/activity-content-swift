@@ -31,7 +31,7 @@ class AttachmentTests: XCTestCase {
               "type" : "Link"
             }
             """
-        let object = LinkAttachment.from(json: json) // TestUtil.object(with: LinkAttachment.self, json: json)
+        let object = LinkAttachment.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
@@ -75,7 +75,7 @@ class AttachmentTests: XCTestCase {
               "width" : 300
             }
             """
-        let object = TestUtil.object(with: VideoLink.self, json: json)
+        let object = VideoLink.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.height, 400)
@@ -122,7 +122,7 @@ class AttachmentTests: XCTestCase {
               "width" : 300
             }
             """
-        let object = TestUtil.object(with: ImageLink.self, json: json)
+        let object = ImageLink.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.height, 400)
@@ -165,7 +165,7 @@ class AttachmentTests: XCTestCase {
               "type" : "Link"
             }
             """
-        let object = TestUtil.object(with: AudioLink.self, json: json)
+        let object = AudioLink.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")

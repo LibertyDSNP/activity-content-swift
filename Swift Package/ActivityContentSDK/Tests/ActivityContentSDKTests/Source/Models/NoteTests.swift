@@ -238,7 +238,7 @@ class NoteTests: XCTestCase {
             }
             """
         
-        let object = TestUtil.object(with: Note.self, json: json)
+        let object = Note.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.attachment?.count, 4)

@@ -43,7 +43,7 @@ class MentionTests: XCTestCase {
               "type" : "Mention"
             }
             """
-        let object = TestUtil.object(with: Mention.self, json: json)
+        let object = Mention.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Mention")
         XCTAssertEqual(object?.name, "Mention Name")

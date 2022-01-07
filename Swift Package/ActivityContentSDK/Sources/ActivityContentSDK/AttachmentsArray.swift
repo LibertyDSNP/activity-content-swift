@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AttachmentsArray: Codable {
+class AttachmentsArray: ActivityContentItem {
     
     let attachments: [BaseAttachment]?
     

@@ -125,7 +125,7 @@ class ProfileTests: XCTestCase {
             }
             """
         
-        let object = TestUtil.object(with: Profile.self, json: json)
+        let object = Profile.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.name, "Profile Name")

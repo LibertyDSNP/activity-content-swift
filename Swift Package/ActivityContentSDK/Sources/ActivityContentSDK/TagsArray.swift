@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TagArray: Codable {
+class TagArray: ActivityContentItem {
     
     let tags: [BaseTag]?
     

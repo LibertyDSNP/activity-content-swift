@@ -12,17 +12,6 @@ protocol ActivityContentItem: Codable {
     static func from(json: String) -> Self?
 };
 
-//static public func object<T: Decodable>(with: T.Type, json: String) -> T? {
-//    do {
-//        let decoder = JSONDecoder()
-//        let root = try decoder.decode(T.self, from: Data(json.utf8))
-//        return root
-//    } catch {
-//        print(error)
-//        return nil
-//    }
-//}
-
 extension ActivityContentItem {
     
     var json: String? {
@@ -36,7 +25,7 @@ extension ActivityContentItem {
             return nil
         }
     }
-
+    
     static func from(json: String) -> Self? {
         do {
             let decoder = JSONDecoder()

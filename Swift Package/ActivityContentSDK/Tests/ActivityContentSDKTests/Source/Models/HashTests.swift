@@ -43,7 +43,7 @@ class HashTests: XCTestCase {
             }
             """
         
-        let object = TestUtil.object(with: Hash.self, json: json)
+        let object = Hash.from(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.algorithm, "keecak")
         XCTAssertEqual(object?.value, "0x1234")

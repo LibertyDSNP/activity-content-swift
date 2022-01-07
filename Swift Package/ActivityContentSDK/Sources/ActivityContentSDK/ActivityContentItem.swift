@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol ActivityContentItem: Codable {
+public protocol ActivityContentItem: Codable {
     var json: String? { get }
     static func from(json: String) -> Self?
 };
 
-extension ActivityContentItem {
+public extension ActivityContentItem {
     
     var json: String? {
         do {

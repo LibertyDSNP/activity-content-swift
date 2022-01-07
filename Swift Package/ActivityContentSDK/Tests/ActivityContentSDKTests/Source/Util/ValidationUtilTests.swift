@@ -2,7 +2,7 @@
 //  ValidationUtilTests.swift
 //  ActivityContentSDKTests
 //
-//  Created by Rigo Carbajal on 12/27/21.
+//  Created by Unfinished on 12/27/21.
 //
 
 import XCTest

@@ -2,7 +2,7 @@
 //  ImageAttachment.swift
 //  ActivityContentSDK
 //
-//  Created by Rigo Carbajal on 1/4/22.
+//  Created by Unfinished on 1/4/22.
 //
 
 import Foundation

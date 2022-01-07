@@ -2,7 +2,7 @@
 //  HashTests.swift
 //  ActivityContentSDKTests
 //
-//  Created by Rigo Carbajal on 1/3/22.
+//  Created by Unfinished on 1/3/22.
 //
 
 import XCTest

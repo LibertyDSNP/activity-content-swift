@@ -29,7 +29,13 @@ public class Mention: BaseTag {
     public var id: DSNPUserId
     
     init(name: String? = nil,
-         id: DSNPUserId) {
+         id: DSNPUserId) throws {
+        
+        /// Throw error if id is does not follow DSNP User URI pattern
+        guard VerificationUtil.isValid(dsnpUserUri: id) else {
+            throw ActivityContentError.invalidDsnpUserUri
+        }
+        
         self.name = name
         self.id = id
         super.init()

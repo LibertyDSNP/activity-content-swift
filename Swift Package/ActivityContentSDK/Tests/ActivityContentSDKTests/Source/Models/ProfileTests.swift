@@ -29,7 +29,7 @@ class ProfileTests: XCTestCase {
                               summary: "Profile Summary",
                               published: Date(timeIntervalSince1970: 1640321788.6924329),
                               location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
-                              tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://user")])
+                              tag: [Hashtag(name: "#hashtag"), try! Mention(name: "Mention Name", id: "dsnp://1234")])
         
         let json = """
             {
@@ -67,7 +67,7 @@ class ProfileTests: XCTestCase {
                   "name" : "#hashtag"
                 },
                 {
-                  "id" : "dsnp:\\/\\/user",
+                  "id" : "dsnp:\\/\\/1234",
                   "name" : "Mention Name",
                   "type" : "Mention"
                 }

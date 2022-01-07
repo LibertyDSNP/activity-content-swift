@@ -42,7 +42,7 @@ class NoteTests: XCTestCase {
                             AudioAttachment(url: [try! AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
                             try! LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
                         ],
-                        tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://user")],
+                        tag: [Hashtag(name: "#hashtag"), try! Mention(name: "Mention Name", id: "dsnp://1234")],
                         location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
         
         let json = """
@@ -131,7 +131,7 @@ class NoteTests: XCTestCase {
                   "name" : "#hashtag"
                 },
                 {
-                  "id" : "dsnp:\\/\\/user",
+                  "id" : "dsnp:\\/\\/1234",
                   "name" : "Mention Name",
                   "type" : "Mention"
                 }

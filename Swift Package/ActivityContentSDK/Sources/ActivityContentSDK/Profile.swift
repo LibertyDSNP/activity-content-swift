@@ -96,7 +96,7 @@ class Profile: Codable {
         self.published = try? container.decode(Date.self, forKey: .published)
         self.location = try? container.decode(Location.self, forKey: .location)
         
-        // Tags array is heterogeneous, and so must be parsed based on tag type.
+        /// Tags array is heterogeneous, and so must be parsed based on tag type.
         let tagArray = try? container.decode(TagArray.self, forKey: .tag)
         self.tag = tagArray?.tags
     }

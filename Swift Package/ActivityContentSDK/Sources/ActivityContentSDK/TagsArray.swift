@@ -30,7 +30,7 @@ class TagArray: Codable {
             case .mention:
                 tags.append(try tagsArray.decode(Mention.self))
             case .none:
-                // Hashtags do not specify a "type" value
+                /// Hashtags do not specify a "type" value
                 tags.append(try tagsArray.decode(Hashtag.self))
             }
         }

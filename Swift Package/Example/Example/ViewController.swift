@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let hash = ActivityContent.createHash(algorithm: "keccak256", value: "0x1234")
-        let imageLink = ActivityContent.createImageLink(href: URL(string: "http://www.example.com/image.png")!, mediaType: "image/png", hash: [hash], height: 200, width: 300)
+        let imageLink = try! ActivityContent.createImageLink(href: URL(string: "http://www.example.com/image.png")!, mediaType: "image/png", hash: [hash], height: 200, width: 300)
         let imageAttachment = ActivityContent.createImageAttachment(url: [imageLink], name: "Image Attachment")
         let attachments = [imageAttachment]
         

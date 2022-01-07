@@ -37,7 +37,13 @@ class VerificationUtil {
     }
     
     static func isValid(href: Any?) -> Bool {
-        return self.matches(regex: kHrefRegex, value: href)
+        
+        var value = href
+        if let url = href as? URL {
+            value = url.absoluteString
+        }
+        
+        return self.matches(regex: kHrefRegex, value: value)
     }
     
     static func isValid(published: Any?) -> Bool {

@@ -41,29 +41,31 @@ class ValidationUtilTests: XCTestCase {
     }
     
     func testIsValidHref() {
-        let valid = [
+        let valid: [Any?] = [
             "http://www.example.com",
             "https://www.example.com",
             "http://example",
-            "http://1"
+            "http://1",
+            URL(string: "http://www.example.com")
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(href: item), "\(item) is invalid.")
+            XCTAssertTrue(VerificationUtil.isValid(href: item), "\(item!) is invalid.")
         }
     }
     
     func testIsInvalidHref() {
-        let invalid = [
+        let invalid: [Any?] = [
             "http:/www",
             "http:www",
             "http://",
             "www.example.com",
-            "scheme://www.example.com"
+            "scheme://www.example.com",
+            URL(string: "invalid://www.example.com")
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(href: item), "\(item) is valid.")
+            XCTAssertFalse(VerificationUtil.isValid(href: item), "\(item!) is valid.")
         }
     }
     

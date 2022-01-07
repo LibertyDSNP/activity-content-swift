@@ -23,10 +23,10 @@ public class AudioLink: BaseLink {
     
     init(href: URL,
          mediaType: String,
-         hash: [Hash]) {
+         hash: [Hash]) throws {
         self.mediaType = mediaType
         self.hash = hash
-        super.init(href: href)
+        try super.init(href: href)
     }
     
     private enum CodingKeys: String, CodingKey {

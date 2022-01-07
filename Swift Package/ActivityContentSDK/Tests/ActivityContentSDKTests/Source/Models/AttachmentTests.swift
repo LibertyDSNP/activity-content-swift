@@ -9,35 +9,9 @@ import XCTest
 @testable import ActivityContentSDK
 
 class AttachmentTests: XCTestCase {
-
-    func testBaseLinkEncode() {
-        let baseLink = BaseLink(href: URL(string: "http://www.example.com")!)
-        
-        let json = """
-            {
-              "href" : "http:\\/\\/www.example.com",
-              "type" : "Link"
-            }
-            """
-        
-        XCTAssertEqual(TestUtil.json(object: baseLink), json)
-    }
-    
-    func testBaseLinkDecode() {
-        let json = """
-            {
-              "href" : "http://www.example.com",
-              "type" : "Link"
-            }
-            """
-        let object = TestUtil.object(with: BaseLink.self, json: json)
-        XCTAssertNotNil(object)
-        XCTAssertEqual(object?.type, "Link")
-        XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
-    }
     
     func testLinkEncode() {
-        let link = LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
+        let link = try? LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
         
         let json = """
             {
@@ -64,7 +38,7 @@ class AttachmentTests: XCTestCase {
     }
     
     func testVideoLinkEncode() {
-        let videoLink = VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: "0x1234")], height: 400, width: 400)
+        let videoLink = try? VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: "0x1234")], height: 400, width: 400)
         
         let json = """
             {
@@ -111,7 +85,7 @@ class AttachmentTests: XCTestCase {
     }
     
     func testImageLinkEncode() {
-        let imageLink = ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: "0x1234")], height: 400, width: 400)
+        let imageLink = try? ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: "0x1234")], height: 400, width: 400)
         
         let json = """
             {
@@ -158,7 +132,7 @@ class AttachmentTests: XCTestCase {
     }
     
     func testAudioLinkEncode() {
-        let audioLink = AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "audio/mp3", hash: [Hash(algorithm: "keecak", value: "0x1234")])
+        let audioLink = try? AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "audio/mp3", hash: [Hash(algorithm: "keecak", value: "0x1234")])
         
         let json = """
             {

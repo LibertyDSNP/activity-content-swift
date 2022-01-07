@@ -52,9 +52,9 @@ public class ActivityContent {
         mediaType: String,
         hash: [Hash],
         height: Float? = nil,
-        width: Float? = nil) -> ImageLink {
+        width: Float? = nil) throws -> ImageLink {
             
-            return ImageLink(
+            return try ImageLink(
                 href: href,
                 mediaType: mediaType,
                 hash: hash,

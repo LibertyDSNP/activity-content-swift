@@ -15,9 +15,9 @@ public class LinkAttachment: BaseLink {
     public var name: String?
     
     init(href: URL,
-         name: String? = nil) {
+         name: String? = nil) throws {
         self.name = name
-        super.init(href: href)
+        try super.init(href: href)
     }
     
     private enum CodingKeys: String, CodingKey {

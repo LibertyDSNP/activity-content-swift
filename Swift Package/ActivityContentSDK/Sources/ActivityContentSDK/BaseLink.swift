@@ -23,7 +23,13 @@ public class BaseLink: BaseAttachment {
      */
     public var href: URL
     
-    init(href: URL) {
+    init(href: URL) throws {
+        
+        // Throw error if href is invalid.
+        guard VerificationUtil.isValid(href: href) else {
+            throw ActivityContentError.invalidHref
+        }
+        
         self.href = href
         super.init()
     }

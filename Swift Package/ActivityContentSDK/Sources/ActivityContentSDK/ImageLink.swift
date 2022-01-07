@@ -35,12 +35,12 @@ public class ImageLink: BaseLink {
          mediaType: String,
          hash: [Hash],
          height: Float? = nil,
-         width: Float? = nil) {
+         width: Float? = nil) throws {
         self.mediaType = mediaType
         self.hash = hash
         self.height = height
         self.width = width
-        super.init(href: href)
+        try super.init(href: href)
     }
     
     private enum CodingKeys: String, CodingKey {

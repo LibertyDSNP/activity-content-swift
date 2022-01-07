@@ -20,7 +20,7 @@ class ProfileTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: profile), json)
+        XCTAssertEqual(profile.json, json)
     }
     
     func testProfileEncodeFull() {
@@ -76,7 +76,7 @@ class ProfileTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: profile), json)
+        XCTAssertEqual(profile.json, json)
     }
     
     func testProfileDecode() {

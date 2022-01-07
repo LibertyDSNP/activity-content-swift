@@ -42,7 +42,7 @@ class BaseLinkTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: baseLink), json)
+        XCTAssertEqual(baseLink?.json, json)
     }
     
     func testBaseLinkDecode() {

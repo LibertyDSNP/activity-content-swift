@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Hash: Codable {
+public class Hash: ActivityContentItem {
     
     /**
      The algorithm of the given hash

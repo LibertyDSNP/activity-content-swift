@@ -9,17 +9,17 @@ import Foundation
 
 class TestUtil {
     
-    static public func json<T: Encodable>(object: T) -> String? {
-        do {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-            let jsonData = try encoder.encode(object)
-            return String(data: jsonData, encoding: .utf8)
-        } catch {
-            print(error)
-            return nil
-        }
-    }
+//    static public func json<T: Encodable>(object: T) -> String? {
+//        do {
+//            let encoder = JSONEncoder()
+//            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+//            let jsonData = try encoder.encode(object)
+//            return String(data: jsonData, encoding: .utf8)
+//        } catch {
+//            print(error)
+//            return nil
+//        }
+//    }
     
     static public func object<T: Decodable>(with: T.Type, json: String) -> T? {
         do {

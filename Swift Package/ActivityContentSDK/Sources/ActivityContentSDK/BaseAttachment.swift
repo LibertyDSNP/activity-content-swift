@@ -7,5 +7,5 @@
 
 import Foundation
 
-public class BaseAttachment: Codable {
+public class BaseAttachment: ActivityContentItem {
 }

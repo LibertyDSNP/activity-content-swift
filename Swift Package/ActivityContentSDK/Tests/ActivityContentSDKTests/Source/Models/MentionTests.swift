@@ -32,7 +32,7 @@ class MentionTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: mention), json)
+        XCTAssertEqual(mention?.json, json)
     }
     
     func testMentionDecode() {

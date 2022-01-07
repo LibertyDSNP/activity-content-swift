@@ -21,7 +21,7 @@ class AttachmentTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: link), json)
+        XCTAssertEqual(link?.json, json)
     }
     
     func testLinkDecode() {
@@ -31,7 +31,7 @@ class AttachmentTests: XCTestCase {
               "type" : "Link"
             }
             """
-        let object = TestUtil.object(with: LinkAttachment.self, json: json)
+        let object = LinkAttachment.from(json: json) // TestUtil.object(with: LinkAttachment.self, json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
@@ -56,7 +56,7 @@ class AttachmentTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: videoLink), json)
+        XCTAssertEqual(videoLink?.json, json)
     }
     
     func testVideoLinkDecode() {
@@ -103,7 +103,7 @@ class AttachmentTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: imageLink), json)
+        XCTAssertEqual(imageLink?.json, json)
     }
     
     func testImageLinkDecode() {
@@ -148,7 +148,7 @@ class AttachmentTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: audioLink), json)
+        XCTAssertEqual(audioLink?.json, json)
     }
     
     func testAudioLinkDecode() {

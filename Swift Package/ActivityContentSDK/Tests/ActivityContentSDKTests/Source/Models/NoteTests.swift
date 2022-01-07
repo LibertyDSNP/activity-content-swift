@@ -28,7 +28,7 @@ class NoteTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: note), json)
+        XCTAssertEqual(note.json, json)
     }
     
     func testNoteEncodeFull() {
@@ -140,7 +140,7 @@ class NoteTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: note), json)
+        XCTAssertEqual(note.json, json)
     }
     
     func testNoteDecode() {

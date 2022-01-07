@@ -31,20 +31,21 @@ class HashTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(TestUtil.json(object: hash), json)
+        XCTAssertEqual(hash?.json, json)
     }
     
     func testHashDecode() {
+        /// Note that when decoding, value is not checked for validity.
         let json = """
             {
               "algorithm" : "keecak",
-              "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+              "value" : "0x1234"
             }
             """
         
         let object = TestUtil.object(with: Hash.self, json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.algorithm, "keecak")
-        XCTAssertEqual(object?.value, "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+        XCTAssertEqual(object?.value, "0x1234")
     }
 }

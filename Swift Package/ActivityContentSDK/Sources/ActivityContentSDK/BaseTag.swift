@@ -7,5 +7,5 @@
 
 import Foundation
 
-public class BaseTag: Codable {
+public class BaseTag: ActivityContentItem {
 }

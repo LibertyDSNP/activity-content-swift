@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Profile: Codable {
+class Profile: ActivityContentItem {
     
     /**
     JSON-LD @context

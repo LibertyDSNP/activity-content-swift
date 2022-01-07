@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Note: Codable {
+public class Note: ActivityContentItem {
     
     /**
      JSON-LD @context

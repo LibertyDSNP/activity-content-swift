@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let hash = ActivityContent.createHash(algorithm: "keccak256", value: "0x1234")
+        let hash = try! ActivityContent.createHash(algorithm: "keccak256", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
         let imageLink = try! ActivityContent.createImageLink(href: URL(string: "http://www.example.com/image.png")!, mediaType: "image/png", hash: [hash], height: 200, width: 300)
         let imageAttachment = ActivityContent.createImageAttachment(url: [imageLink], name: "Image Attachment")
         let attachments = [imageAttachment]

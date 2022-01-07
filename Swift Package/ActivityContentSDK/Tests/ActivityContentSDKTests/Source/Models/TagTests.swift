@@ -30,7 +30,7 @@ class TagTests: XCTestCase {
             }]
             """
         
-        let object = TagArray.from(json: json)
+        let object = TagArray(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.tags?.count, 4)
         XCTAssertEqual((object?.tags?[0] as? Hashtag)?.name, "#hashtag1")

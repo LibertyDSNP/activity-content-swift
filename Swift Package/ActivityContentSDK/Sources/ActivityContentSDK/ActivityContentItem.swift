@@ -8,8 +8,12 @@
 import Foundation
 
 public protocol ActivityContentItem: Codable {
+    
+    // to JSON
     var json: String? { get }
-    static func from(json: String) -> Self?
+    
+    // from JSON
+    init?(json: String)
 };
 
 public extension ActivityContentItem {
@@ -26,11 +30,11 @@ public extension ActivityContentItem {
         }
     }
     
-    static func from(json: String) -> Self? {
+    init?(json: String) {
         do {
             let decoder = JSONDecoder()
             let root = try decoder.decode(Self.self, from: Data(json.utf8))
-            return root
+            self = root
         } catch {
             print(error)
             return nil

@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             }
             
             // from JSON
-            _ = Note.from(json: json)
+            _ = Note(json: json)
 
             print(json)
             

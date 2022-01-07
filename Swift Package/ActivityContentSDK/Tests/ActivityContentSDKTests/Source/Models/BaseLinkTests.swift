@@ -52,7 +52,7 @@ class BaseLinkTests: XCTestCase {
               "type" : "Link"
             }
             """
-        let object = BaseLink.from(json: json)
+        let object = BaseLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")

@@ -23,7 +23,7 @@ class BaseLinkTests: XCTestCase {
     
     func testImageLinkInitWithInvalidHref() {
         do {
-            _ = try ImageLink(href: URL(string: "invalid://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "algo", value: "0x1234")])
+            _ = try ImageLink(href: URL(string: "invalid://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "algo", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             XCTFail()
         } catch ActivityContentError.invalidHref {
             XCTAssert(true)

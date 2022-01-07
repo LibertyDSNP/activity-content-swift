@@ -156,7 +156,7 @@ class NoteTests: XCTestCase {
                       "hash" : [
                         {
                           "algorithm" : "keecak",
-                          "value" : "0x1234"
+                          "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                         }
                       ],
                       "height" : 400,
@@ -180,7 +180,7 @@ class NoteTests: XCTestCase {
                      "hash" : [
                        {
                          "algorithm" : "keecak",
-                         "value" : "0x1234"
+                         "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                        }
                      ],
                      "height" : 400,
@@ -199,7 +199,7 @@ class NoteTests: XCTestCase {
                      "hash" : [
                        {
                          "algorithm" : "keecak",
-                         "value" : "0x1234"
+                         "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                        }
                      ],
                      "href" : "http://www.example.com/audio.mp3",

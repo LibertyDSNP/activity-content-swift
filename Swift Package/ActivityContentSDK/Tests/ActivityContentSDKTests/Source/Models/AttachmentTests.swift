@@ -38,14 +38,14 @@ class AttachmentTests: XCTestCase {
     }
     
     func testVideoLinkEncode() {
-        let videoLink = try? VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: "0x1234")], height: 400, width: 400)
+        let videoLink = try? VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")], height: 400, width: 400)
         
         let json = """
             {
               "hash" : [
                 {
                   "algorithm" : "keecak",
-                  "value" : "0x1234"
+                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                 }
               ],
               "height" : 400,
@@ -65,7 +65,7 @@ class AttachmentTests: XCTestCase {
               "hash" : [
                 {
                   "algorithm" : "keecak",
-                  "value" : "0x1234"
+                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                 }
               ],
               "height" : 400,
@@ -85,14 +85,14 @@ class AttachmentTests: XCTestCase {
     }
     
     func testImageLinkEncode() {
-        let imageLink = try? ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: "0x1234")], height: 400, width: 400)
+        let imageLink = try? ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")], height: 400, width: 400)
         
         let json = """
             {
               "hash" : [
                 {
                   "algorithm" : "keecak",
-                  "value" : "0x1234"
+                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                 }
               ],
               "height" : 400,
@@ -112,7 +112,7 @@ class AttachmentTests: XCTestCase {
               "hash" : [
                 {
                   "algorithm" : "keecak",
-                  "value" : "0x1234"
+                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                 }
               ],
               "height" : 400,
@@ -132,14 +132,14 @@ class AttachmentTests: XCTestCase {
     }
     
     func testAudioLinkEncode() {
-        let audioLink = try? AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "audio/mp3", hash: [Hash(algorithm: "keecak", value: "0x1234")])
+        let audioLink = try? AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "audio/mp3", hash: [Hash(algorithm: "keecak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         
         let json = """
             {
               "hash" : [
                 {
                   "algorithm" : "keecak",
-                  "value" : "0x1234"
+                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                 }
               ],
               "href" : "http:\\/\\/www.example.com",
@@ -157,7 +157,7 @@ class AttachmentTests: XCTestCase {
               "hash" : [
                 {
                   "algorithm" : "keecak",
-                  "value" : "0x1234"
+                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                 }
               ],
               "href" : "http://www.example.com",

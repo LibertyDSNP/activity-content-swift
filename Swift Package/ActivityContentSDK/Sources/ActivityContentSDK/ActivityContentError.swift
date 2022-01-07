@@ -10,4 +10,5 @@ import Foundation
 enum ActivityContentError: Error {
     case invalidHref
     case invalidDsnpUserUri
+    case invalidHash
 }

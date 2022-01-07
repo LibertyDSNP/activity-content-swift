@@ -20,7 +20,13 @@ public class Hash: Codable {
     public var value: String
     
     init(algorithm: String,
-         value: String) {
+         value: String) throws {
+        
+        /// Throw error if hash value does not follow supported format
+        guard VerificationUtil.isValid(hash: value) else {
+            throw ActivityContentError.invalidHash
+        }
+        
         self.algorithm = algorithm
         self.value = value
     }

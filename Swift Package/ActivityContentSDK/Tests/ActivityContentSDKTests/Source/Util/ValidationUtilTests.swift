@@ -134,4 +134,27 @@ class ValidationUtilTests: XCTestCase {
             XCTAssertFalse(VerificationUtil.isValid(duration: item), "\(item) is valid.")
         }
     }
+    
+    func testIsValidHash() {
+        let valid = [
+            "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7",
+            "0x00A63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efEA7", // mix case
+        ]
+        
+        for item in valid {
+            XCTAssertTrue(VerificationUtil.isValid(hash: item), "\(item) is invalid.")
+        }
+    }
+    
+    func testIsInvalidHash() {
+        let invalid = [
+            "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea", // one char shy
+            "0x00A63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efEA7x", // one char long
+            "00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7", // does not contain prefix 0x
+        ]
+
+        for item in invalid {
+            XCTAssertFalse(VerificationUtil.isValid(href: item), "\(item) is valid.")
+        }
+    }
 }

@@ -64,9 +64,9 @@ public class ActivityContent {
     
     public static func createHash(
         algorithm: String,
-        value: String) -> Hash {
+        value: String) throws -> Hash {
             
-            return Hash(
+            return try Hash(
                 algorithm: algorithm,
                 value: value)
         }

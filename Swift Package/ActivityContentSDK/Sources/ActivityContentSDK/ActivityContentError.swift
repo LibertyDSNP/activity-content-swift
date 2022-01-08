@@ -11,4 +11,7 @@ enum ActivityContentError: Error {
     case invalidHref
     case invalidDsnpUserUri
     case invalidHash
+    case linksDoNotContainSupportedFormat
+    case hashesDoNotContainSupportedAlgorithm
+    case missingField
 }

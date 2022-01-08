@@ -57,5 +57,43 @@ class ViewController: UIViewController {
             print(error)
         }
         
+        
+        do {
+            
+            let hashUnsupported = try ActivityContent.HashBuilder()
+                .setAlgorithm("keccak256")
+                .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                .build()
+            
+            let hashSupported = try ActivityContent.HashBuilder()
+                .setAlgorithm("keccak")
+                .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                .build()
+            
+            let imageLinkUnsupported = try ActivityContent.ImageLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("image/fake")
+                .addHashes([hashUnsupported, hashSupported])
+                .build()
+            
+            let imageLinkSupported = try ActivityContent.ImageLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("image/png")
+                .addHashes([hashUnsupported, hashSupported])
+                .build()
+            
+            let imageAttachment = try ActivityContent.ImageAttachmentBuilder()
+                .setName("Image Attachment")
+                .addImageLinks([imageLinkUnsupported, imageLinkSupported])
+                .build()
+            
+            print(imageAttachment.name!)
+            print(imageAttachment.url!)
+            print(imageAttachment.json!)
+            
+        } catch {
+            print(error)
+        }
+        
     }
 }

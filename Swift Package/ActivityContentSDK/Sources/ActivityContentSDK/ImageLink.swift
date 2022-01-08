@@ -12,14 +12,14 @@ public class ImageLink: BaseLink {
     /**
      MIME type of href content
      */
-    public var mediaType: String
+    public var mediaType: String?
     
     /**
      Array of hashes for linked content validation
      
      - Requires: MUST include at least one supported hash
      */
-    public var hash: [Hash]
+    public var hash: [Hash]? = []
     
     /**
      A hint as to the rendering height in device-independent pixels
@@ -30,6 +30,10 @@ public class ImageLink: BaseLink {
      A hint as to the rendering width in device-independent pixels
      */
     public var width: Float?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(href: URL,
          mediaType: String,
@@ -66,5 +70,26 @@ public class ImageLink: BaseLink {
         try container.encode(self.hash, forKey: .hash)
         try container.encode(self.height, forKey: .height)
         try container.encode(self.width, forKey: .width)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if self.href == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if self.mediaType == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if VerificationUtil.isValid(href: self.href) == false {
+            throw ActivityContentError.invalidHref
+        }
+        
+        if VerificationUtil.hasAtLeastOneSupportedHashAlgorithm(hashes: self.hash) == false {
+            throw ActivityContentError.hashesDoNotContainSupportedAlgorithm
+        }
+        
+        return true
     }
 }

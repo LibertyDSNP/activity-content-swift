@@ -12,12 +12,15 @@ public class Hash: ActivityContentItem {
     /**
      The algorithm of the given hash
      */
-    public var algorithm: String
+    public var algorithm: String?
     
     /**
      Hash value serialization
      */
-    public var value: String
+    public var value: String?
+    
+    internal init() {
+    }
     
     init(algorithm: String,
          value: String) throws {
@@ -29,5 +32,22 @@ public class Hash: ActivityContentItem {
         
         self.algorithm = algorithm
         self.value = value
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if self.algorithm == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if self.value == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if VerificationUtil.isValid(hash: self.value) == false {
+            throw ActivityContentError.invalidHash
+        }
+                
+        return true
     }
 }

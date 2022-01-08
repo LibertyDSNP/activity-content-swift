@@ -21,7 +21,11 @@ public class BaseLink: BaseAttachment {
      
      - Requires: MUST be a Supported URL Schema
      */
-    public var href: URL
+    public var href: URL?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(href: URL) throws {
         

@@ -81,8 +81,10 @@ class VerificationUtil {
     
     static func hasAtLeastOneSupportedImageMediaType(links: [ImageLink]?) -> Bool {
         for link in links ?? [] {
-            if self.kSupportedImageMediaTypes.contains(link.mediaType) {
-                return true
+            if let mediaType = link.mediaType {
+                if self.kSupportedImageMediaTypes.contains(mediaType) {
+                    return true
+                }
             }
         }
         
@@ -101,9 +103,10 @@ class VerificationUtil {
     
     static func hasAtLeastOneSupportedHashAlgorithm(hashes: [Hash]?) -> Bool {
         for hash in hashes ?? [] {
-            if self.kSupportedHashAlgorithms.contains(hash.algorithm) &&
-                self.isValid(hash: hash) {
-                return true
+            if let algorithm = hash.algorithm {
+                if self.kSupportedHashAlgorithms.contains(algorithm) {
+                    return true
+                }
             }
         }
         

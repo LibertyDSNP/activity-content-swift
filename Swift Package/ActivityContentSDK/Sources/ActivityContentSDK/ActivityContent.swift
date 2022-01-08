@@ -7,7 +7,89 @@
 
 import Foundation
 
+
 public class ActivityContent {
+    
+    public class HashBuilder {
+        
+        private var hash = Hash()
+        
+        public init() {}
+        
+        @discardableResult
+        public func setAlgorithm(_ algorithm: String) -> Self {
+            self.hash.algorithm = algorithm
+            return self
+        }
+        
+        @discardableResult
+        public func setValue(_ value: String) -> Self {
+            self.hash.value = value
+            return self
+        }
+        
+        public func build() throws -> Hash {
+            try self.hash.isValid()
+            return self.hash
+        }
+    }
+    
+    public class ImageLinkBuilder {
+        
+        private var imageLink = ImageLink()
+        
+        public init() {}
+        
+        @discardableResult
+        public func setHref(_ href: URL) -> Self {
+            self.imageLink.href = href
+            return self
+        }
+        
+        @discardableResult
+        public func setMediaType(_ mediaType: String) -> Self {
+            self.imageLink.mediaType = mediaType
+            return self
+        }
+
+        @discardableResult
+        public func addHashes(_ hashes: [Hash]) -> Self {
+            self.imageLink.hash?.append(contentsOf: hashes)
+            return self
+        }
+
+        public func build() throws -> ImageLink {
+            try self.imageLink.isValid()
+            return self.imageLink
+        }
+    }
+    
+    public class ImageAttachmentBuilder {
+        
+        private var imageAttachment = ImageAttachment()
+        
+        public init() {}
+        
+        @discardableResult
+        public func setName(_ name: String?) -> Self {
+            self.imageAttachment.name = name
+            return self
+        }
+        
+        @discardableResult
+        public func addImageLinks(_ imageLinks: [ImageLink]) -> Self {
+            self.imageAttachment.url?.append(contentsOf: imageLinks)
+            return self
+        }
+        
+        public func build() throws -> ImageAttachment {
+            try self.imageAttachment.isValid()
+            return self.imageAttachment
+        }
+    }
+    
+    
+    
     
     public static func createNote(
         content: String,

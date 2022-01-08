@@ -21,12 +21,16 @@ public class ImageAttachment: BaseAttachment {
      
      - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
      */
-    public var url: [ImageLink]
+    public var url: [ImageLink]? = []
     
     /**
      The display name or alt text for the image
      */
     public var name: String?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(url: [ImageLink],
          name: String? = nil) {
@@ -56,5 +60,14 @@ public class ImageAttachment: BaseAttachment {
         try container.encode(self.type, forKey: .type)
         try container.encode(self.url, forKey: .url)
         try container.encode(self.name, forKey: .name)
+    }
+
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if VerificationUtil.hasAtLeastOneSupportedImageMediaType(links: self.url) == false {
+            throw ActivityContentError.linksDoNotContainSupportedFormat
+        }
+        
+        return true
     }
 }

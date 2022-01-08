@@ -8,4 +8,6 @@
 import Foundation
 
 public class BaseAttachment: ActivityContentItem {
+    
+    internal init() {}
 }

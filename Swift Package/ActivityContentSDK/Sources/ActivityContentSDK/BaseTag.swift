@@ -8,4 +8,6 @@
 import Foundation
 
 public class BaseTag: ActivityContentItem {
+    
+    internal init() {}
 }

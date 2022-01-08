@@ -10,6 +10,44 @@ import Foundation
 
 public class ActivityContent {
     
+    public class HashtagBuilder {
+        
+        private var hashtag = Hashtag()
+        
+        @discardableResult
+        public func setName(_ name: String) -> Self {
+            self.hashtag.name = name
+            return self
+        }
+        
+        public func build() throws -> Hashtag {
+            try self.hashtag.isValid()
+            return self.hashtag
+        }
+    }
+    
+    public class MentionBuilder {
+        
+        private var mention = Mention()
+        
+        @discardableResult
+        public func setName(_ name: String?) -> Self {
+            self.mention.name = name
+            return self
+        }
+        
+        @discardableResult
+        public func setDSNPUserId(_ dsnpUserId: DSNPUserId) -> Self {
+            self.mention.id = dsnpUserId
+            return self
+        }
+        
+        public func build() throws -> Mention {
+            try self.mention.isValid()
+            return self.mention
+        }
+    }
+    
     public class HashBuilder {
         
         private var hash = Hash()

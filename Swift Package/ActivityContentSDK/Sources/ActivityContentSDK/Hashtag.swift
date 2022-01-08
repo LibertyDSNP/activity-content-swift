@@ -12,7 +12,11 @@ public class Hashtag: BaseTag {
     /**
      The text of the tag
      */
-    public var name: String
+    public var name: String?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(name: String) {
         self.name = name
@@ -32,5 +36,14 @@ public class Hashtag: BaseTag {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if self.name == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        return true
     }
 }

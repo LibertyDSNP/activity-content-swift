@@ -26,7 +26,11 @@ public class Mention: BaseTag {
      
      - Requires: MUST be a DSNP User URI
      */
-    public var id: DSNPUserId
+    public var id: DSNPUserId?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(name: String? = nil,
          id: DSNPUserId) throws {
@@ -58,5 +62,14 @@ public class Mention: BaseTag {
         try container.encode(self.name, forKey: .name)
         try container.encode(self.type, forKey: .type)
         try container.encode(self.id, forKey: .id)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if VerificationUtil.isValid(dsnpUserUri: self.id) == false {
+            throw ActivityContentError.invalidDsnpUserUri
+        }
+        
+        return true
     }
 }

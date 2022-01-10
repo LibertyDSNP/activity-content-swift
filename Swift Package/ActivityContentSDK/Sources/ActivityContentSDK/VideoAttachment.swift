@@ -21,7 +21,7 @@ public class VideoAttachment: BaseAttachment {
      
      - Requires: MUST be a Video Link AND MUST have at least one supported video MIME type
      */
-    public var url: [VideoLink]
+    public var url: [VideoLink]? = []
     
     /**
      The display name for the video
@@ -32,6 +32,10 @@ public class VideoAttachment: BaseAttachment {
      Approximate duration of the video
      */
     public var duration: TimeInterval?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(url: [VideoLink],
          name: String? = nil,
@@ -66,5 +70,14 @@ public class VideoAttachment: BaseAttachment {
         try container.encode(self.url, forKey: .url)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.duration, forKey: .duration)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if VerificationUtil.hasAtLeastOneSupportedVideoMediaType(links: self.url) == false {
+            throw ActivityContentError.linksDoNotContainSupportedFormat
+        }
+        
+        return true
     }
 }

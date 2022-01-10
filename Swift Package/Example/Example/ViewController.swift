@@ -7,57 +7,18 @@
 
 import UIKit
 import ActivityContentSDK
+import CoreLocation
 
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        do {
-            
-            // Create new Note
-            let hash = try ActivityContent.createHash(algorithm: "keccak256", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
-            let imageLink = try ActivityContent.createImageLink(href: URL(string: "http://www.example.com/image.png")!, mediaType: "image/png", hash: [hash], height: 200, width: 300)
-            let imageAttachment = ActivityContent.createImageAttachment(url: [imageLink], name: "Image Attachment")
-            let attachments = [imageAttachment]
-            
-            let hashtag = ActivityContent.createHashtag(name: "#hashtag")
-            let tags = [hashtag]
-            
-            let location = ActivityContent.createLocation(
-                name: "Location",
-                accuracy: 50,
-                altitude: 100,
-                latitude: 123.45,
-                longitude: -123.45,
-                radius: 25,
-                units: .feet)
-            
-            let note = ActivityContent.createNote(
-                content: "This is a note",
-                mediaType: "text/plain",
-                name: "Sample Name",
-                published: Date(timeIntervalSince1970: 1640321788.6924329),
-                attachment: attachments,
-                tag: tags,
-                location: location)
-            
-            // to JSON
-            guard let json = note.json else {
-                print("Error generating JSON")
-                return
-            }
-            
-            // from JSON
-            _ = Note(json: json)
 
-            print(json)
-            
-        } catch {
-            print(error)
-        }
-        
-        
+        self.buildNote()
+        self.buildProfile()
+    }
+    
+    private func buildNote() {
         do {
             
             let hashUnsupported = try ActivityContent.HashBuilder()
@@ -86,14 +47,87 @@ class ViewController: UIViewController {
                 .setName("Image Attachment")
                 .addImageLinks([imageLinkUnsupported, imageLinkSupported])
                 .build()
+
+            let hashtag = try ActivityContent.HashtagBuilder()
+                .setName("#hashtag")
+                .build()
             
-            print(imageAttachment.name!)
-            print(imageAttachment.url!)
-            print(imageAttachment.json!)
+            let mention = try ActivityContent.MentionBuilder()
+                .setName("Mention Name")
+                .setDSNPUserId("dsnp://1234")
+                .build()
+            
+            let note = try ActivityContent.NoteBuilder()
+                .setContent("Note Content")
+                .setName("Note Name")
+                .setPublished(Date.now)
+                .addAttachments([imageAttachment])
+                .addTags([hashtag, mention])
+                .build()
+            
+            print(note.json!)
             
         } catch {
             print(error)
         }
-        
+    }
+    
+    private func buildProfile() {
+        do {
+            
+            let hashUnsupported = try ActivityContent.HashBuilder()
+                .setAlgorithm("keccak256")
+                .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                .build()
+            
+            let hashSupported = try ActivityContent.HashBuilder()
+                .setAlgorithm("keccak")
+                .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                .build()
+            
+            let imageLinkUnsupported = try ActivityContent.ImageLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("image/fake")
+                .addHashes([hashUnsupported, hashSupported])
+                .build()
+            
+            let imageLinkSupported = try ActivityContent.ImageLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("image/png")
+                .addHashes([hashUnsupported, hashSupported])
+                .build()
+            
+            let location = try ActivityContent.LocationBuilder()
+                .setName("Location Name")
+                .setAccuracy(50)
+                .setAltitude(100)
+                .setCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.34))
+                .setRadius(25)
+                .setUnits(.cm)
+                .build()
+
+            let hashtag = try ActivityContent.HashtagBuilder()
+                .setName("#hashtag")
+                .build()
+            
+            let mention = try ActivityContent.MentionBuilder()
+                .setName("Mention Name")
+                .setDSNPUserId("dsnp://1234")
+                .build()
+            
+            let profile = try ActivityContent.ProfileBuilder()
+                .setName("Profile Name")
+                .addIcons([imageLinkUnsupported, imageLinkSupported])
+                .setSummary("Profile Summary")
+                .setPublished(Date.now)
+                .setLocation(location)
+                .addTags([hashtag, mention])
+                .build()
+            
+            print(profile.json!)
+            
+        } catch {
+            print(error)
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Profile: ActivityContentItem {
+public class Profile: ActivityContentItem {
     
     /**
     JSON-LD @context
@@ -33,7 +33,7 @@ class Profile: ActivityContentItem {
     
      - Requires: MUST follow Image Link Type
      */
-    public var icon: [ImageLink]?
+    public var icon: [ImageLink]? = []
     
     /**
      Used as a plain text biography of the profile
@@ -59,7 +59,7 @@ class Profile: ActivityContentItem {
      
      - Requires: MUST follow Tag Type
      */
-    public var tag: [BaseTag]?
+    public var tag: [BaseTag]? = []
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
@@ -71,6 +71,8 @@ class Profile: ActivityContentItem {
              location,
              tag
     }
+    
+    internal init() {}
     
     init(name: String? = nil,
          icon: [ImageLink]? = nil,
@@ -86,7 +88,7 @@ class Profile: ActivityContentItem {
         self.tag = tag
     }
     
-    required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.context = try container.decode(String.self, forKey: .context)
         self.type = try container.decode(String.self, forKey: .type)
@@ -99,5 +101,14 @@ class Profile: ActivityContentItem {
         /// Tags array is heterogeneous, and so must be parsed based on tag type.
         let tagArray = try? container.decode(TagArray.self, forKey: .tag)
         self.tag = tagArray?.tags
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if VerificationUtil.isValid(date: self.published) == false {
+            throw ActivityContentError.invalidDate
+        }
+        
+        return true
     }
 }

@@ -21,7 +21,7 @@ public class AudioAttachment: BaseAttachment {
      
      - Requires: MUST be an Audio Link AND MUST have at least one supported audio MIME type
      */
-    public var url: [AudioLink]
+    public var url: [AudioLink]? = []
     
     /**
      The display name for the audio file
@@ -32,6 +32,10 @@ public class AudioAttachment: BaseAttachment {
      Approximate duration of the audio
      */
     public var duration: TimeInterval?
+    
+    internal override init() {
+        super.init()
+    }
     
     init(url: [AudioLink],
          name: String? = nil,
@@ -66,5 +70,14 @@ public class AudioAttachment: BaseAttachment {
         try container.encode(self.url, forKey: .url)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.duration, forKey: .duration)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if VerificationUtil.hasAtLeastOneSupportedAudioMediaType(links: self.url) == false {
+            throw ActivityContentError.linksDoNotContainSupportedFormat
+        }
+        
+        return true
     }
 }

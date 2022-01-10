@@ -18,52 +18,52 @@ public class Location: ActivityContentItem {
      
      - Requires: MUST be set to Place
      */
-    public private(set) var type: String = "Place"
+    internal private(set) var type: String = "Place"
     
     /**
      The display name for the location
      */
-    public var name: String
+    internal var name: String?
     
     /**
      The accuracy of the coordinates as a percentage. (e.g. "94.0" means "94.0% accurate")
      */
-    public var accuracy: Float?
+    internal var accuracy: Float?
     
     /**
      The altitude of the location
      */
-    public var altitude: Float?
+    internal var altitude: Float?
     
     /**
      The latitude of the location
      */
-    public var latitude: Float?
+    internal var latitude: Double?
     
     /**
      The longitude of the location
      */
-    public var longitude: Float?
+    internal var longitude: Double?
     
     /**
      The area around the given point that comprises the location
      */
-    public var radius: Float?
+    internal var radius: Float?
     
     /**
      The units for radius and altitude (defaults to meters)
      
      - Requires: MUST be one of: cm, feet, inches, km, m, miles
      */
-    public var units: LocationUnits? = .m
+    internal var units: LocationUnits? = .m
     
-    init(name: String,
-         accuracy: Float? = nil,
-         altitude: Float? = nil,
-         latitude: Float? = nil,
-         longitude: Float? = nil,
-         radius: Float? = nil,
-         units: LocationUnits? = .m) {
+    internal init(name: String,
+                  accuracy: Float? = nil,
+                  altitude: Float? = nil,
+                  latitude: Double? = nil,
+                  longitude: Double? = nil,
+                  radius: Float? = nil,
+                  units: LocationUnits? = .m) {
         self.name = name
         self.accuracy = accuracy
         self.altitude = altitude
@@ -71,5 +71,20 @@ public class Location: ActivityContentItem {
         self.longitude = longitude
         self.radius = radius
         self.units = units
+    }
+    
+    internal init() {}
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if self.name == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if self.units == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        return true
     }
 }

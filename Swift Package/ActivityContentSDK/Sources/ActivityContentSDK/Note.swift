@@ -26,14 +26,14 @@ public class Note: ActivityContentItem {
     /**
      Text content of the note
      */
-    public var content: String
+    public var content: String?
     
     /**
      MIME type for the content field
      
      - Requires: MUST be set to a supported MIME type
      */
-    public var mediaType: String
+    public private(set) var mediaType: String = "text/plain"
     
     /**
      The display name for the note
@@ -52,14 +52,14 @@ public class Note: ActivityContentItem {
      
      - Requires: MUST be one of the Supported Attachments
      */
-    public private(set) var attachment: [BaseAttachment]?
+    public var attachment: [BaseAttachment]? = []
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    public private(set) var tag: [BaseTag]?
+    public var tag: [BaseTag]? = []
     
     /**
      For location
@@ -79,6 +79,8 @@ public class Note: ActivityContentItem {
              tag,
              location
     }
+    
+    internal init() {}
     
     init(content: String,
          mediaType: String,
@@ -114,5 +116,18 @@ public class Note: ActivityContentItem {
         self.tag = tagArray?.tags
         
         self.location = try? container.decode(Location.self, forKey: .location)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if self.content == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if VerificationUtil.isValid(date: self.published) == false {
+            throw ActivityContentError.invalidDate
+        }
+        
+        return true
     }
 }

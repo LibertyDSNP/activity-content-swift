@@ -14,6 +14,10 @@ public class LinkAttachment: BaseLink {
      */
     public var name: String?
     
+    internal override init() {
+        super.init()
+    }
+    
     init(href: URL,
          name: String? = nil) throws {
         self.name = name
@@ -34,5 +38,14 @@ public class LinkAttachment: BaseLink {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if VerificationUtil.isValid(href: self.href) == false {
+            throw ActivityContentError.invalidHref
+        }
+        
+        return true
     }
 }

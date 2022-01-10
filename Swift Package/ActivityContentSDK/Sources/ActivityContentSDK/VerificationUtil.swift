@@ -46,8 +46,16 @@ class VerificationUtil {
         return self.matches(regex: kHrefRegex, value: value)
     }
     
-    static func isValid(published: Any?) -> Bool {
-        return self.matches(regex: kISO8601Regex, value: published)
+    static func isValid(date: Any?) -> Bool {
+        
+        var value = date
+        if let date = date as? Date {
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions.insert(.withFractionalSeconds)
+            value = formatter.string(from: date)
+        }
+        
+        return self.matches(regex: kISO8601Regex, value: value)
     }
     
     static func isValid(duration: Any?) -> Bool {
@@ -71,8 +79,10 @@ class VerificationUtil {
     
     static func hasAtLeastOneSupportedAudioMediaType(links: [AudioLink]?) -> Bool {
         for link in links ?? [] {
-            if self.kSupportedAudioMediaTypes.contains(link.mediaType) {
-                return true
+            if let mediaType = link.mediaType {
+                if self.kSupportedAudioMediaTypes.contains(mediaType) {
+                    return true
+                }
             }
         }
         
@@ -93,8 +103,10 @@ class VerificationUtil {
     
     static func hasAtLeastOneSupportedVideoMediaType(links: [VideoLink]?) -> Bool {
         for link in links ?? [] {
-            if self.kSupportedVideoMediaTypes.contains(link.mediaType) {
-                return true
+            if let mediaType = link.mediaType {
+                if self.kSupportedVideoMediaTypes.contains(mediaType) {
+                    return true
+                }
             }
         }
         

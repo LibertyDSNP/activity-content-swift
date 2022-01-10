@@ -79,7 +79,7 @@ class ValidationUtilTests: XCTestCase {
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(published: item), "\(item) is invalid.")
+            XCTAssertTrue(VerificationUtil.isValid(date: item), "\(item) is invalid.")
         }
     }
     
@@ -98,7 +98,7 @@ class ValidationUtilTests: XCTestCase {
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(published: item), "\(item) is valid.")
+            XCTAssertFalse(VerificationUtil.isValid(date: item), "\(item) is valid.")
         }
     }
 

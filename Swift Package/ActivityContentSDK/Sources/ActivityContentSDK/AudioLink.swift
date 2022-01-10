@@ -12,14 +12,18 @@ public class AudioLink: BaseLink {
     /**
      MIME type of href content
      */
-    public var mediaType: String
+    public var mediaType: String?
     
     /**
      Array of hashes for linked content validation
      
      - Requires: MUST include at least one supported hash
      */
-    public var hash: [Hash]
+    public var hash: [Hash]? = []
+    
+    internal override init() {
+        super.init()
+    }
     
     init(href: URL,
          mediaType: String,
@@ -46,5 +50,22 @@ public class AudioLink: BaseLink {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mediaType, forKey: .mediaType)
         try container.encode(self.hash, forKey: .hash)
+    }
+    
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        if self.mediaType == nil {
+            throw ActivityContentError.missingField
+        }
+        
+        if VerificationUtil.isValid(href: self.href) == false {
+            throw ActivityContentError.invalidHref
+        }
+        
+        if VerificationUtil.hasAtLeastOneSupportedHashAlgorithm(hashes: self.hash) == false {
+            throw ActivityContentError.hashesDoNotContainSupportedAlgorithm
+        }
+        
+        return true
     }
 }

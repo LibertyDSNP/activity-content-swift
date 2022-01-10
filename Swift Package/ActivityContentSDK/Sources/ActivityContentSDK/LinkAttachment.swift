@@ -12,14 +12,14 @@ public class LinkAttachment: BaseLink {
     /**
      The display name for the link
      */
-    public var name: String?
+    internal var name: String?
     
     internal override init() {
         super.init()
     }
     
-    init(href: URL,
-         name: String? = nil) throws {
+    internal init(href: URL,
+                  name: String? = nil) throws {
         self.name = name
         try super.init(href: href)
     }

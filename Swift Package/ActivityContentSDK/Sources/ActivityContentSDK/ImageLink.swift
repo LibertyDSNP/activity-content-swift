@@ -12,34 +12,34 @@ public class ImageLink: BaseLink {
     /**
      MIME type of href content
      */
-    public var mediaType: String?
+    internal var mediaType: String?
     
     /**
      Array of hashes for linked content validation
      
      - Requires: MUST include at least one supported hash
      */
-    public var hash: [Hash]? = []
+    internal var hash: [Hash]? = []
     
     /**
      A hint as to the rendering height in device-independent pixels
      */
-    public var height: Float?
+    internal var height: Float?
     
     /**
      A hint as to the rendering width in device-independent pixels
      */
-    public var width: Float?
+    internal var width: Float?
     
     internal override init() {
         super.init()
     }
     
-    init(href: URL,
-         mediaType: String,
-         hash: [Hash],
-         height: Float? = nil,
-         width: Float? = nil) throws {
+    internal init(href: URL,
+                  mediaType: String,
+                  hash: [Hash],
+                  height: Float? = nil,
+                  width: Float? = nil) throws {
         self.mediaType = mediaType
         self.hash = hash
         self.height = height

@@ -14,20 +14,20 @@ public class BaseLink: BaseAttachment {
      
      - Requires: MUST be set to Link
      */
-    public private(set) var type: String = "Link"
+    internal private(set) var type: String = "Link"
     
     /**
      The URL for the given link
      
      - Requires: MUST be a Supported URL Schema
      */
-    public var href: URL?
+    internal var href: URL?
     
     internal override init() {
         super.init()
     }
     
-    init(href: URL) throws {
+    internal init(href: URL) throws {
         
         /// Throw error if href is does not follow supported schema
         guard VerificationUtil.isValid(href: href) else {

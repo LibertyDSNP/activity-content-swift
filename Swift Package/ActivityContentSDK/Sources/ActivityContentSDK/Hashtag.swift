@@ -12,13 +12,13 @@ public class Hashtag: BaseTag {
     /**
      The text of the tag
      */
-    public var name: String?
+    internal var name: String?
     
     internal override init() {
         super.init()
     }
     
-    init(name: String) {
+    internal init(name: String) {
         self.name = name
         super.init()
     }

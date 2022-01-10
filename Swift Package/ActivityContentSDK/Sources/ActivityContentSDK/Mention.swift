@@ -12,28 +12,28 @@ public class Mention: BaseTag {
     /**
      The text of the tag
      */
-    public var name: String?
+    internal var name: String?
     
     /**
      Identifies the tag as type Mention
      
      - Requires: MUST be Mention
      */
-    public private(set) var type: String = "Mention"
+    internal private(set) var type: String = "Mention"
     
     /**
      Link to the user mentioned
      
      - Requires: MUST be a DSNP User URI
      */
-    public var id: DSNPUserId?
+    internal var id: DSNPUserId?
     
     internal override init() {
         super.init()
     }
     
-    init(name: String? = nil,
-         id: DSNPUserId) throws {
+    internal init(name: String? = nil,
+                  id: DSNPUserId) throws {
         
         /// Throw error if id is does not follow DSNP User URI pattern
         guard VerificationUtil.isValid(dsnpUserUri: id) else {

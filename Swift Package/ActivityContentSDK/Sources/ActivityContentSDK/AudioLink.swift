@@ -12,22 +12,22 @@ public class AudioLink: BaseLink {
     /**
      MIME type of href content
      */
-    public var mediaType: String?
+    internal var mediaType: String?
     
     /**
      Array of hashes for linked content validation
      
      - Requires: MUST include at least one supported hash
      */
-    public var hash: [Hash]? = []
+    internal var hash: [Hash]? = []
     
     internal override init() {
         super.init()
     }
     
-    init(href: URL,
-         mediaType: String,
-         hash: [Hash]) throws {
+    internal init(href: URL,
+                  mediaType: String,
+                  hash: [Hash]) throws {
         self.mediaType = mediaType
         self.hash = hash
         try super.init(href: href)

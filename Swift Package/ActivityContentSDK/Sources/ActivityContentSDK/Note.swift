@@ -14,59 +14,59 @@ public class Note: ActivityContentItem {
      
      - Requires: MUST be set to https://www.w3.org/ns/activitystreams
      */
-    public private(set) var context: String = "https://www.w3.org/ns/activitystreams"
+    internal private(set) var context: String = "https://www.w3.org/ns/activitystreams"
     
     /**
      Identifies the type of the object
      
      - Requires: MUST be set to Note
      */
-    public private(set) var type: String = "Note"
+    internal private(set) var type: String = "Note"
     
     /**
      Text content of the note
      */
-    public var content: String?
+    internal var content: String?
     
     /**
      MIME type for the content field
      
      - Requires: MUST be set to a supported MIME type
      */
-    public private(set) var mediaType: String = "text/plain"
+    internal private(set) var mediaType: String = "text/plain"
     
     /**
      The display name for the note
      */
-    public var name: String?
+    internal var name: String?
     
     /**
      The time of publishing
      
      - Requires: MUST be ISO8601
      */
-    public var published: Date?
+    internal var published: Date?
     
     /**
      Array of attached links or media
      
      - Requires: MUST be one of the Supported Attachments
      */
-    public var attachment: [BaseAttachment]? = []
+    internal var attachment: [BaseAttachment]? = []
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    public var tag: [BaseTag]? = []
+    internal var tag: [BaseTag]? = []
     
     /**
      For location
      
      - Requires: MUST follow Location Type
      */
-    public private(set) var location: Location?
+    internal private(set) var location: Location?
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
@@ -82,13 +82,13 @@ public class Note: ActivityContentItem {
     
     internal init() {}
     
-    init(content: String,
-         mediaType: String,
-         name: String? = nil,
-         published: Date? = nil,
-         attachment: [BaseAttachment]? = nil,
-         tag: [BaseTag]? = nil,
-         location: Location? = nil) {
+    internal init(content: String,
+                  mediaType: String,
+                  name: String? = nil,
+                  published: Date? = nil,
+                  attachment: [BaseAttachment]? = nil,
+                  tag: [BaseTag]? = nil,
+                  location: Location? = nil) {
         self.content = content
         self.mediaType = mediaType
         self.name = name

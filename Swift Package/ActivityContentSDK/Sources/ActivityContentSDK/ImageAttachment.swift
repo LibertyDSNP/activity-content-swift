@@ -14,31 +14,31 @@ public class ImageAttachment: BaseAttachment {
      
      - Requires: MUST be set to Image
      */
-    public private(set) var type: String = "Image"
+    internal private(set) var type: String = "Image"
     
     /**
      An array of links for given image content in different formats
      
      - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
      */
-    public var url: [ImageLink]? = []
+    internal var url: [ImageLink]? = []
     
     /**
      The display name or alt text for the image
      */
-    public var name: String?
+    internal var name: String?
     
     internal override init() {
         super.init()
     }
     
-    init(url: [ImageLink],
-         name: String? = nil) {
+    internal init(url: [ImageLink],
+                  name: String? = nil) {
         self.url = url
         self.name = name
         super.init()
     }
-
+    
     private enum CodingKeys: String, CodingKey {
         case type
         case url
@@ -61,7 +61,7 @@ public class ImageAttachment: BaseAttachment {
         try container.encode(self.url, forKey: .url)
         try container.encode(self.name, forKey: .name)
     }
-
+    
     @discardableResult
     internal func isValid() throws -> Bool {
         if VerificationUtil.hasAtLeastOneSupportedImageMediaType(links: self.url) == false {

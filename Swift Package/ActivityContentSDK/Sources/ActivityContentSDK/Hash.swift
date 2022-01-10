@@ -12,18 +12,18 @@ public class Hash: ActivityContentItem {
     /**
      The algorithm of the given hash
      */
-    public var algorithm: String?
+    internal var algorithm: String?
     
     /**
      Hash value serialization
      */
-    public var value: String?
+    internal var value: String?
     
     internal init() {
     }
     
-    init(algorithm: String,
-         value: String) throws {
+    internal init(algorithm: String,
+                  value: String) throws {
         
         /// Throw error if hash value does not follow supported format
         guard VerificationUtil.isValid(hash: value) else {

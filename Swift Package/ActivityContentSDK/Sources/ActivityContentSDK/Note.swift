@@ -103,12 +103,12 @@ public class Note: ActivityContentItem {
         self.content = try container.decode(String.self, forKey: .content)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
         self.name = try? container.decode(String.self, forKey: .name)
-        
+
         if let formattedDate = try? container.decode(String.self, forKey: .published) {
+            /// Convert published date from ISO 8601 string to date object.
             let formatter = ISO8601DateFormatter()
             formatter.formatOptions.insert(.withFractionalSeconds)
             self.published = formatter.date(from: formattedDate)
-//            formatter.formatOptions.insert(.withFractionalSeconds)
         }
         
         /// Attachments array is heterogeneous, and so must be parsed based on tag type.
@@ -134,6 +134,7 @@ public class Note: ActivityContentItem {
             try container.encode(name, forKey: .name)
         }
         if let published = self.published {
+            /// Encode published date as ISO 8601 string.
             let formatter = ISO8601DateFormatter()
             formatter.formatOptions.insert(.withFractionalSeconds)
             let formattedDate = formatter.string(from: published)

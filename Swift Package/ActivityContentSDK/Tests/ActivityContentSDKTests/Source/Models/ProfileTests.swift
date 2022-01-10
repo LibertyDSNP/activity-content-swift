@@ -60,7 +60,7 @@ class ProfileTests: XCTestCase {
                 "units" : "cm"
               },
               "name" : "Profile Name",
-              "published" : 662014588.69243288,
+              "published" : "2021-12-24T04:56:28.692Z",
               "summary" : "Profile Summary",
               "tag" : [
                 {
@@ -109,7 +109,7 @@ class ProfileTests: XCTestCase {
                 "units" : "cm"
               },
               "name" : "Profile Name",
-              "published" : 662014588.69243288,
+              "published" : "2021-12-24T04:56:28.692Z",
               "summary" : "Profile Summary",
               "tag" : [
                 {
@@ -132,7 +132,7 @@ class ProfileTests: XCTestCase {
         XCTAssertEqual(object?.icon?.count, 1)
         XCTAssertEqual(object?.icon?[0].mediaType, "image/png")
         XCTAssertEqual(object?.summary, "Profile Summary")
-        XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.6924329)
+        XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.692)
         XCTAssertNotNil(object?.location)
         XCTAssertEqual(object?.location?.accuracy, 50)
         XCTAssertEqual(object?.tag?.count, 2)

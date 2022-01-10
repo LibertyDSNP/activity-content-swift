@@ -95,7 +95,14 @@ public class Profile: ActivityContentItem {
         self.name = try? container.decode(String.self, forKey: .name)
         self.icon = try? container.decode([ImageLink].self, forKey: .icon)
         self.summary = try? container.decode(String.self, forKey: .summary)
-        self.published = try? container.decode(Date.self, forKey: .published)
+        
+        if let formattedDate = try? container.decode(String.self, forKey: .published) {
+            /// Convert published date from ISO 8601 string to date object.
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions.insert(.withFractionalSeconds)
+            self.published = formatter.date(from: formattedDate)
+        }
+        
         self.location = try? container.decode(Location.self, forKey: .location)
         
         /// Tags array is heterogeneous, and so must be parsed based on tag type.
@@ -117,7 +124,11 @@ public class Profile: ActivityContentItem {
             try container.encode(summary, forKey: .summary)
         }
         if let published = self.published {
-            try container.encode(published, forKey: .published)
+            /// Encode published date as ISO 8601 string.
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions.insert(.withFractionalSeconds)
+            let formattedDate = formatter.string(from: published)
+            try container.encode(formattedDate, forKey: .published)
         }
         if let location = self.location {
             try container.encode(location, forKey: .location)

@@ -14,7 +14,7 @@ public protocol ActivityContentItem: Codable {
     
     // from JSON
     init?(json: String)
-};
+}
 
 public extension ActivityContentItem {
     

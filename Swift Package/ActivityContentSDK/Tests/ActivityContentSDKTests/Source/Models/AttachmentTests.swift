@@ -34,7 +34,7 @@ class AttachmentTests: XCTestCase {
         let object = LinkAttachment(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
-        XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
+        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
     }
     
     func testVideoLinkEncode() {
@@ -80,7 +80,7 @@ class AttachmentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.height, 400)
         XCTAssertEqual(object?.width, 300)
-        XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
+        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, "video/mp4")
     }
     
@@ -127,7 +127,7 @@ class AttachmentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.height, 400)
         XCTAssertEqual(object?.width, 300)
-        XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
+        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, "image/png")
     }
     
@@ -168,7 +168,7 @@ class AttachmentTests: XCTestCase {
         let object = AudioLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
-        XCTAssertEqual(object?.href.absoluteString, "http://www.example.com")
+        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, "audio/mp3")
     }
 }

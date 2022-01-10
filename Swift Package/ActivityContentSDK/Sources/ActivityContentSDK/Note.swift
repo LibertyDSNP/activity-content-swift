@@ -83,14 +83,12 @@ public class Note: ActivityContentItem {
     internal init() {}
     
     internal init(content: String,
-                  mediaType: String,
                   name: String? = nil,
                   published: Date? = nil,
                   attachment: [BaseAttachment]? = nil,
                   tag: [BaseTag]? = nil,
                   location: Location? = nil) {
         self.content = content
-        self.mediaType = mediaType
         self.name = name
         self.published = published
         self.attachment = attachment
@@ -105,7 +103,13 @@ public class Note: ActivityContentItem {
         self.content = try container.decode(String.self, forKey: .content)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
         self.name = try? container.decode(String.self, forKey: .name)
-        self.published = try? container.decode(Date.self, forKey: .published)
+        
+        if let formattedDate = try? container.decode(String.self, forKey: .published) {
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions.insert(.withFractionalSeconds)
+            self.published = formatter.date(from: formattedDate)
+//            formatter.formatOptions.insert(.withFractionalSeconds)
+        }
         
         /// Attachments array is heterogeneous, and so must be parsed based on tag type.
         let attachmentsArray = try? container.decode(AttachmentsArray.self, forKey: .attachment)
@@ -116,6 +120,34 @@ public class Note: ActivityContentItem {
         self.tag = tagArray?.tags
         
         self.location = try? container.decode(Location.self, forKey: .location)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.context, forKey: .context)
+        try container.encode(self.type, forKey: .type)
+        if let content = self.content {
+            try container.encode(content, forKey: .content)
+        }
+        try container.encode(self.mediaType, forKey: .mediaType)
+        if let name = self.name {
+            try container.encode(name, forKey: .name)
+        }
+        if let published = self.published {
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions.insert(.withFractionalSeconds)
+            let formattedDate = formatter.string(from: published)
+            try container.encode(formattedDate, forKey: .published)
+        }
+        if self.attachment?.isEmpty == false {
+            try container.encode(self.attachment, forKey: .attachment)
+        }
+        if self.tag?.isEmpty == false {
+            try container.encode(self.tag, forKey: .tag)
+        }
+        if let location = self.location {
+            try container.encode(location, forKey: .location)
+        }
     }
     
     @discardableResult

@@ -103,6 +103,30 @@ public class Profile: ActivityContentItem {
         self.tag = tagArray?.tags
     }
     
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.context, forKey: .context)
+        try container.encode(self.type, forKey: .type)
+        if let name = self.name {
+            try container.encode(name, forKey: .name)
+        }
+        if self.icon?.isEmpty == false {
+            try container.encode(self.icon, forKey: .icon)
+        }
+        if let summary = self.summary {
+            try container.encode(summary, forKey: .summary)
+        }
+        if let published = self.published {
+            try container.encode(published, forKey: .published)
+        }
+        if let location = self.location {
+            try container.encode(location, forKey: .location)
+        }
+        if self.tag?.isEmpty == false {
+            try container.encode(self.tag, forKey: .tag)
+        }
+    }
+    
     @discardableResult
     internal func isValid() throws -> Bool {
         if VerificationUtil.isValid(date: self.published) == false {

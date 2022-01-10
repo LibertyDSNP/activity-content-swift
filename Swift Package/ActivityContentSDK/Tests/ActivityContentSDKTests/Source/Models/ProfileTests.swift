@@ -52,8 +52,8 @@ class ProfileTests: XCTestCase {
               "location" : {
                 "accuracy" : 50,
                 "altitude" : 25,
-                "latitude" : 123.23000335693359,
-                "longitude" : -45.234001159667969,
+                "latitude" : 123.23,
+                "longitude" : -45.234000000000002,
                 "name" : "Location Name",
                 "radius" : 100,
                 "type" : "Place",

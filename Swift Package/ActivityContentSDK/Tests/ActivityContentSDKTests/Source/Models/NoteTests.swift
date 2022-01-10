@@ -12,7 +12,6 @@ class NoteTests: XCTestCase {
     
     func testNoteEncodePartial() {
         let note = Note(content: "This is a note",
-                        mediaType: "text/plain",
                         name: nil,
                         published: nil,
                         attachment: nil,
@@ -33,7 +32,6 @@ class NoteTests: XCTestCase {
     
     func testNoteEncodeFull() {
         let note = Note(content: "This is a note",
-                        mediaType: "text/plain",
                         name: "Sample Name",
                         published: Date(timeIntervalSince1970: 1640321788.6924329),
                         attachment: [
@@ -116,8 +114,8 @@ class NoteTests: XCTestCase {
               "location" : {
                 "accuracy" : 50,
                 "altitude" : 25,
-                "latitude" : 123.23000335693359,
-                "longitude" : -45.234001159667969,
+                "latitude" : 123.23,
+                "longitude" : -45.234000000000002,
                 "name" : "Location Name",
                 "radius" : 100,
                 "type" : "Place",
@@ -125,7 +123,7 @@ class NoteTests: XCTestCase {
               },
               "mediaType" : "text\\/plain",
               "name" : "Sample Name",
-              "published" : 662014588.69243288,
+              "published" : "2021-12-24T04:56:28.692Z",
               "tag" : [
                 {
                   "name" : "#hashtag"
@@ -222,7 +220,7 @@ class NoteTests: XCTestCase {
               },
               "mediaType" : "text/plain",
               "name" : "Sample Name",
-              "published" : 662014588.692433,
+              "published" : "2021-12-24T04:56:28.692Z",
               "tag" : [
                 {
                   "name" : "#hashtag"
@@ -251,7 +249,7 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(object?.location?.accuracy, 50)
         XCTAssertEqual(object?.mediaType, "text/plain")
         XCTAssertEqual(object?.name, "Sample Name")
-        XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.6924329)
+        XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.692)
         XCTAssertEqual(object?.tag?.count, 2)
         XCTAssertEqual((object?.tag?[0] as? Hashtag)?.name, "#hashtag")
         XCTAssertEqual((object?.tag?[1] as? Mention)?.id, "dsnp://user")

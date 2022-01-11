@@ -33,13 +33,7 @@ public class Mention: BaseTag {
     }
     
     internal init(name: String? = nil,
-                  id: DSNPUserId) throws {
-        
-        /// Throw error if id is does not follow DSNP User URI pattern
-        guard ValidationUtil.isValid(dsnpUserUri: id) else {
-            throw ActivityContentError.invalidDsnpUserUri
-        }
-        
+                  id: DSNPUserId) {
         self.name = name
         self.id = id
         super.init()

@@ -39,12 +39,12 @@ public class VideoLink: BaseLink {
                   mediaType: String,
                   hash: [Hash],
                   height: Float? = nil,
-                  width: Float? = nil) throws {
+                  width: Float? = nil) {
         self.mediaType = mediaType
         self.hash = hash
         self.height = height
         self.width = width
-        try super.init(href: href)
+        super.init(href: href)
     }
     
     private enum CodingKeys: String, CodingKey {

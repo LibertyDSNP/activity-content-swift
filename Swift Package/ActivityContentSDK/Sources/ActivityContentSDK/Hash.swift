@@ -23,13 +23,7 @@ public class Hash: ActivityContentItem {
     }
     
     internal init(algorithm: String,
-                  value: String) throws {
-        
-        /// Throw error if hash value does not follow supported format
-        guard ValidationUtil.isValid(hash: value) else {
-            throw ActivityContentError.invalidHash
-        }
-        
+                  value: String) {
         self.algorithm = algorithm
         self.value = value
     }

@@ -35,12 +35,12 @@ class NoteTests: XCTestCase {
                         name: "Sample Name",
                         published: Date(timeIntervalSince1970: 1640321788.6924329),
                         attachment: [
-                            ImageAttachment(url: [try! ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
-                            VideoAttachment(url: [try! VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
-                            AudioAttachment(url: [try! AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keecak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
-                            try! LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
+                            ImageAttachment(url: [ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
+                            VideoAttachment(url: [VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
+                            AudioAttachment(url: [AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
+                            LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
                         ],
-                        tag: [Hashtag(name: "#hashtag"), try! Mention(name: "Mention Name", id: "dsnp://1234")],
+                        tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://1234")],
                         location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
         
         let json = """
@@ -54,7 +54,7 @@ class NoteTests: XCTestCase {
                     {
                       "hash" : [
                         {
-                          "algorithm" : "keecak",
+                          "algorithm" : "keccak",
                           "value" : "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345"
                         }
                       ],
@@ -74,7 +74,7 @@ class NoteTests: XCTestCase {
                     {
                       "hash" : [
                         {
-                          "algorithm" : "keecak",
+                          "algorithm" : "keccak",
                           "value" : "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345"
                         }
                       ],
@@ -94,7 +94,7 @@ class NoteTests: XCTestCase {
                     {
                       "hash" : [
                         {
-                          "algorithm" : "keecak",
+                          "algorithm" : "keccak",
                           "value" : "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345"
                         }
                       ],
@@ -153,7 +153,7 @@ class NoteTests: XCTestCase {
                     {
                       "hash" : [
                         {
-                          "algorithm" : "keecak",
+                          "algorithm" : "keccak",
                           "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                         }
                       ],
@@ -177,7 +177,7 @@ class NoteTests: XCTestCase {
                    {
                      "hash" : [
                        {
-                         "algorithm" : "keecak",
+                         "algorithm" : "keccak",
                          "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                        }
                      ],
@@ -196,7 +196,7 @@ class NoteTests: XCTestCase {
                    {
                      "hash" : [
                        {
-                         "algorithm" : "keecak",
+                         "algorithm" : "keccak",
                          "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                        }
                      ],

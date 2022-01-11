@@ -19,9 +19,9 @@ public class LinkAttachment: BaseLink {
     }
     
     internal init(href: URL,
-                  name: String? = nil) throws {
+                  name: String? = nil) {
         self.name = name
-        try super.init(href: href)
+        super.init(href: href)
     }
     
     private enum CodingKeys: String, CodingKey {

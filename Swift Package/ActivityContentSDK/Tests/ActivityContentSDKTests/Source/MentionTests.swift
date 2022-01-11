@@ -9,20 +9,9 @@ import XCTest
 @testable import ActivityContentSDK
 
 class MentionTests: XCTestCase {
-    
-    func testMentionInitWithInvalidId() {
-        do {
-            _ = try Mention(name: "Mention Name", id: "user_id")
-            XCTFail()
-        } catch ActivityContentError.invalidDsnpUserUri {
-            XCTAssert(true)
-        } catch {
-            XCTFail()
-        }
-    }
-    
+  
     func testMentionEncode() {
-        let mention = try? Mention(name: "Mention Name", id: "dsnp://1234")
+        let mention = Mention(name: "Mention Name", id: "dsnp://1234")
         
         let json = """
             {
@@ -32,7 +21,7 @@ class MentionTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(mention?.json, json)
+        XCTAssertEqual(mention.json, json)
     }
     
     func testMentionDecode() {

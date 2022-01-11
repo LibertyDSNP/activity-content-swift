@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Hash: ActivityContentItem {
+public class Hash: ActivityContentToJson, ActivityContentFromJson {
     
     /**
      The algorithm of the given hash
@@ -18,6 +18,8 @@ public class Hash: ActivityContentItem {
      Hash value serialization
      */
     internal var value: String?
+
+    internal var storedJson: String?
     
     internal init() {
     }

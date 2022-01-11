@@ -7,9 +7,11 @@
 
 import Foundation
 
-class TagArray: ActivityContentItem {
-    
-    let tags: [BaseTag]?
+class TagArray: ActivityContentToJson, ActivityContentFromJson {
+
+    internal let tags: [BaseTag]?
+
+    internal var storedJson: String?
     
     enum TagsTypeKey: CodingKey {
         case type

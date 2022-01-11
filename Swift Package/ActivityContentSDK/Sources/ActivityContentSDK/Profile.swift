@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Profile: ActivityContentItem {
+public class Profile: ActivityContentToJson, ActivityContentFromJson {
     
     /**
      JSON-LD @context
@@ -60,6 +60,8 @@ public class Profile: ActivityContentItem {
      - Requires: MUST follow Tag Type
      */
     internal var tag: [BaseTag]? = []
+    
+    internal var storedJson: String?
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"

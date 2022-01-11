@@ -11,7 +11,7 @@ public enum LocationUnits: String, Codable {
     case cm, feet, inches, km, m, miles
 }
 
-public class Location: ActivityContentItem {
+public class Location: ActivityContentToJson, ActivityContentFromJson {
     
     /**
      Identifies the type of the object
@@ -56,6 +56,8 @@ public class Location: ActivityContentItem {
      - Requires: MUST be one of: cm, feet, inches, km, m, miles
      */
     internal var units: LocationUnits? = .m
+    
+    internal var storedJson: String?
     
     internal init(name: String,
                   accuracy: Float? = nil,

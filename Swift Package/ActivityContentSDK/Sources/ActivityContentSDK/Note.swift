@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Note: ActivityContentItem {
+public class Note:  ActivityContentToJson, ActivityContentFromJson {
     
     /**
      JSON-LD @context
@@ -67,6 +67,8 @@ public class Note: ActivityContentItem {
      - Requires: MUST follow Location Type
      */
     internal private(set) var location: Location?
+    
+    internal var storedJson: String?
     
     private enum CodingKeys: String, CodingKey {
         case context = "@context"

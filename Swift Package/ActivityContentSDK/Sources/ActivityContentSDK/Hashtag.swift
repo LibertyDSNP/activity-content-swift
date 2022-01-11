@@ -27,9 +27,8 @@ public class Hashtag: BaseTag {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let superdecoder = try container.superDecoder()
         self.name = try container.decode(String.self, forKey: .name)
-        try super.init(from: superdecoder)
+        try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {

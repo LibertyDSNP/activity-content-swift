@@ -7,7 +7,9 @@
 
 import Foundation
 
-public class BaseTag: ActivityContentItem {
+public class BaseTag: ActivityContentToJson, ActivityContentFromJson {
+    
+    internal var storedJson: String?
     
     internal init() {}
 }

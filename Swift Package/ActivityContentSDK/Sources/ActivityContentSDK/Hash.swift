@@ -40,10 +40,6 @@ public class Hash: ActivityContentItem {
             throw ActivityContentError.missingField
         }
         
-        if self.value == nil {
-            throw ActivityContentError.missingField
-        }
-        
         if ValidationUtil.isValid(hash: self.value) == false {
             throw ActivityContentError.invalidHash
         }

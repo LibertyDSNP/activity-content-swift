@@ -60,6 +60,10 @@ public class Mention: BaseTag {
     
     @discardableResult
     internal func isValid() throws -> Bool {
+        if self.id == nil {
+            throw ActivityContentError.missingDsnpUserUriField
+        }
+        
         if ValidationUtil.isValid(dsnpUserUri: self.id) == false {
             throw ActivityContentError.invalidDsnpUserUri
         }

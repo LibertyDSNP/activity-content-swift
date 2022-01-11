@@ -17,6 +17,7 @@ enum ActivityContentError: Error {
     case missingNameField
     case missingHrefField
     case missingUnitsField
+    case missingDsnpUserUriField
 
     // Invalid data
     case invalidHref

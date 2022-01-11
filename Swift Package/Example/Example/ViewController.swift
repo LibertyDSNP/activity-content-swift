@@ -14,8 +14,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.buildNote()
-        self.buildProfile()
+//        self.buildNote()
+//        self.buildProfile()
+        self.buildAttachments()
     }
     
     private func buildNote() {
@@ -125,6 +126,73 @@ class ViewController: UIViewController {
                 .build()
             
             print(profile.json!)
+            
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func buildAttachments() {
+        do {
+            
+            let hashSupported = try ActivityContent.HashBuilder()
+                .setAlgorithm("keccak")
+                .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                .build()
+            
+            let imageLinkSupported = try ActivityContent.ImageLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("image/png")
+                .addHashes([hashSupported])
+                .build()
+            
+            let imageAttachment = try ActivityContent.ImageAttachmentBuilder()
+                .setName("Image Attachment")
+                .addImageLinks([imageLinkSupported])
+                .build()
+            
+            let videoLinkSupported = try ActivityContent.VideoLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("video/mp4")
+                .addHashes([hashSupported])
+                .build()
+
+            let videoAttachment = try ActivityContent.VideoAttachmentBuilder()
+                .setName("Video Attachment")
+                .addDuration(180)
+                .addVideoLinks([videoLinkSupported])
+                .build()
+
+            let audioLinkSupported = try ActivityContent.AudioLinkBuilder()
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .setMediaType("audio/mpeg")
+                .addHashes([hashSupported])
+                .build()
+
+            let audioAttachment = try ActivityContent.AudioAttachmentBuilder()
+                .setName("Audio Attachment")
+                .addDuration(240)
+                .addAudioLinks([audioLinkSupported])
+                .build()
+
+            let linkAttachment = try ActivityContent.LinkAttachmentBuilder()
+                .setName("Link Attachment")
+                .setHref(URL(string: "http://www.example.com/image.png")!)
+                .build()
+
+            let attachments = [
+                imageAttachment,
+                videoAttachment,
+                audioAttachment,
+                linkAttachment
+            ]
+            
+            let note = try ActivityContent.NoteBuilder()
+                .setContent("Note Content")
+                .addAttachments(attachments)
+                .build()
+            
+            print(note.json!)
             
         } catch {
             print(error)

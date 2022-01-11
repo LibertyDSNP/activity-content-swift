@@ -78,11 +78,11 @@ public class Location: ActivityContentItem {
     @discardableResult
     internal func isValid() throws -> Bool {
         if self.name == nil {
-            throw ActivityContentError.missingField
+            throw ActivityContentError.missingNameField
         }
         
         if self.units == nil {
-            throw ActivityContentError.missingField
+            throw ActivityContentError.missingUnitsField
         }
         
         return true

@@ -37,7 +37,11 @@ public class Hash: ActivityContentItem {
     @discardableResult
     internal func isValid() throws -> Bool {
         if self.algorithm == nil {
-            throw ActivityContentError.missingField
+            throw ActivityContentError.missingAlgorithmField
+        }
+        
+        if self.value == nil {
+            throw ActivityContentError.missingHashValueField
         }
         
         if ValidationUtil.isValid(hash: self.value) == false {

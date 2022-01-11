@@ -154,11 +154,13 @@ public class Note: ActivityContentItem {
     @discardableResult
     internal func isValid() throws -> Bool {
         if self.content == nil {
-            throw ActivityContentError.missingField
+            throw ActivityContentError.missingContentField
         }
         
-        if ValidationUtil.isValid(date: self.published) == false {
-            throw ActivityContentError.invalidDate
+        if let published = published {
+            if ValidationUtil.isValid(date: published) == false {
+                throw ActivityContentError.invalidDate
+            }
         }
         
         return true

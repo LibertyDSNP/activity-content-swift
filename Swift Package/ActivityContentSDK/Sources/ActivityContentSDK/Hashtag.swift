@@ -41,7 +41,7 @@ public class Hashtag: BaseTag {
     @discardableResult
     internal func isValid() throws -> Bool {
         if self.name == nil {
-            throw ActivityContentError.missingField
+            throw ActivityContentError.missingNameField
         }
         
         return true

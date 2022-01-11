@@ -75,7 +75,11 @@ public class ImageLink: BaseLink {
     @discardableResult
     internal func isValid() throws -> Bool {
         if self.mediaType == nil {
-            throw ActivityContentError.missingField
+            throw ActivityContentError.missingMediaTypeField
+        }
+        
+        if self.href == nil {
+            throw ActivityContentError.missingHrefField
         }
         
         if ValidationUtil.isValid(href: self.href) == false {

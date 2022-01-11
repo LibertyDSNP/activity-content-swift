@@ -1,5 +1,5 @@
 //
-//  TagTests.swift
+//  TagsArrayTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/3/22.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class TagTests: XCTestCase {
+class TagsArrayTests: XCTestCase {
     
     func testTagsArrayDecode() {
         let json = """

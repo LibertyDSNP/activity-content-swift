@@ -68,8 +68,12 @@ public class VideoLink: BaseLink {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mediaType, forKey: .mediaType)
         try container.encode(self.hash, forKey: .hash)
-        try container.encode(self.height, forKey: .height)
-        try container.encode(self.width, forKey: .width)
+        if let height = self.height {
+            try container.encode(height, forKey: .height)
+        }
+        if let width = self.width {
+            try container.encode(width, forKey: .width)
+        }
     }
     
     @discardableResult

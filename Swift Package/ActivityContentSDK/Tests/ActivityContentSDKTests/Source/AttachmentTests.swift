@@ -131,44 +131,4 @@ class AttachmentTests: XCTestCase {
         XCTAssertEqual(object?.mediaType, "image/png")
     }
     
-    func testAudioLinkEncode() {
-        let audioLink = AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "audio/mp3", hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
-        
-        let json = """
-            {
-              "hash" : [
-                {
-                  "algorithm" : "keccak",
-                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
-                }
-              ],
-              "href" : "http:\\/\\/www.example.com",
-              "mediaType" : "audio\\/mp3",
-              "type" : "Link"
-            }
-            """
-        
-        XCTAssertEqual(audioLink.json, json)
-    }
-    
-    func testAudioLinkDecode() {
-        let json = """
-            {
-              "hash" : [
-                {
-                  "algorithm" : "keccak",
-                  "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
-                }
-              ],
-              "href" : "http://www.example.com",
-              "mediaType" : "audio/mp3",
-              "type" : "Link"
-            }
-            """
-        let object = AudioLink(json: json)
-        XCTAssertNotNil(object)
-        XCTAssertEqual(object?.type, "Link")
-        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertEqual(object?.mediaType, "audio/mp3")
-    }
 }

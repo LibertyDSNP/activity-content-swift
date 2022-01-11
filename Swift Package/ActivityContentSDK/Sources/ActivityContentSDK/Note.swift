@@ -100,7 +100,7 @@ public class Note: ActivityContentItem {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.context = try container.decode(String.self, forKey: .context)
         self.type = try container.decode(String.self, forKey: .type)
-        self.content = try container.decode(String.self, forKey: .content)
+        self.content = try? container.decode(String.self, forKey: .content)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
         self.name = try? container.decode(String.self, forKey: .name)
 

@@ -30,7 +30,7 @@ public class BaseLink: BaseAttachment {
     internal init(href: URL) throws {
         
         /// Throw error if href is does not follow supported schema
-        guard VerificationUtil.isValid(href: href) else {
+        guard ValidationUtil.isValid(href: href) else {
             throw ActivityContentError.invalidHref
         }
         

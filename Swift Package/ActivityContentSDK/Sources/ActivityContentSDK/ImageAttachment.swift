@@ -64,7 +64,7 @@ public class ImageAttachment: BaseAttachment {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if VerificationUtil.hasAtLeastOneSupportedImageMediaType(links: self.url) == false {
+        if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         

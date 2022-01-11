@@ -42,7 +42,7 @@ public class LinkAttachment: BaseLink {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if VerificationUtil.isValid(href: self.href) == false {
+        if ValidationUtil.isValid(href: self.href) == false {
             throw ActivityContentError.invalidHref
         }
         

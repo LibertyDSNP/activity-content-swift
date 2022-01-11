@@ -140,7 +140,7 @@ public class Profile: ActivityContentItem {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if VerificationUtil.isValid(date: self.published) == false {
+        if ValidationUtil.isValid(date: self.published) == false {
             throw ActivityContentError.invalidDate
         }
         

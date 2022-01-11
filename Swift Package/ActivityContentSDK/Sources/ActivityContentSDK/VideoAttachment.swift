@@ -74,7 +74,7 @@ public class VideoAttachment: BaseAttachment {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if VerificationUtil.hasAtLeastOneSupportedVideoMediaType(links: self.url) == false {
+        if ValidationUtil.hasAtLeastOneSupportedVideoMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         

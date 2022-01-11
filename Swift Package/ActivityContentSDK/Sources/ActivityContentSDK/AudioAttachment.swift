@@ -74,7 +74,7 @@ public class AudioAttachment: BaseAttachment {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if VerificationUtil.hasAtLeastOneSupportedAudioMediaType(links: self.url) == false {
+        if ValidationUtil.hasAtLeastOneSupportedAudioMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         

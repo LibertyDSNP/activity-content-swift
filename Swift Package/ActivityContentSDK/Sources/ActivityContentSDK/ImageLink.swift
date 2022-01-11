@@ -78,11 +78,11 @@ public class ImageLink: BaseLink {
             throw ActivityContentError.missingField
         }
         
-        if VerificationUtil.isValid(href: self.href) == false {
+        if ValidationUtil.isValid(href: self.href) == false {
             throw ActivityContentError.invalidHref
         }
         
-        if VerificationUtil.hasAtLeastOneSupportedHashAlgorithm(hashes: self.hash) == false {
+        if ValidationUtil.hasAtLeastOneSupportedHashAlgorithm(hashes: self.hash) == false {
             throw ActivityContentError.hashesDoNotContainSupportedAlgorithm
         }
         

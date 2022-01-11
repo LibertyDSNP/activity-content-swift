@@ -26,7 +26,7 @@ public class Hash: ActivityContentItem {
                   value: String) throws {
         
         /// Throw error if hash value does not follow supported format
-        guard VerificationUtil.isValid(hash: value) else {
+        guard ValidationUtil.isValid(hash: value) else {
             throw ActivityContentError.invalidHash
         }
         
@@ -44,7 +44,7 @@ public class Hash: ActivityContentItem {
             throw ActivityContentError.missingField
         }
         
-        if VerificationUtil.isValid(hash: self.value) == false {
+        if ValidationUtil.isValid(hash: self.value) == false {
             throw ActivityContentError.invalidHash
         }
                 

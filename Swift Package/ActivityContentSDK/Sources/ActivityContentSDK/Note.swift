@@ -157,7 +157,7 @@ public class Note: ActivityContentItem {
             throw ActivityContentError.missingField
         }
         
-        if VerificationUtil.isValid(date: self.published) == false {
+        if ValidationUtil.isValid(date: self.published) == false {
             throw ActivityContentError.invalidDate
         }
         

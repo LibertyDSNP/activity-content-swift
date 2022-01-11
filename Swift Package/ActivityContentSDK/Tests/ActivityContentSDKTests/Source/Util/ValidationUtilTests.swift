@@ -20,7 +20,7 @@ class ValidationUtilTests: XCTestCase {
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(dsnpUserUri: item), "\(item) is invalid.")
+            XCTAssertTrue(ValidationUtil.isValid(dsnpUserUri: item), "\(item) is invalid.")
         }
     }
     
@@ -36,7 +36,7 @@ class ValidationUtilTests: XCTestCase {
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(dsnpUserUri: item), "\(item) is valid.")
+            XCTAssertFalse(ValidationUtil.isValid(dsnpUserUri: item), "\(item) is valid.")
         }
     }
     
@@ -50,7 +50,7 @@ class ValidationUtilTests: XCTestCase {
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(href: item), "\(item!) is invalid.")
+            XCTAssertTrue(ValidationUtil.isValid(href: item), "\(item!) is invalid.")
         }
     }
     
@@ -65,7 +65,7 @@ class ValidationUtilTests: XCTestCase {
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(href: item), "\(item!) is valid.")
+            XCTAssertFalse(ValidationUtil.isValid(href: item), "\(item!) is valid.")
         }
     }
     
@@ -79,7 +79,7 @@ class ValidationUtilTests: XCTestCase {
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(date: item), "\(item) is invalid.")
+            XCTAssertTrue(ValidationUtil.isValid(date: item), "\(item) is invalid.")
         }
     }
     
@@ -98,7 +98,7 @@ class ValidationUtilTests: XCTestCase {
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(date: item), "\(item) is valid.")
+            XCTAssertFalse(ValidationUtil.isValid(date: item), "\(item) is valid.")
         }
     }
 
@@ -114,7 +114,7 @@ class ValidationUtilTests: XCTestCase {
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(duration: item), "\(item) is invalid.")
+            XCTAssertTrue(ValidationUtil.isValid(duration: item), "\(item) is invalid.")
         }
     }
     
@@ -131,7 +131,7 @@ class ValidationUtilTests: XCTestCase {
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(duration: item), "\(item) is valid.")
+            XCTAssertFalse(ValidationUtil.isValid(duration: item), "\(item) is valid.")
         }
     }
     
@@ -142,7 +142,7 @@ class ValidationUtilTests: XCTestCase {
         ]
         
         for item in valid {
-            XCTAssertTrue(VerificationUtil.isValid(hash: item), "\(item) is invalid.")
+            XCTAssertTrue(ValidationUtil.isValid(hash: item), "\(item) is invalid.")
         }
     }
     
@@ -154,7 +154,7 @@ class ValidationUtilTests: XCTestCase {
         ]
 
         for item in invalid {
-            XCTAssertFalse(VerificationUtil.isValid(href: item), "\(item) is valid.")
+            XCTAssertFalse(ValidationUtil.isValid(href: item), "\(item) is valid.")
         }
     }
 }

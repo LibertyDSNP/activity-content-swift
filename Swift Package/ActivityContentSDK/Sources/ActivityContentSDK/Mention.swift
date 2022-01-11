@@ -36,7 +36,7 @@ public class Mention: BaseTag {
                   id: DSNPUserId) throws {
         
         /// Throw error if id is does not follow DSNP User URI pattern
-        guard VerificationUtil.isValid(dsnpUserUri: id) else {
+        guard ValidationUtil.isValid(dsnpUserUri: id) else {
             throw ActivityContentError.invalidDsnpUserUri
         }
         
@@ -66,7 +66,7 @@ public class Mention: BaseTag {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if VerificationUtil.isValid(dsnpUserUri: self.id) == false {
+        if ValidationUtil.isValid(dsnpUserUri: self.id) == false {
             throw ActivityContentError.invalidDsnpUserUri
         }
         

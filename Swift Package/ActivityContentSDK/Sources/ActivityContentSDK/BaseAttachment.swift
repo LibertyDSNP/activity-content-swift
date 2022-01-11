@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class BaseAttachment: ActivityContentToJson, ActivityContentFromJson {
+public class BaseAttachment: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
     
     internal var storedJson: String?
     

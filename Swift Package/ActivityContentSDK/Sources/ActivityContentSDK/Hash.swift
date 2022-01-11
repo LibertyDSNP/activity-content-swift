@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Hash: ActivityContentToJson, ActivityContentFromJson {
+public class Hash: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
     
     /**
      The algorithm of the given hash

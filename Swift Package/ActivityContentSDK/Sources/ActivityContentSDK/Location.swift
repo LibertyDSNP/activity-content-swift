@@ -11,7 +11,7 @@ public enum LocationUnits: String, Codable {
     case cm, feet, inches, km, m, miles
 }
 
-public class Location: ActivityContentToJson, ActivityContentFromJson {
+public class Location: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
     
     /**
      Identifies the type of the object

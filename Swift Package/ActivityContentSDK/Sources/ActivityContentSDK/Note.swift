@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Note:  ActivityContentToJson, ActivityContentFromJson {
+public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
     
     /**
      JSON-LD @context

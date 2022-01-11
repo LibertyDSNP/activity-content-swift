@@ -1,42 +1,16 @@
 //
-//  BaseLinkTests.swift
+//  ActivityContentFromJsonTests.swift
 //  ActivityContentSDKTests
 //
-//  Created by Unfinished on 1/6/22.
+//  Created by Unfinished on 1/11/22.
 //
 
 import XCTest
 @testable import ActivityContentSDK
 
-class BaseLinkTests: XCTestCase {
+class ActivityContentFromJsonTests: XCTestCase {
     
-    func testBaseLinkEncode() {
-        let object = BaseLink(href: URL(string: "http://www.example.com")!)
-        
-        let json = """
-            {
-              "href" : "http:\\/\\/www.example.com",
-              "type" : "Link"
-            }
-            """
-        
-        XCTAssertEqual(object.json, json)
-    }
-    
-    func testBaseLinkDecode() {
-        let json = """
-            {
-              "href" : "http://www.example.com",
-              "type" : "Link"
-            }
-            """
-        let object = BaseLink(json: json)
-        XCTAssertNotNil(object)
-        XCTAssertEqual(object?.type, "Link")
-        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-    }
-    
-    func testBaseLinkCustomField() {
+    func testGetValueWithCustomFields() {
         let json = """
             {
               "href" : "http://www.example.com",
@@ -54,6 +28,7 @@ class BaseLinkTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         
+        /// Verify that we can access custom values as various native types
         let customDictionary = object?.getValue(key: "custom")
         XCTAssertNotNil(customDictionary)
         if let customDictionary = customDictionary as? [String : Any] {
@@ -68,5 +43,13 @@ class BaseLinkTests: XCTestCase {
         } else {
             XCTFail()
         }
+        
+        /// Verify that we do not prevent users from accessing native vars
+        let href = object?.getValue(key: "href") as? String
+        XCTAssertEqual(href, "http://www.example.com")
+        
+        /// Verify that attempting to access non-existant value returns nil
+        let missingValue = object?.getValue(key: "missing")
+        XCTAssertNil(missingValue)
     }
 }

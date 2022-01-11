@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class BaseTag: ActivityContentToJson, ActivityContentFromJson {
+public class BaseTag: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
     
     internal var storedJson: String?
     

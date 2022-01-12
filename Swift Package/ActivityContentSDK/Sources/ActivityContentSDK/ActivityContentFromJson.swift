@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AnyCodable
 
 internal protocol ActivityContentFromJson: Codable {
     
@@ -31,6 +32,8 @@ internal extension ActivityContentFromJson {
 
 internal protocol ActivityContentCustomFields: ActivityContentFromJson {
  
+    var additionalFields: [String : AnyCodable]? { get set }
+    
     func getValue(key: String) -> Any?
 }
 

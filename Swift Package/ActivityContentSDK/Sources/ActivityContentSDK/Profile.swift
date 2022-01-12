@@ -6,60 +6,62 @@
 //
 
 import Foundation
+import AnyCodable
 
 public class Profile: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
+    var additionalFields: [String : AnyCodable]?
     
     /**
      JSON-LD @context
      
      - Requires: MUST be set to https://www.w3.org/ns/activitystreams
      */
-    internal private(set) var context: String = "https://www.w3.org/ns/activitystreams"
+    public private(set) var context: String = "https://www.w3.org/ns/activitystreams"
     
     /**
      Identifies the type of the object
      
      - Requires: MUST be set to Profile
      */
-    internal private(set) var type: String = "Profile"
+    public private(set) var type: String = "Profile"
     
     /**
      The display name for the note
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     /**
      An array of avatars of the profile
      
      - Requires: MUST follow Image Link Type
      */
-    internal var icon: [ImageLink]? = []
+    public internal(set) var icon: [ImageLink]? = []
     
     /**
      Used as a plain text biography of the profile
      */
-    internal var summary: String?
+    public internal(set) var summary: String?
     
     /**
      The time of publishing
      
      - Requires: MUST be ISO8601
      */
-    internal var published: Date?
+    public internal(set) var published: Date?
     
     /**
      For location
      
      - Requires: MUST follow Location Type
      */
-    internal var location: Location?
+    public internal(set) var location: Location?
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    internal var tag: [BaseTag]? = []
+    public internal(set) var tag: [BaseTag]? = []
     
     internal var storedJson: String?
     

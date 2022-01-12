@@ -6,18 +6,20 @@
 //
 
 import Foundation
+import AnyCodable
 
 public class Hash: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
+    var additionalFields: [String : AnyCodable]?
     
     /**
      The algorithm of the given hash
      */
-    internal var algorithm: String?
+    public internal(set) var algorithm: String?
     
     /**
      Hash value serialization
      */
-    internal var value: String?
+    public internal(set) var value: String?
 
     internal var storedJson: String?
     

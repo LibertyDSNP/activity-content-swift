@@ -52,4 +52,31 @@ class ActivityContentFromJsonTests: XCTestCase {
         let missingValue = object?.getValue(key: "missing")
         XCTAssertNil(missingValue)
     }
+    
+    func testSetAdditionalFieldsToJson() {
+        let object = BaseLink(href: URL(string: "http://www.example.com")!)
+        object.additionalFields = [
+            "string" : "test", // String : String
+            "intArray" : [ // String : [Int]
+                1,
+                2,
+                3
+            ],
+            "mixedArray" : [ // String : [<Mixed>]
+                100,
+                42.24,
+                BaseLink(href: URL(string: "http://www.example.com")!),
+                false,
+                "string",
+                [
+                    [
+                        "key" : "value",
+                        "bool" : true
+                    ]
+                ]
+            ]
+        ]
+        
+//        print(object.json!)
+    }
 }

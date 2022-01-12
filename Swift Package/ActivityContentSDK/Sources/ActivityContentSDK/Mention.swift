@@ -12,14 +12,14 @@ public class Mention: BaseTag {
     /**
      The text of the tag
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     /**
      Identifies the tag as type Mention
      
      - Requires: MUST be Mention
      */
-    internal private(set) var type: String = "Mention"
+    public private(set) var type: String = "Mention"
     
     /**
      Link to the user mentioned

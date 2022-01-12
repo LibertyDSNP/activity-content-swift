@@ -12,14 +12,14 @@ public class AudioLink: BaseLink {
     /**
      MIME type of href content
      */
-    internal var mediaType: String?
+    public internal(set) var mediaType: String?
     
     /**
      Array of hashes for linked content validation
      
      - Requires: MUST include at least one supported hash
      */
-    internal var hash: [Hash]? = []
+    public internal(set) var hash: [Hash]? = []
     
     internal override init() {
         super.init()

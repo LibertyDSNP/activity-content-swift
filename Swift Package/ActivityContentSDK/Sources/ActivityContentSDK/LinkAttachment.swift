@@ -12,7 +12,7 @@ public class LinkAttachment: BaseLink {
     /**
      The display name for the link
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     internal override init() {
         super.init()

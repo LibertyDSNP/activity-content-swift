@@ -6,56 +6,58 @@
 //
 
 import Foundation
+import AnyCodable
 
 public enum LocationUnits: String, Codable {
     case cm, feet, inches, km, m, miles
 }
 
 public class Location: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
+    var additionalFields: [String : AnyCodable]?
     
     /**
      Identifies the type of the object
      
      - Requires: MUST be set to Place
      */
-    internal private(set) var type: String = "Place"
+    public private(set) var type: String = "Place"
     
     /**
      The display name for the location
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     /**
      The accuracy of the coordinates as a percentage. (e.g. "94.0" means "94.0% accurate")
      */
-    internal var accuracy: Float?
+    public internal(set) var accuracy: Float?
     
     /**
      The altitude of the location
      */
-    internal var altitude: Float?
+    public internal(set) var altitude: Float?
     
     /**
      The latitude of the location
      */
-    internal var latitude: Double?
+    public internal(set) var latitude: Double?
     
     /**
      The longitude of the location
      */
-    internal var longitude: Double?
+    public internal(set) var longitude: Double?
     
     /**
      The area around the given point that comprises the location
      */
-    internal var radius: Float?
+    public internal(set) var radius: Float?
     
     /**
      The units for radius and altitude (defaults to meters)
      
      - Requires: MUST be one of: cm, feet, inches, km, m, miles
      */
-    internal var units: LocationUnits? = .m
+    public internal(set) var units: LocationUnits? = .m
     
     internal var storedJson: String?
     

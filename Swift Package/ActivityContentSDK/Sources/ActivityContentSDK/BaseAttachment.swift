@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import AnyCodable
 
 public class BaseAttachment: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
+    var additionalFields: [String : AnyCodable]?
+    
     
     internal var storedJson: String?
     

@@ -14,24 +14,24 @@ public class VideoAttachment: BaseAttachment {
      
      - Requires: MUST be set to Video
      */
-    internal private(set) var type: String = "Video"
+    public private(set) var type: String = "Video"
     
     /**
      An array of links for given image content in different formats
      
      - Requires: MUST be a Video Link AND MUST have at least one supported video MIME type
      */
-    internal var url: [VideoLink]? = []
+    public internal(set) var url: [VideoLink]? = []
     
     /**
      The display name for the video
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     /**
      Approximate duration of the video
      */
-    internal var duration: TimeInterval?
+    public internal(set) var duration: TimeInterval?
     
     internal override init() {
         super.init()

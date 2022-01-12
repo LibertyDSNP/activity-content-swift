@@ -14,19 +14,19 @@ public class ImageAttachment: BaseAttachment {
      
      - Requires: MUST be set to Image
      */
-    internal private(set) var type: String = "Image"
+    public private(set) var type: String = "Image"
     
     /**
      An array of links for given image content in different formats
      
      - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
      */
-    internal var url: [ImageLink]? = []
+    public internal(set) var url: [ImageLink]? = []
     
     /**
      The display name or alt text for the image
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     internal override init() {
         super.init()

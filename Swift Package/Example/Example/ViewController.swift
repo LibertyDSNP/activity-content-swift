@@ -13,10 +13,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        self.buildNote()
-//        self.buildProfile()
-        self.buildAttachments()
+        
+        self.buildNote()
+        //        self.buildProfile()
+        //        self.buildAttachments()
     }
     
     private func buildNote() {
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
                 .setName("Image Attachment")
                 .addImageLinks([imageLinkUnsupported, imageLinkSupported])
                 .build()
-
+            
             let hashtag = try ActivityContent.HashtagBuilder()
                 .setName("#hashtag")
                 .build()
@@ -58,12 +58,22 @@ class ViewController: UIViewController {
                 .setDSNPUserId("dsnp://1234")
                 .build()
             
+            let location = try ActivityContent.LocationBuilder()
+                .setName("Location Name")
+                .setAccuracy(50)
+                .setAltitude(100)
+                .setCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.34))
+                .setRadius(25)
+                .setUnits(.cm)
+                .build()
+            
             let note = try ActivityContent.NoteBuilder()
                 .setContent("Note Content")
                 .setName("Note Name")
                 .setPublished(Date.now)
                 .addAttachments([imageAttachment])
                 .addTags([hashtag, mention])
+                .setLocation(location)
                 .build()
             
             print(note.json!)
@@ -106,7 +116,7 @@ class ViewController: UIViewController {
                 .setRadius(25)
                 .setUnits(.cm)
                 .build()
-
+            
             let hashtag = try ActivityContent.HashtagBuilder()
                 .setName("#hashtag")
                 .build()
@@ -156,30 +166,30 @@ class ViewController: UIViewController {
                 .setMediaType("video/mp4")
                 .addHashes([hashSupported])
                 .build()
-
+            
             let videoAttachment = try ActivityContent.VideoAttachmentBuilder()
                 .setName("Video Attachment")
                 .addDuration(180)
                 .addVideoLinks([videoLinkSupported])
                 .build()
-
+            
             let audioLinkSupported = try ActivityContent.AudioLinkBuilder()
                 .setHref(URL(string: "http://www.example.com/image.png")!)
                 .setMediaType("audio/mpeg")
                 .addHashes([hashSupported])
                 .build()
-
+            
             let audioAttachment = try ActivityContent.AudioAttachmentBuilder()
                 .setName("Audio Attachment")
                 .addDuration(240)
                 .addAudioLinks([audioLinkSupported])
                 .build()
-
+            
             let linkAttachment = try ActivityContent.LinkAttachmentBuilder()
                 .setName("Link Attachment")
                 .setHref(URL(string: "http://www.example.com/image.png")!)
                 .build()
-
+            
             let attachments = [
                 imageAttachment,
                 videoAttachment,

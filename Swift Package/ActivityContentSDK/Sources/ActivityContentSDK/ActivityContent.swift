@@ -47,6 +47,12 @@ public class ActivityContent {
             return self
         }
         
+        @discardableResult
+        public func setLocation(_ location: Location?) -> Self {
+            self.note.location = location
+            return self
+        }
+        
         public func build() throws -> Note {
             try self.note.isValid()
             return self.note

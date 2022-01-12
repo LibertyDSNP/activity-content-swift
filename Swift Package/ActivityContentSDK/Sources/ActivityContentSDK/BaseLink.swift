@@ -14,14 +14,14 @@ public class BaseLink: BaseAttachment {
      
      - Requires: MUST be set to Link
      */
-    internal private(set) var type: String = "Link"
+    public private(set) var type: String = "Link"
     
     /**
      The URL for the given link
      
      - Requires: MUST be a Supported URL Schema
      */
-    internal var href: URL?
+    public internal(set) var href: URL?
     
     internal override init() {
         super.init()

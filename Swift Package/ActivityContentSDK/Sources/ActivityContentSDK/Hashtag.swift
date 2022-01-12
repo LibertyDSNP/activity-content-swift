@@ -12,7 +12,7 @@ public class Hashtag: BaseTag {
     /**
      The text of the tag
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     internal override init() {
         super.init()

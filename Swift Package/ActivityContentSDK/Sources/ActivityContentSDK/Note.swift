@@ -6,67 +6,69 @@
 //
 
 import Foundation
+import AnyCodable
 
 public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
+    var additionalFields: [String : AnyCodable]?
     
     /**
      JSON-LD @context
      
      - Requires: MUST be set to https://www.w3.org/ns/activitystreams
      */
-    internal private(set) var context: String = "https://www.w3.org/ns/activitystreams"
+    public private(set) var context: String = "https://www.w3.org/ns/activitystreams"
     
     /**
      Identifies the type of the object
      
      - Requires: MUST be set to Note
      */
-    internal private(set) var type: String = "Note"
+    public private(set) var type: String = "Note"
     
     /**
      Text content of the note
      */
-    internal var content: String?
+    public internal(set) var content: String?
     
     /**
      MIME type for the content field
      
      - Requires: MUST be set to a supported MIME type
      */
-    internal private(set) var mediaType: String = "text/plain"
+    public private(set) var mediaType: String = "text/plain"
     
     /**
      The display name for the note
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     /**
      The time of publishing
      
      - Requires: MUST be ISO8601
      */
-    internal var published: Date?
+    public internal(set) var published: Date?
     
     /**
      Array of attached links or media
      
      - Requires: MUST be one of the Supported Attachments
      */
-    internal var attachment: [BaseAttachment]? = []
+    public internal(set) var attachment: [BaseAttachment]? = []
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    internal var tag: [BaseTag]? = []
+    public internal(set) var tag: [BaseTag]? = []
     
     /**
      For location
      
      - Requires: MUST follow Location Type
      */
-    internal private(set) var location: Location?
+    public internal(set) var location: Location?
     
     internal var storedJson: String?
     

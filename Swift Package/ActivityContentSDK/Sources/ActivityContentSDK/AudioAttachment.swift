@@ -14,24 +14,24 @@ public class AudioAttachment: BaseAttachment {
      
      - Requires: MUST be set to Audio
      */
-    internal private(set) var type: String = "Audio"
+    public private(set) var type: String = "Audio"
     
     /**
      An array of links for given audio content in different formats
      
      - Requires: MUST be an Audio Link AND MUST have at least one supported audio MIME type
      */
-    internal var url: [AudioLink]? = []
+    public internal(set) var url: [AudioLink]? = []
     
     /**
      The display name for the audio file
      */
-    internal var name: String?
+    public internal(set) var name: String?
     
     /**
      Approximate duration of the audio
      */
-    internal var duration: TimeInterval?
+    public internal(set) var duration: TimeInterval?
     
     internal override init() {
         super.init()

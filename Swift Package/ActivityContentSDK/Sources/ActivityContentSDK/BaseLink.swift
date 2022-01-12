@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AnyCodable
 
 public class BaseLink: BaseAttachment {
     
@@ -32,16 +33,46 @@ public class BaseLink: BaseAttachment {
         super.init()
     }
     
+    private struct DynamicCodingKeys: CodingKey {
+        var stringValue: String
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+        }
+        
+        var intValue: Int?
+        init?(intValue: Int) {
+            /// We are not using this, return nil
+            return nil
+        }
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case type
         case href
     }
     
     required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(String.self, forKey: .type)
-        self.href = try container.decode(URL.self, forKey: .href)
+        let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
+//        self.type = try container.decode(String.self, forKey: .type)
+//        self.href = try container.decode(URL.self, forKey: .href)
+        
+        var additionalFields: [String : AnyCodable] = [:]
+        
+        for key in container.allKeys {
+            if let codingKey = CodingKeys(stringValue: key.stringValue) {
+                if codingKey == .href {
+                    self.href = try container.decode(URL.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
+                } else if codingKey == .type {
+                    self.type = try container.decode(String.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
+                }
+            } else {
+                additionalFields[key.stringValue] = try container.decode(AnyCodable.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
+            }
+        }
+
         try super.init(from: decoder)
+        self.additionalFields = additionalFields.isEmpty == false ? additionalFields : nil
+        print(additionalFields)
     }
     
     public override func encode(to encoder: Encoder) throws {

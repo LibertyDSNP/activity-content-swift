@@ -27,6 +27,9 @@ let package = Package(
             ]),
         .testTarget(
             name: "ActivityContentSDKTests",
-            dependencies: ["ActivityContentSDK"]),
+            dependencies: [
+                "ActivityContentSDK",
+                .product(name: "AnyCodable", package: "AnyCodable"),
+            ]),
     ]
 )

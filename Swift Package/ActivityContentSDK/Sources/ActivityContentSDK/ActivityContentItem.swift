@@ -15,4 +15,6 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
     internal var storedJson: String?
 
     internal init() {}
+    
+    private  enum CodingKeys: CodingKey {}
 }

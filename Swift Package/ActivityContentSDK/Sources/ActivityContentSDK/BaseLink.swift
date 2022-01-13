@@ -33,19 +33,6 @@ public class BaseLink: BaseAttachment {
         super.init()
     }
     
-    private struct DynamicCodingKeys: CodingKey {
-        var stringValue: String
-        init?(stringValue: String) {
-            self.stringValue = stringValue
-        }
-        
-        var intValue: Int?
-        init?(intValue: Int) {
-            /// We are not using this, return nil
-            return nil
-        }
-    }
-    
     private enum CodingKeys: String, CodingKey {
         case type
         case href

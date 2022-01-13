@@ -23,7 +23,10 @@ public class Hashtag: BaseTag {
         super.init()
     }
     
-    private enum CodingKeys: String, CodingKey { case name }
+    internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
+    private enum CodingKeys: String, CodingKey, CaseIterable {
+        case name
+    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

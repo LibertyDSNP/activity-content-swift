@@ -39,7 +39,12 @@ public class Mention: BaseTag {
         super.init()
     }
     
-    private enum CodingKeys: String, CodingKey { case name, type, id }
+    internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
+    private enum CodingKeys: String, CodingKey, CaseIterable {
+        case name,
+             type,
+             id
+    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -61,7 +61,8 @@ public class Profile: ActivityContentItem {
      */
     public internal(set) var tag: [BaseTag]? = []
     
-    private enum CodingKeys: String, CodingKey {
+    internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
+    private enum CodingKeys: String, CodingKey, CaseIterable {
         case context = "@context"
         case type,
              name,

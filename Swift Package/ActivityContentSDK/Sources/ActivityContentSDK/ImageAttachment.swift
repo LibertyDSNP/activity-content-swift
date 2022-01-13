@@ -39,7 +39,8 @@ public class ImageAttachment: BaseAttachment {
         super.init()
     }
     
-    private enum CodingKeys: String, CodingKey {
+    internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
+    private enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case url
         case name

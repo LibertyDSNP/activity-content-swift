@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import ActivityContentSDK
-import AnyCodable
 
 class ActivityContentFromJsonTests: XCTestCase {
     
@@ -45,6 +44,14 @@ class ActivityContentFromJsonTests: XCTestCase {
         } else {
             XCTFail()
         }
+        
+        /// Verify that additionalFields does not contain native vars
+        let href = object?.additionalFields?["href"]
+        XCTAssertNil(href)
+
+        /// Verify that attempting to access non-existant value returns nil
+        let missingValue = object?.additionalFields?["missing"]
+        XCTAssertNil(missingValue)
     }
     
     func testImageLinkWithCustomFields() {
@@ -64,7 +71,8 @@ class ActivityContentFromJsonTests: XCTestCase {
                  "string" : "string",
                  "int" : 1,
                  "float" : 1.4
-              }
+              },
+              "boolCustom" : true
             }
             """
         
@@ -91,78 +99,8 @@ class ActivityContentFromJsonTests: XCTestCase {
         } else {
             XCTFail()
         }
-    }
-    
-    
-    
-//    func testGetValueWithCustomFields() {
-//        let json = """
-//            {
-//              "href" : "http://www.example.com",
-//              "type" : "Link",
-//              "custom" : {
-//                 "bool" : true,
-//                 "string" : "string",
-//                 "int" : 1,
-//                 "float" : 1.4
-//              },
-//              "not_href" : true
-//            }
-//            """
-//        let object = BaseLink(json: json)
-//        XCTAssertNotNil(object)
-//        XCTAssertEqual(object?.type, "Link")
-//        XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-//
-//        /// Verify that we can access custom values as various native types
-//        let customDictionary = object?.additionalFields?["custom"]
-//        XCTAssertNotNil(customDictionary)
-//        if let customDictionary = customDictionary as? [String : Any] {
-//            let customBool = customDictionary["bool"] as? Bool
-//            XCTAssertEqual(customBool, true)
-//            let customString = customDictionary["string"] as? String
-//            XCTAssertEqual(customString, "string")
-//            let customInt = customDictionary["int"] as? Int
-//            XCTAssertEqual(customInt, 1)
-//            let customFloat = customDictionary["float"] as? Double
-//            XCTAssertEqual(customFloat, 1.4)
-//        } else {
-//            XCTFail()
-//        }
-//
-//        /// Verify that we do not prevent users from accessing native vars
-//        let href = object?.getValue(key: "href") as? String
-//        XCTAssertEqual(href, "http://www.example.com")
-//
-//        /// Verify that attempting to access non-existant value returns nil
-//        let missingValue = object?.getValue(key: "missing")
-//        XCTAssertNil(missingValue)
-//    }
-    
-    func testSetAdditionalFieldsToJson() {
-        let object = BaseLink(href: URL(string: "http://www.example.com")!)
-        object.additionalFields = [
-            "string" : "test", // String : String
-            "intArray" : [ // String : [Int]
-                1,
-                2,
-                3
-            ],
-            "mixedArray" : [ // String : [<Mixed>]
-                100,
-                42.24,
-                BaseLink(href: URL(string: "http://www.example.com")!),
-                false,
-                "string",
-                [
-                    [
-                        "key" : "value",
-                        "bool" : true
-                    ]
-                ]
-            ]
-        ]
         
-//        print(object.json!)
+        let boolCustom = object?.additionalFields?["boolCustom"] as? Bool
+        XCTAssertEqual(boolCustom, true)
     }
 }

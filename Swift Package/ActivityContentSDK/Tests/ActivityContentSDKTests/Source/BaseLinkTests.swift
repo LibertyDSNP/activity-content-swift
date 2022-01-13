@@ -36,35 +36,36 @@ class BaseLinkTests: XCTestCase {
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
     }
     
-    func testBaseLinkCustomField() {
+    func testBaseLinkCustomFields() {
         let json = """
             {
               "href" : "http://www.example.com",
               "type" : "Link",
-              "custom" : {
-                 "bool" : true,
-                 "string" : "string",
-                 "int" : 1,
-                 "float" : 1.0
+              "float" : 1.4,
+              "int" : 1,
+              "double" : 3.14159,
+              "dictionary" : {
+                 "bool" : true
               }
             }
             """
+        
         let object = BaseLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         
-        let customDictionary = object?.getValue(key: "custom")
-        XCTAssertNotNil(customDictionary)
-        if let customDictionary = customDictionary as? [String : Any] {
-            let customBool = customDictionary["bool"] as? Bool
-            XCTAssertEqual(customBool, true)
-            let customString = customDictionary["string"] as? String
-            XCTAssertEqual(customString, "string")
-            let customInt = customDictionary["int"] as? Int
-            XCTAssertEqual(customInt, 1)
-            let customFloat = customDictionary["float"] as? Float
-            XCTAssertEqual(customFloat, 1.0)
+        let float = object?.additionalFields?["float"] as? Double
+        XCTAssertEqual(float, 1.4)
+        let int = object?.additionalFields?["int"] as? Int
+        XCTAssertEqual(int, 1)
+        let double = object?.additionalFields?["double"] as? Double
+        XCTAssertEqual(double, 3.14159)
+        let dictionary = object?.additionalFields?["dictionary"]
+        XCTAssertNotNil(dictionary)
+        if let dictionary = dictionary as? [String : Any] {
+            let bool = dictionary["bool"] as? Bool
+            XCTAssertEqual(bool, true)
         } else {
             XCTFail()
         }

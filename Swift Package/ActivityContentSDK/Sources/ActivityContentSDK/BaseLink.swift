@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import AnyCodable
-
 
 public class BaseLink: BaseAttachment {
     
@@ -34,30 +32,17 @@ public class BaseLink: BaseAttachment {
         super.init()
     }
     
-    private enum CodingKeys: String, CodingKey {
+    internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
+    private enum CodingKeys: String, CodingKey, CaseIterable {
         case type
         case href
     }
     
     required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
-        var additionalFields: [String : Any] = [:]
-        for key in container.allKeys {
-            guard let dynamicCodingKey = DynamicCodingKeys(stringValue: key.stringValue) else { continue }
-            switch CodingKeys(stringValue: key.stringValue) {
-            case .href:
-                self.href = try container.decode(URL.self, forKey: dynamicCodingKey)
-            case .type:
-                self.type = try container.decode(String.self, forKey: dynamicCodingKey)
-            case .none:
-                let anyCodable = try container.decode(AnyCodable.self, forKey: dynamicCodingKey)
-                additionalFields[key.stringValue] = anyCodable.value
-            }
-        }
-
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.href = try container.decode(URL.self, forKey: .href)
         try super.init(from: decoder)
-        self.additionalFields = additionalFields.isEmpty == false ? additionalFields : nil
-        print(additionalFields)
     }
     
     public override func encode(to encoder: Encoder) throws {

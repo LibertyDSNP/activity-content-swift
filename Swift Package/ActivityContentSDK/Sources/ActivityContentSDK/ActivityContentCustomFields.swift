@@ -10,7 +10,7 @@ import AnyCodable
 
 internal protocol ActivityContentCustomFields: ActivityContentFromJson {
  
-    var additionalFields: [String : AnyCodable]? { get set }
+    var additionalFields: [String : Any]? { get set }
     
     func getValue(key: String) -> Any?
 }

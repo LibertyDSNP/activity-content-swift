@@ -8,6 +8,7 @@
 import Foundation
 import AnyCodable
 
+
 public class BaseLink: BaseAttachment {
     
     /**
@@ -40,20 +41,17 @@ public class BaseLink: BaseAttachment {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
-//        self.type = try container.decode(String.self, forKey: .type)
-//        self.href = try container.decode(URL.self, forKey: .href)
-        
-        var additionalFields: [String : AnyCodable] = [:]
-        
+        var additionalFields: [String : Any] = [:]
         for key in container.allKeys {
-            if let codingKey = CodingKeys(stringValue: key.stringValue) {
-                if codingKey == .href {
-                    self.href = try container.decode(URL.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
-                } else if codingKey == .type {
-                    self.type = try container.decode(String.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
-                }
-            } else {
-                additionalFields[key.stringValue] = try container.decode(AnyCodable.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
+            guard let dynamicCodingKey = DynamicCodingKeys(stringValue: key.stringValue) else { continue }
+            switch CodingKeys(stringValue: key.stringValue) {
+            case .href:
+                self.href = try container.decode(URL.self, forKey: dynamicCodingKey)
+            case .type:
+                self.type = try container.decode(String.self, forKey: dynamicCodingKey)
+            case .none:
+                let anyCodable = try container.decode(AnyCodable.self, forKey: dynamicCodingKey)
+                additionalFields[key.stringValue] = anyCodable.value
             }
         }
 

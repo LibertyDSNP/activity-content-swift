@@ -10,7 +10,7 @@ import AnyCodable
 
 public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
     
-    internal var additionalFields: [String : AnyCodable]?
+    internal var additionalFields: [String : Any]?
     
     internal var storedJson: String?
 

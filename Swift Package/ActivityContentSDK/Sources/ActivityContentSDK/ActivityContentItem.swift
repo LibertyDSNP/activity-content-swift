@@ -12,7 +12,7 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
     
     internal var additionalFields: [String : Any]?
     
-    internal var storedJson: String?
+    internal var jsonSource: String?
 
     internal init() {}
     

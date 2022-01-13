@@ -9,7 +9,7 @@ import Foundation
 
 internal protocol ActivityContentFromJson: Codable {
     
-    var storedJson: String? { get set }
+    var jsonSource: String? { get set }
     
     init?(json: String)
 }
@@ -20,7 +20,7 @@ internal extension ActivityContentFromJson {
         do {
             let decoder = JSONDecoder()
             var root = try decoder.decode(Self.self, from: Data(json.utf8))
-            root.storedJson = json
+            root.jsonSource = json
             self = root
         } catch {
             print(error)

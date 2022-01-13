@@ -18,7 +18,7 @@ internal protocol ActivityContentCustomFields: ActivityContentFromJson {
 internal extension ActivityContentCustomFields {
     
     func getValue(key: String) -> Any? {
-        if let data = self.storedJson?.data(using: .utf8) {
+        if let data = self.jsonSource?.data(using: .utf8) {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any]
                 return json?[key]

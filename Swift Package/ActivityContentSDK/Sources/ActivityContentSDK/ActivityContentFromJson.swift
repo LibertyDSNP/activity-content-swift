@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AnyCodable
 
 internal protocol ActivityContentFromJson: Codable {
     
@@ -27,28 +26,5 @@ internal extension ActivityContentFromJson {
             print(error)
             return nil
         }
-    }
-}
-
-internal protocol ActivityContentCustomFields: ActivityContentFromJson {
- 
-    var additionalFields: [String : AnyCodable]? { get set }
-    
-    func getValue(key: String) -> Any?
-}
-
-internal extension ActivityContentCustomFields {
-    
-    func getValue(key: String) -> Any? {
-        if let data = self.storedJson?.data(using: .utf8) {
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any]
-                return json?[key]
-            } catch {
-                print(error)
-            }
-        }
-        
-        return nil
     }
 }

@@ -7,10 +7,10 @@
 
 import Foundation
 
-class TagArray: ActivityContentToJson, ActivityContentFromJson {
-
+class TagArray: ActivityContentFromJson {
+    
     internal let tags: [BaseTag]?
-
+    
     internal var storedJson: String?
     
     enum TagsTypeKey: CodingKey {

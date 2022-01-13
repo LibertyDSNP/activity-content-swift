@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import AnyCodable
 
-public class Profile: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
-    var additionalFields: [String : AnyCodable]?
+public class Profile: ActivityContentItem {
     
     /**
      JSON-LD @context
@@ -63,8 +61,6 @@ public class Profile: ActivityContentToJson, ActivityContentFromJson, ActivityCo
      */
     public internal(set) var tag: [BaseTag]? = []
     
-    internal var storedJson: String?
-    
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
         case type,
@@ -76,7 +72,9 @@ public class Profile: ActivityContentToJson, ActivityContentFromJson, ActivityCo
              tag
     }
     
-    internal init() {}
+    internal override init() {
+        super.init()
+    }
     
     internal init(name: String? = nil,
                   icon: [ImageLink]? = nil,
@@ -90,6 +88,7 @@ public class Profile: ActivityContentToJson, ActivityContentFromJson, ActivityCo
         self.published = published
         self.location = location
         self.tag = tag
+        super.init()
     }
     
     required public init(from decoder: Decoder) throws {
@@ -112,9 +111,11 @@ public class Profile: ActivityContentToJson, ActivityContentFromJson, ActivityCo
         /// Tags array is heterogeneous, and so must be parsed based on tag type.
         let tagArray = try? container.decode(TagArray.self, forKey: .tag)
         self.tag = tagArray?.tags
+        
+        try super.init(from: decoder)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.context, forKey: .context)
         try container.encode(self.type, forKey: .type)

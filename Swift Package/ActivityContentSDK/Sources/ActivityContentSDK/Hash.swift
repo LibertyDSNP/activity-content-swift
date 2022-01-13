@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import AnyCodable
 
-public class Hash: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
-    var additionalFields: [String : AnyCodable]?
+public class Hash: ActivityContentItem {
     
     /**
      The algorithm of the given hash
@@ -20,16 +18,35 @@ public class Hash: ActivityContentToJson, ActivityContentFromJson, ActivityConte
      Hash value serialization
      */
     public internal(set) var value: String?
-
-    internal var storedJson: String?
     
-    internal init() {
+    internal override init() {
+        super.init()
     }
     
     internal init(algorithm: String,
                   value: String) {
         self.algorithm = algorithm
         self.value = value
+        super.init()
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case algorithm
+        case value
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.algorithm = try? container.decode(String.self, forKey: .algorithm)
+        self.value = try? container.decode(String.self, forKey: .value)
+        try super.init(from: decoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.algorithm, forKey: .algorithm)
+        try container.encode(self.value, forKey: .value)
     }
     
     @discardableResult

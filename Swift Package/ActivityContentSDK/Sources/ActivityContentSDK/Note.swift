@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import AnyCodable
 
-public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
-    var additionalFields: [String : AnyCodable]?
+public class Note:  ActivityContentItem {
     
     /**
      JSON-LD @context
@@ -70,8 +68,6 @@ public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityCont
      */
     public internal(set) var location: Location?
     
-    internal var storedJson: String?
-    
     private enum CodingKeys: String, CodingKey {
         case context = "@context"
         case type,
@@ -84,7 +80,9 @@ public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityCont
              location
     }
     
-    internal init() {}
+    internal override init() {
+        super.init()
+    }
     
     internal init(content: String,
                   name: String? = nil,
@@ -98,6 +96,7 @@ public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityCont
         self.attachment = attachment
         self.tag = tag
         self.location = location
+        super.init()
     }
     
     required public init(from decoder: Decoder) throws {
@@ -124,9 +123,11 @@ public class Note:  ActivityContentToJson, ActivityContentFromJson, ActivityCont
         self.tag = tagArray?.tags
         
         self.location = try? container.decode(Location.self, forKey: .location)
+        
+        try super.init(from: decoder)
     }
     
-    public func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.context, forKey: .context)
         try container.encode(self.type, forKey: .type)

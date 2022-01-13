@@ -6,14 +6,12 @@
 //
 
 import Foundation
-import AnyCodable
 
 public enum LocationUnits: String, Codable {
     case cm, feet, inches, km, m, miles
 }
 
-public class Location: ActivityContentToJson, ActivityContentFromJson, ActivityContentCustomFields {
-    var additionalFields: [String : AnyCodable]?
+public class Location: ActivityContentItem {
     
     /**
      Identifies the type of the object
@@ -59,8 +57,6 @@ public class Location: ActivityContentToJson, ActivityContentFromJson, ActivityC
      */
     public internal(set) var units: LocationUnits? = .m
     
-    internal var storedJson: String?
-    
     internal init(name: String,
                   accuracy: Float? = nil,
                   altitude: Float? = nil,
@@ -75,9 +71,63 @@ public class Location: ActivityContentToJson, ActivityContentFromJson, ActivityC
         self.longitude = longitude
         self.radius = radius
         self.units = units
+        super.init()
     }
     
-    internal init() {}
+    internal override init() {
+        super.init()
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case type,
+             name,
+             accuracy,
+             altitude,
+             latitude,
+             longitude,
+             radius,
+             units
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type = try container.decode(String.self, forKey: .type)
+        self.name = try? container.decode(String.self, forKey: .name)
+        self.accuracy = try? container.decode(Float.self, forKey: .accuracy)
+        self.altitude = try? container.decode(Float.self, forKey: .altitude)
+        self.latitude = try? container.decode(Double.self, forKey: .latitude)
+        self.longitude = try? container.decode(Double.self, forKey: .longitude)
+        self.radius = try? container.decode(Float.self, forKey: .radius)
+        self.units = try? container.decode(LocationUnits.self, forKey: .units)
+        
+        try super.init(from: decoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.type, forKey: .type)
+        if let name = self.name {
+            try? container.encode(name, forKey: .name)
+        }
+        if let accuracy = self.accuracy {
+            try? container.encode(accuracy, forKey: .accuracy)
+        }
+        if let altitude = self.altitude {
+            try? container.encode(altitude, forKey: .altitude)
+        }
+        if let latitude = self.latitude {
+            try? container.encode(latitude, forKey: .latitude)
+        }
+        if let longitude = self.longitude {
+            try? container.encode(longitude, forKey: .longitude)
+        }
+        if let radius = self.radius {
+            try? container.encode(radius, forKey: .radius)
+        }
+        if let units = self.units {
+            try? container.encode(units, forKey: .units)
+        }
+    }
     
     @discardableResult
     internal func isValid() throws -> Bool {

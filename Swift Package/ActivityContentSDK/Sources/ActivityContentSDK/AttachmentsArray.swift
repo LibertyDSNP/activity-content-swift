@@ -7,11 +7,9 @@
 
 import Foundation
 
-class AttachmentsArray: ActivityContentToJson, ActivityContentFromJson {
+class AttachmentsArray: Codable {
     
     internal let attachments: [BaseAttachment]?
-    
-    internal var storedJson: String?
     
     enum AttachmentsTypeKey: CodingKey {
         case type

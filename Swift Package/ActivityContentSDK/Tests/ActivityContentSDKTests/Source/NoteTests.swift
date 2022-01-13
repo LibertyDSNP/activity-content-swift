@@ -11,12 +11,12 @@ import XCTest
 class NoteTests: XCTestCase {
     
     func testNoteEncodePartial() {
-        let note = Note(content: "This is a note",
-                        name: nil,
-                        published: nil,
-                        attachment: nil,
-                        tag: nil,
-                        location: nil)
+        let object = Note(content: "This is a note",
+                          name: nil,
+                          published: nil,
+                          attachment: nil,
+                          tag: nil,
+                          location: nil)
         
         let json = """
             {
@@ -27,21 +27,21 @@ class NoteTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(note.json, json)
+        XCTAssertEqual(object.json, json)
     }
     
     func testNoteEncodeFull() {
-        let note = Note(content: "This is a note",
-                        name: "Sample Name",
-                        published: Date(timeIntervalSince1970: 1640321788.6924329),
-                        attachment: [
+        let object = Note(content: "This is a note",
+                          name: "Sample Name",
+                          published: Date(timeIntervalSince1970: 1640321788.6924329),
+                          attachment: [
                             ImageAttachment(url: [ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
                             VideoAttachment(url: [VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
                             AudioAttachment(url: [AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
                             LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
-                        ],
-                        tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://1234")],
-                        location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
+                          ],
+                          tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://1234")],
+                          location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
         
         let json = """
             {
@@ -138,7 +138,7 @@ class NoteTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(note.json, json)
+        XCTAssertEqual(object.json, json)
     }
     
     func testNoteDecode() {

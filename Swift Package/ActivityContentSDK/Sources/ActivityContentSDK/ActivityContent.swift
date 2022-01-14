@@ -9,9 +9,84 @@ import Foundation
 import CoreGraphics
 import CoreLocation
 
-public class ActivityContent {
-   
-    public class NoteBuilder {
+public struct ActivityContent {
+
+    public struct Builders {
+        
+        public struct Tags {
+         
+//            public struct Mention {
+//
+//                private var mention = Mention()
+//
+//                public init() {}
+//
+//                @discardableResult
+//                public func setName(_ name: String?) -> Self {
+//                    self.mention.name = name
+//                    return self
+//                }
+//
+//                @discardableResult
+//                public func setDSNPUserId(_ dsnpUserId: DSNPUserId) -> Self {
+//                    self.mention.id = dsnpUserId
+//                    return self
+//                }
+//
+//                @discardableResult
+//                public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+//                    self.mention.addAdditionalFields(additionalFields)
+//                    return self
+//                }
+//
+//                public func build() throws -> Mention {
+//                    try self.mention.isValid()
+//                    return self.mention
+//                }
+//            }
+            
+        }
+        
+    }
+}
+
+extension ActivityContent.Builders.Tags {
+    
+    public struct mention {
+        
+        private var mention = ActivityContentMention()
+        
+        public init() {}
+        
+        @discardableResult
+        public func setName(_ name: String?) -> Self {
+            self.mention.name = name
+            return self
+        }
+        
+        @discardableResult
+        public func setDSNPUserId(_ dsnpUserId: DSNPUserId) -> Self {
+            self.mention.id = dsnpUserId
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.mention.addAdditionalFields(additionalFields)
+            return self
+        }
+        
+        public func build() throws -> ActivityContentMention {
+            try self.mention.isValid()
+            return self.mention
+        }
+    }
+}
+
+
+ 
+extension ActivityContent {
+    public struct NoteBuilder {
 
         private var note = Note()
         
@@ -65,7 +140,7 @@ public class ActivityContent {
         }
     }
     
-    public class ProfileBuilder {
+    public struct ProfileBuilder {
 
         private var profile = Profile()
         
@@ -119,7 +194,7 @@ public class ActivityContent {
         }
     }
     
-    public class LinkAttachmentBuilder {
+    public struct LinkAttachmentBuilder {
         
         private var linkAttachment = LinkAttachment()
         
@@ -149,7 +224,7 @@ public class ActivityContent {
         }
     }
     
-    public class AudioAttachmentBuilder {
+    public struct AudioAttachmentBuilder {
         
         private var audioAttachment = AudioAttachment()
         
@@ -185,7 +260,7 @@ public class ActivityContent {
         }
     }
     
-    public class VideoAttachmentBuilder {
+    public struct VideoAttachmentBuilder {
         
         private var videoAttachment = VideoAttachment()
         
@@ -221,7 +296,7 @@ public class ActivityContent {
         }
     }
     
-    public class AudioLinkBuilder {
+    public struct AudioLinkBuilder {
         
         private var audioLink = AudioLink()
         
@@ -257,7 +332,7 @@ public class ActivityContent {
         }
     }
     
-    public class VideoLinkBuilder {
+    public struct VideoLinkBuilder {
      
         private var videoLink = VideoLink()
         
@@ -300,7 +375,7 @@ public class ActivityContent {
         }
     }
     
-    public class HashtagBuilder {
+    public struct HashtagBuilder {
         
         private var hashtag = Hashtag()
         
@@ -324,9 +399,9 @@ public class ActivityContent {
         }
     }
     
-    public class MentionBuilder {
+    public struct MentionBuilder {
         
-        private var mention = Mention()
+        private var mention = ActivityContentMention()
         
         public init() {}
         
@@ -348,13 +423,13 @@ public class ActivityContent {
             return self
         }
         
-        public func build() throws -> Mention {
+        public func build() throws -> ActivityContentMention {
             try self.mention.isValid()
             return self.mention
         }
     }
     
-    public class HashBuilder {
+    public struct HashBuilder {
         
         private var hash = Hash()
         
@@ -384,7 +459,7 @@ public class ActivityContent {
         }
     }
     
-    public class ImageLinkBuilder {
+    public struct ImageLinkBuilder {
         
         private var imageLink = ImageLink()
         
@@ -427,7 +502,7 @@ public class ActivityContent {
         }
     }
     
-    public class ImageAttachmentBuilder {
+    public struct ImageAttachmentBuilder {
         
         private var imageAttachment = ImageAttachment()
         
@@ -457,7 +532,7 @@ public class ActivityContent {
         }
     }
     
-    public class LocationBuilder {
+    public struct LocationBuilder {
         
         private var location = Location()
         

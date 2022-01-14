@@ -40,7 +40,7 @@ class NoteTests: XCTestCase {
                             AudioAttachment(url: [AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
                             LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
                           ],
-                          tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://1234")],
+                          tag: [Hashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")],
                           location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
         
         let json = """
@@ -252,7 +252,7 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.692)
         XCTAssertEqual(object?.tag?.count, 2)
         XCTAssertEqual((object?.tag?[0] as? Hashtag)?.name, "#hashtag")
-        XCTAssertEqual((object?.tag?[1] as? Mention)?.id, "dsnp://user")
+        XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Note")
     }
     

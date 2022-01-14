@@ -1,5 +1,5 @@
 //
-//  MentionTests.swift
+//  ActivityContentMentionTests.swift
 //  
 //
 //  Created by Unfinished on 1/6/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class MentionTests: XCTestCase {
+class ActivityContentMentionTests: XCTestCase {
   
     func testMentionEncode() {
-        let mention = Mention(name: "Mention Name", id: "dsnp://1234")
+        let mention = ActivityContentMention(name: "Mention Name", id: "dsnp://1234")
         
         let json = """
             {
@@ -32,7 +32,7 @@ class MentionTests: XCTestCase {
               "type" : "Mention"
             }
             """
-        let object = Mention(json: json)
+        let object = ActivityContentMention(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Mention")
         XCTAssertEqual(object?.name, "Mention Name")
@@ -41,7 +41,7 @@ class MentionTests: XCTestCase {
     
     func testMentionIsNotValid_MissingDsnpUserUri() {
         do {
-            let object = Mention()
+            let object = ActivityContentMention()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingDsnpUserUriField {
@@ -53,7 +53,7 @@ class MentionTests: XCTestCase {
     
     func testMentionIsNotValid_InvalidDsnpUserUri() {
         do {
-            let object = Mention()
+            let object = ActivityContentMention()
             object.id = "dsnp://invalid"
             try object.isValid()
             XCTFail()
@@ -66,7 +66,7 @@ class MentionTests: XCTestCase {
     
     func testMentionIsValid() {
         do {
-            let object = Mention()
+            let object = ActivityContentMention()
             object.id = "dsnp://1234"
             try object.isValid()
             XCTAssertTrue(true)

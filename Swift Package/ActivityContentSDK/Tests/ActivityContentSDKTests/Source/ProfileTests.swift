@@ -29,7 +29,7 @@ class ProfileTests: XCTestCase {
                              summary: "Profile Summary",
                              published: Date(timeIntervalSince1970: 1640321788.6924329),
                              location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
-                             tag: [Hashtag(name: "#hashtag"), Mention(name: "Mention Name", id: "dsnp://1234")])
+                             tag: [Hashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")])
         
         let json = """
             {
@@ -137,7 +137,7 @@ class ProfileTests: XCTestCase {
         XCTAssertEqual(object?.location?.accuracy, 50)
         XCTAssertEqual(object?.tag?.count, 2)
         XCTAssertEqual((object?.tag?[0] as? Hashtag)?.name, "#hashtag")
-        XCTAssertEqual((object?.tag?[1] as? Mention)?.id, "dsnp://user")
+        XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Profile")
     }
     

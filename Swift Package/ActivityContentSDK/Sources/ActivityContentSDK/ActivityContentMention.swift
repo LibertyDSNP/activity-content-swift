@@ -1,5 +1,5 @@
 //
-//  Mention.swift
+//  ActivityContentMention.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Mention: BaseTag {
+public class ActivityContentMention: BaseTag {
     
     /**
      The text of the tag

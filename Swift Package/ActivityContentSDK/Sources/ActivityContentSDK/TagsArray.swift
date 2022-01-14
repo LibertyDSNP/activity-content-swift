@@ -28,7 +28,7 @@ class TagArray: ActivityContentFromJson {
             let type = try tag.decodeIfPresent(TagTypes.self, forKey: TagsTypeKey.type)
             switch type {
             case .mention:
-                tags.append(try tagsArray.decode(Mention.self))
+                tags.append(try tagsArray.decode(ActivityContentMention.self))
             case .none:
                 /// Hashtags do not specify a "type" value
                 tags.append(try tagsArray.decode(Hashtag.self))

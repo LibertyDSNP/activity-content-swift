@@ -25,6 +25,7 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: DynamicCodingKeys.self)
         let allKeysOnSelf = self.allKeys.map({ $0.stringValue })
+        
         for (key, value) in self.additionalFields ?? [:] {
             if allKeysOnSelf.contains(key) == false {
                 try container.encode(AnyCodable(value), forKey: DynamicCodingKeys(stringValue: key)!)

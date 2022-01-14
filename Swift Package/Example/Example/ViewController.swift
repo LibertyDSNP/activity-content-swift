@@ -67,6 +67,15 @@ class ViewController: UIViewController {
                 .setUnits(.cm)
                 .build()
             
+            let additionalFields: [String : Any] = [
+                "content" : "override", // ignored
+                "customBool" : true,
+                "customString" : "hello",
+                "customLink" : try ActivityContent.LinkAttachmentBuilder()
+                    .setHref(URL(string: "http://www.example.com")!)
+                    .build()
+            ]
+            
             let note = try ActivityContent.NoteBuilder()
                 .setContent("Note Content")
                 .setName("Note Name")
@@ -74,6 +83,7 @@ class ViewController: UIViewController {
                 .addAttachments([imageAttachment])
                 .addTags([hashtag, mention])
                 .setLocation(location)
+                .addAdditionalFields(additionalFields)
                 .build()
             
             print(note.json!)

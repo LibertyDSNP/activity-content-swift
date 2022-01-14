@@ -1,5 +1,5 @@
 //
-//  AudioAttachmentTests.swift
+//  ActivityContentAudioAttachmentTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/10/22.
@@ -8,14 +8,14 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class AudioAttachmentTests: XCTestCase {
+class ActivityContentAudioAttachmentTests: XCTestCase {
 
-    func testAudioAttachmentEncode() {
-        let link = AudioLink(
+    func testActivityContentAudioAttachmentEncode() {
+        let link = ActivityContentAudioLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "audio/ogg",
             hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
-        let object = AudioAttachment(url: [link], name: "Audio Attachment", duration: 180)
+        let object = ActivityContentAudioAttachment(url: [link], name: "Audio Attachment", duration: 180)
         
         let json = """
             {
@@ -41,7 +41,7 @@ class AudioAttachmentTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testAudioAttachmentDecode() {
+    func testActivityContentAudioAttachmentDecode() {
         let json = """
             {
               "duration" : 180,
@@ -63,7 +63,7 @@ class AudioAttachmentTests: XCTestCase {
             }
             """
         
-        let object = AudioAttachment(json: json)
+        let object = ActivityContentAudioAttachment(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Audio")
         XCTAssertEqual(object?.name, "Audio Attachment")
@@ -72,10 +72,10 @@ class AudioAttachmentTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
-    func testAudioAttachmentIsNotValid_NonSupportedAudioFormat() {
+    func testActivityContentAudioAttachmentIsNotValid_NonSupportedAudioFormat() {
         do {
-            let object = AudioAttachment()
-            let link = AudioLink(
+            let object = ActivityContentAudioAttachment()
+            let link = ActivityContentAudioLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "audio/unsupported",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
@@ -89,10 +89,10 @@ class AudioAttachmentTests: XCTestCase {
         }
     }
     
-    func testAudioAttachmentIsValid() {
+    func testActivityContentAudioAttachmentIsValid() {
         do {
-            let object = AudioAttachment()
-            let link = AudioLink(
+            let object = ActivityContentAudioAttachment()
+            let link = ActivityContentAudioLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "audio/ogg",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])

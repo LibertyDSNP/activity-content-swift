@@ -31,11 +31,11 @@ class AttachmentsArray: Codable {
             let type = try tag.decodeIfPresent(AttachmentTypes.self, forKey: AttachmentsTypeKey.type)
             switch type {
             case .audio:
-                attachments.append(try attachmentsArray.decode(AudioAttachment.self))
+                attachments.append(try attachmentsArray.decode(ActivityContentAudioAttachment.self))
             case .image:
-                attachments.append(try attachmentsArray.decode(ImageAttachment.self))
+                attachments.append(try attachmentsArray.decode(ActivityContentImageAttachment.self))
             case .video:
-                attachments.append(try attachmentsArray.decode(VideoAttachment.self))
+                attachments.append(try attachmentsArray.decode(ActivityContentVideoAttachment.self))
             case .link:
                 attachments.append(try attachmentsArray.decode(LinkAttachment.self))
             case .none:

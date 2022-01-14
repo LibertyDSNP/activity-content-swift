@@ -1,5 +1,5 @@
 //
-//  VideoAttachmentTests.swift
+//  ActivityContentVideoAttachmentTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/13/22.
@@ -8,14 +8,14 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class VideoAttachmentTests: XCTestCase {
+class ActivityContentVideoAttachmentTests: XCTestCase {
 
-    func testVideoAttachmentEncode() {
-        let link = VideoLink(
+    func testActivityContentVideoAttachmentEncode() {
+        let link = ActivityContentVideoLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "video/H265",
             hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
-        let object = VideoAttachment(url: [link], name: "Video Attachment", duration: 180)
+        let object = ActivityContentVideoAttachment(url: [link], name: "Video Attachment", duration: 180)
         
         let json = """
             {
@@ -41,7 +41,7 @@ class VideoAttachmentTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testVideoAttachmentDecode() {
+    func testActivityContentVideoAttachmentDecode() {
         let json = """
             {
               "duration" : 180,
@@ -63,7 +63,7 @@ class VideoAttachmentTests: XCTestCase {
             }
             """
         
-        let object = VideoAttachment(json: json)
+        let object = ActivityContentVideoAttachment(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Video")
         XCTAssertEqual(object?.name, "Video Attachment")
@@ -72,10 +72,10 @@ class VideoAttachmentTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
-    func testVideoAttachmentIsNotValid_NonSupportedVideoFormat() {
+    func testActivityContentVideoAttachmentIsNotValid_NonSupportedVideoFormat() {
         do {
-            let object = VideoAttachment()
-            let link = VideoLink(
+            let object = ActivityContentVideoAttachment()
+            let link = ActivityContentVideoLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "video/unsupported",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
@@ -89,10 +89,10 @@ class VideoAttachmentTests: XCTestCase {
         }
     }
     
-    func testVideoAttachmentIsValid() {
+    func testActivityContentVideoAttachmentIsValid() {
         do {
-            let object = VideoAttachment()
-            let link = VideoLink(
+            let object = ActivityContentVideoAttachment()
+            let link = ActivityContentVideoLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "video/H265",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])

@@ -87,7 +87,7 @@ class ValidationUtil {
         "video/mp4",
     ]
     
-    static func hasAtLeastOneSupportedAudioMediaType(links: [AudioLink]?) -> Bool {
+    static func hasAtLeastOneSupportedAudioMediaType(links: [ActivityContentAudioLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
                 if self.kSupportedAudioMediaTypes.contains(mediaType) {
@@ -99,7 +99,7 @@ class ValidationUtil {
         return false
     }
     
-    static func hasAtLeastOneSupportedImageMediaType(links: [ImageLink]?) -> Bool {
+    static func hasAtLeastOneSupportedImageMediaType(links: [ActivityContentImageLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
                 if self.kSupportedImageMediaTypes.contains(mediaType) {
@@ -111,7 +111,7 @@ class ValidationUtil {
         return false
     }
     
-    static func hasAtLeastOneSupportedVideoMediaType(links: [VideoLink]?) -> Bool {
+    static func hasAtLeastOneSupportedVideoMediaType(links: [ActivityContentVideoLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
                 if self.kSupportedVideoMediaTypes.contains(mediaType) {

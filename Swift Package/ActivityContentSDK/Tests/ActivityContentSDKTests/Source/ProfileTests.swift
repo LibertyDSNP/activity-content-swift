@@ -25,7 +25,7 @@ class ProfileTests: XCTestCase {
     
     func testProfileEncodeFull() {
         let object = Profile(name: "Profile Name",
-                             icon: [ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)],
+                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)],
                              summary: "Profile Summary",
                              published: Date(timeIntervalSince1970: 1640321788.6924329),
                              location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
@@ -144,7 +144,7 @@ class ProfileTests: XCTestCase {
     func testProfileIsNotValid_NonSupportedIconFormat() {
         do {
             let object = Profile()
-            let link = ImageLink(
+            let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/unsupported",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
@@ -161,7 +161,7 @@ class ProfileTests: XCTestCase {
     func testProfileIsValid() {
         do {
             let object = Profile()
-            let link = ImageLink(
+            let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/png",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])

@@ -1,5 +1,5 @@
 //
-//  AudioLinkTests.swift
+//  ActivityContentAudioLinkTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/10/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class AudioLinkTests: XCTestCase {
+class ActivityContentAudioLinkTests: XCTestCase {
 
-    func testAudioLinkEncode() {
-        let object = AudioLink(
+    func testActivityContentAudioLinkEncode() {
+        let object = ActivityContentAudioLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "audio/ogg",
             hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
@@ -33,7 +33,7 @@ class AudioLinkTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testAudioLinkDecode() {
+    func testActivityContentAudioLinkDecode() {
         let json = """
             {
               "hash" : [
@@ -48,7 +48,7 @@ class AudioLinkTests: XCTestCase {
             }
             """
         
-        let object = AudioLink(json: json)
+        let object = ActivityContentAudioLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
@@ -57,9 +57,9 @@ class AudioLinkTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
-    func testAudioLinkIsNotValid_MissingMediaType() {
+    func testActivityContentAudioLinkIsNotValid_MissingMediaType() {
         do {
-            let object = AudioLink()
+            let object = ActivityContentAudioLink()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingMediaTypeField {
@@ -69,9 +69,9 @@ class AudioLinkTests: XCTestCase {
         }
     }
     
-    func testAudioLinkIsNotValid_MissingHref() {
+    func testActivityContentAudioLinkIsNotValid_MissingHref() {
         do {
-            let object = AudioLink()
+            let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
             try object.isValid()
             XCTFail()
@@ -82,9 +82,9 @@ class AudioLinkTests: XCTestCase {
         }
     }
     
-    func testAudioLinkIsNotValid_InvalidHref() {
+    func testActivityContentAudioLinkIsNotValid_InvalidHref() {
         do {
-            let object = AudioLink()
+            let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
@@ -96,9 +96,9 @@ class AudioLinkTests: XCTestCase {
         }
     }
     
-    func testAudioLinkIsNotValid_NonSupportedHash() {
+    func testActivityContentAudioLinkIsNotValid_NonSupportedHash() {
         do {
-            let object = AudioLink()
+            let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
             object.href = URL(string: "https://www.example.com")
             object.hash = [Hash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
@@ -111,9 +111,9 @@ class AudioLinkTests: XCTestCase {
         }
     }
     
-    func testAudioLinkIsValid() {
+    func testActivityContentAudioLinkIsValid() {
         do {
-            let object = AudioLink()
+            let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
             object.href = URL(string: "https://www.example.com")
             object.hash = [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]

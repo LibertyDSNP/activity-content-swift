@@ -1,5 +1,5 @@
 //
-//  ImageAttachment.swift
+//  ActivityContentImageAttachment.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ImageAttachment: BaseAttachment {
+public class ActivityContentImageAttachment: BaseAttachment {
     
     /**
      Identifies the type of the object
@@ -21,7 +21,7 @@ public class ImageAttachment: BaseAttachment {
      
      - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
      */
-    public internal(set) var url: [ImageLink]? = []
+    public internal(set) var url: [ActivityContentImageLink]? = []
     
     /**
      The display name or alt text for the image
@@ -32,7 +32,7 @@ public class ImageAttachment: BaseAttachment {
         super.init()
     }
     
-    internal init(url: [ImageLink],
+    internal init(url: [ActivityContentImageLink],
                   name: String? = nil) {
         self.url = url
         self.name = name
@@ -49,7 +49,7 @@ public class ImageAttachment: BaseAttachment {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
-        self.url = try container.decode([ImageLink].self, forKey: .url)
+        self.url = try container.decode([ActivityContentImageLink].self, forKey: .url)
         self.name = try? container.decode(String.self, forKey: .name)
         try super.init(from: decoder)
     }

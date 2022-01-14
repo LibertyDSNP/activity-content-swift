@@ -35,9 +35,9 @@ class NoteTests: XCTestCase {
                           name: "Sample Name",
                           published: Date(timeIntervalSince1970: 1640321788.6924329),
                           attachment: [
-                            ImageAttachment(url: [ImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
-                            VideoAttachment(url: [VideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
-                            AudioAttachment(url: [AudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
+                            ActivityContentImageAttachment(url: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
+                            ActivityContentVideoAttachment(url: [ActivityContentVideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
+                            ActivityContentAudioAttachment(url: [ActivityContentAudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
                             LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
                           ],
                           tag: [Hashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")],
@@ -240,10 +240,10 @@ class NoteTests: XCTestCase {
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.attachment?.count, 4)
-        XCTAssertEqual((object?.attachment?[0] as? ImageAttachment)?.name, "Image Name")
+        XCTAssertEqual((object?.attachment?[0] as? ActivityContentImageAttachment)?.name, "Image Name")
         XCTAssertEqual((object?.attachment?[1] as? LinkAttachment)?.name, "Link Name")
-        XCTAssertEqual((object?.attachment?[2] as? VideoAttachment)?.name, "Video Name")
-        XCTAssertEqual((object?.attachment?[3] as? AudioAttachment)?.name, "Audio Name")
+        XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.name, "Video Name")
+        XCTAssertEqual((object?.attachment?[3] as? ActivityContentAudioAttachment)?.name, "Audio Name")
         XCTAssertEqual(object?.content, "This is a note")
         XCTAssertNotNil(object?.location)
         XCTAssertEqual(object?.location?.accuracy, 50)

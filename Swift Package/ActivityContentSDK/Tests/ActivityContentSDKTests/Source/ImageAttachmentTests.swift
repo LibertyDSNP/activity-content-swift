@@ -1,5 +1,5 @@
 //
-//  ImageAttachmentTests.swift
+//  ActivityContentImageAttachmentTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/10/22.
@@ -8,14 +8,14 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class ImageAttachmentTests: XCTestCase {
+class ActivityContentImageAttachmentTests: XCTestCase {
 
-    func testImageAttachmentEncode() {
-        let link = ImageLink(
+    func testActivityContentImageAttachmentEncode() {
+        let link = ActivityContentImageLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "image/png",
             hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
-        let object = ImageAttachment(url: [link], name: "Image Attachment")
+        let object = ActivityContentImageAttachment(url: [link], name: "Image Attachment")
         
         let json = """
             {
@@ -40,7 +40,7 @@ class ImageAttachmentTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testImageAttachmentDecode() {
+    func testActivityContentImageAttachmentDecode() {
         let json = """
             {
               "name" : "Image Attachment",
@@ -61,7 +61,7 @@ class ImageAttachmentTests: XCTestCase {
             }
             """
         
-        let object = ImageAttachment(json: json)
+        let object = ActivityContentImageAttachment(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Image")
         XCTAssertEqual(object?.name, "Image Attachment")
@@ -69,10 +69,10 @@ class ImageAttachmentTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
-    func testImageAttachmentIsNotValid_NonSupportedImageFormat() {
+    func testActivityContentImageAttachmentIsNotValid_NonSupportedImageFormat() {
         do {
-            let object = ImageAttachment()
-            let link = ImageLink(
+            let object = ActivityContentImageAttachment()
+            let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/unsupported",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
@@ -86,10 +86,10 @@ class ImageAttachmentTests: XCTestCase {
         }
     }
     
-    func testImageAttachmentIsValid() {
+    func testActivityContentImageAttachmentIsValid() {
         do {
-            let object = ImageAttachment()
-            let link = ImageLink(
+            let object = ActivityContentImageAttachment()
+            let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/png",
                 hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])

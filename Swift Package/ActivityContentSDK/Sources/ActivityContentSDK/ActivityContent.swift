@@ -153,7 +153,7 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func addIcons(_ icons: [ImageLink]) -> Self {
+        public func addIcons(_ icons: [ActivityContentImageLink]) -> Self {
             self.profile.icon?.append(contentsOf: icons)
             return self
         }
@@ -226,7 +226,7 @@ extension ActivityContent {
     
     public struct AudioAttachmentBuilder {
         
-        private var audioAttachment = AudioAttachment()
+        private var audioAttachment = ActivityContentAudioAttachment()
         
         public init() {}
         
@@ -237,7 +237,7 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func addAudioLinks(_ audioLinks: [AudioLink]) -> Self {
+        public func addAudioLinks(_ audioLinks: [ActivityContentAudioLink]) -> Self {
             self.audioAttachment.url?.append(contentsOf: audioLinks)
             return self
         }
@@ -254,7 +254,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> AudioAttachment {
+        public func build() throws -> ActivityContentAudioAttachment {
             try self.audioAttachment.isValid()
             return self.audioAttachment
         }
@@ -262,7 +262,7 @@ extension ActivityContent {
     
     public struct VideoAttachmentBuilder {
         
-        private var videoAttachment = VideoAttachment()
+        private var videoAttachment = ActivityContentVideoAttachment()
         
         public init() {}
         
@@ -273,7 +273,7 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func addVideoLinks(_ videoLinks: [VideoLink]) -> Self {
+        public func addVideoLinks(_ videoLinks: [ActivityContentVideoLink]) -> Self {
             self.videoAttachment.url?.append(contentsOf: videoLinks)
             return self
         }
@@ -290,7 +290,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> VideoAttachment {
+        public func build() throws -> ActivityContentVideoAttachment {
             try self.videoAttachment.isValid()
             return self.videoAttachment
         }
@@ -298,7 +298,7 @@ extension ActivityContent {
     
     public struct AudioLinkBuilder {
         
-        private var audioLink = AudioLink()
+        private var audioLink = ActivityContentAudioLink()
         
         public init() {}
         
@@ -326,7 +326,7 @@ extension ActivityContent {
             return self
         }
 
-        public func build() throws -> AudioLink {
+        public func build() throws -> ActivityContentAudioLink {
             try self.audioLink.isValid()
             return self.audioLink
         }
@@ -334,7 +334,7 @@ extension ActivityContent {
     
     public struct VideoLinkBuilder {
      
-        private var videoLink = VideoLink()
+        private var videoLink = ActivityContentVideoLink()
         
         public init() {}
         
@@ -369,7 +369,7 @@ extension ActivityContent {
             return self
         }
 
-        public func build() throws -> VideoLink {
+        public func build() throws -> ActivityContentVideoLink {
             try self.videoLink.isValid()
             return self.videoLink
         }
@@ -461,7 +461,7 @@ extension ActivityContent {
     
     public struct ImageLinkBuilder {
         
-        private var imageLink = ImageLink()
+        private var imageLink = ActivityContentImageLink()
         
         public init() {}
         
@@ -496,7 +496,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> ImageLink {
+        public func build() throws -> ActivityContentImageLink {
             try self.imageLink.isValid()
             return self.imageLink
         }
@@ -504,7 +504,7 @@ extension ActivityContent {
     
     public struct ImageAttachmentBuilder {
         
-        private var imageAttachment = ImageAttachment()
+        private var imageAttachment = ActivityContentImageAttachment()
         
         public init() {}
         
@@ -515,7 +515,7 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func addImageLinks(_ imageLinks: [ImageLink]) -> Self {
+        public func addImageLinks(_ imageLinks: [ActivityContentImageLink]) -> Self {
             self.imageAttachment.url?.append(contentsOf: imageLinks)
             return self
         }
@@ -526,7 +526,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> ImageAttachment {
+        public func build() throws -> ActivityContentImageAttachment {
             try self.imageAttachment.isValid()
             return self.imageAttachment
         }

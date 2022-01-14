@@ -1,5 +1,5 @@
 //
-//  VideoAttachment.swift
+//  ActivityContentAudioAttachment.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,29 +7,29 @@
 
 import Foundation
 
-public class VideoAttachment: BaseAttachment {
+public class ActivityContentAudioAttachment: BaseAttachment {
     
     /**
      Identifies the type of the object
      
-     - Requires: MUST be set to Video
+     - Requires: MUST be set to Audio
      */
-    public private(set) var type: String = "Video"
+    public private(set) var type: String = "Audio"
     
     /**
-     An array of links for given image content in different formats
+     An array of links for given audio content in different formats
      
-     - Requires: MUST be a Video Link AND MUST have at least one supported video MIME type
+     - Requires: MUST be an Audio Link AND MUST have at least one supported audio MIME type
      */
-    public internal(set) var url: [VideoLink]? = []
+    public internal(set) var url: [ActivityContentAudioLink]? = []
     
     /**
-     The display name for the video
+     The display name for the audio file
      */
     public internal(set) var name: String?
     
     /**
-     Approximate duration of the video
+     Approximate duration of the audio
      */
     public internal(set) var duration: TimeInterval?
     
@@ -37,7 +37,7 @@ public class VideoAttachment: BaseAttachment {
         super.init()
     }
     
-    internal init(url: [VideoLink],
+    internal init(url: [ActivityContentAudioLink],
                   name: String? = nil,
                   duration: TimeInterval? = nil) {
         self.url = url
@@ -57,7 +57,7 @@ public class VideoAttachment: BaseAttachment {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
-        self.url = try container.decode([VideoLink].self, forKey: .url)
+        self.url = try container.decode([ActivityContentAudioLink].self, forKey: .url)
         self.name = try? container.decode(String.self, forKey: .name)
         self.duration = try? container.decode(TimeInterval.self, forKey: .duration)
         try super.init(from: decoder)
@@ -74,7 +74,7 @@ public class VideoAttachment: BaseAttachment {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if ValidationUtil.hasAtLeastOneSupportedVideoMediaType(links: self.url) == false {
+        if ValidationUtil.hasAtLeastOneSupportedAudioMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         

@@ -1,5 +1,5 @@
 //
-//  ImageLinkTests.swift
+//  ActivityContentImageLinkTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/10/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class ImageLinkTests: XCTestCase {
+class ActivityContentImageLinkTests: XCTestCase {
 
-    func testImageLinkEncode() {
-        let object = ImageLink(
+    func testActivityContentImageLinkEncode() {
+        let object = ActivityContentImageLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "image/png",
             hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
@@ -33,7 +33,7 @@ class ImageLinkTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testImageLinkDecode() {
+    func testActivityContentImageLinkDecode() {
         let json = """
             {
               "hash" : [
@@ -48,7 +48,7 @@ class ImageLinkTests: XCTestCase {
             }
             """
         
-        let object = ImageLink(json: json)
+        let object = ActivityContentImageLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
@@ -57,9 +57,9 @@ class ImageLinkTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
-    func testImageLinkIsNotValid_MissingMediaType() {
+    func testActivityContentImageLinkIsNotValid_MissingMediaType() {
         do {
-            let object = ImageLink()
+            let object = ActivityContentImageLink()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingMediaTypeField {
@@ -69,9 +69,9 @@ class ImageLinkTests: XCTestCase {
         }
     }
     
-    func testImageLinkIsNotValid_MissingHref() {
+    func testActivityContentImageLinkIsNotValid_MissingHref() {
         do {
-            let object = ImageLink()
+            let object = ActivityContentImageLink()
             object.mediaType = "image/png"
             try object.isValid()
             XCTFail()
@@ -82,9 +82,9 @@ class ImageLinkTests: XCTestCase {
         }
     }
     
-    func testImageLinkIsNotValid_InvalidHref() {
+    func testActivityContentImageLinkIsNotValid_InvalidHref() {
         do {
-            let object = ImageLink()
+            let object = ActivityContentImageLink()
             object.mediaType = "image/png"
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
@@ -96,9 +96,9 @@ class ImageLinkTests: XCTestCase {
         }
     }
     
-    func testImageLinkIsNotValid_NonSupportedHash() {
+    func testActivityContentImageLinkIsNotValid_NonSupportedHash() {
         do {
-            let object = ImageLink()
+            let object = ActivityContentImageLink()
             object.mediaType = "image/png"
             object.href = URL(string: "https://www.example.com")
             object.hash = [Hash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
@@ -111,9 +111,9 @@ class ImageLinkTests: XCTestCase {
         }
     }
     
-    func testImageLinkIsValid() {
+    func testActivityContentImageLinkIsValid() {
         do {
-            let object = ImageLink()
+            let object = ActivityContentImageLink()
             object.mediaType = "image/png"
             object.href = URL(string: "https://www.example.com")
             object.hash = [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]

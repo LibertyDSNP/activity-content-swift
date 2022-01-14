@@ -1,5 +1,5 @@
 //
-//  VideoLink.swift
+//  ActivityContentVideoLink.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class VideoLink: BaseLink {
+public class ActivityContentVideoLink: BaseLink {
     
     /**
      MIME type of href content

@@ -54,7 +54,7 @@ class ActivityContentFromJsonTests: XCTestCase {
         XCTAssertNil(missingValue)
     }
     
-    func testImageLinkWithCustomFields() {
+    func testActivityContentImageLinkWithCustomFields() {
         let json = """
             {
               "hash" : [
@@ -76,7 +76,7 @@ class ActivityContentFromJsonTests: XCTestCase {
             }
             """
         
-        let object = ImageLink(json: json)
+        let object = ActivityContentImageLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")

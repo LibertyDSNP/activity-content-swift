@@ -33,7 +33,7 @@ public class Profile: ActivityContentItem {
      
      - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
      */
-    public internal(set) var icon: [ImageLink]? = []
+    public internal(set) var icon: [ActivityContentImageLink]? = []
     
     /**
      Used as a plain text biography of the profile
@@ -78,7 +78,7 @@ public class Profile: ActivityContentItem {
     }
     
     internal init(name: String? = nil,
-                  icon: [ImageLink]? = nil,
+                  icon: [ActivityContentImageLink]? = nil,
                   summary: String? = nil,
                   published: Date? = nil,
                   location: Location? = nil,
@@ -97,7 +97,7 @@ public class Profile: ActivityContentItem {
         self.context = try container.decode(String.self, forKey: .context)
         self.type = try container.decode(String.self, forKey: .type)
         self.name = try? container.decode(String.self, forKey: .name)
-        self.icon = try? container.decode([ImageLink].self, forKey: .icon)
+        self.icon = try? container.decode([ActivityContentImageLink].self, forKey: .icon)
         self.summary = try? container.decode(String.self, forKey: .summary)
         
         if let formattedDate = try? container.decode(String.self, forKey: .published) {

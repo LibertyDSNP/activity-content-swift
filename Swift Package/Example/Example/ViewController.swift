@@ -15,8 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.buildNote()
-        //        self.buildProfile()
-        //        self.buildAttachments()
+        // self.buildProfile()
+        // self.buildAttachments()
     }
     
     private func buildNote() {

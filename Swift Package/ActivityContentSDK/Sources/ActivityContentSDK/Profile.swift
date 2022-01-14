@@ -31,7 +31,7 @@ public class Profile: ActivityContentItem {
     /**
      An array of avatars of the profile
      
-     - Requires: MUST follow Image Link Type
+     - Requires: MUST be an Image Link AND MUST have at least one supported image MIME type
      */
     public internal(set) var icon: [ImageLink]? = []
     
@@ -151,6 +151,10 @@ public class Profile: ActivityContentItem {
             if ValidationUtil.isValid(date: published) == false {
                 throw ActivityContentError.invalidDate
             }
+        }
+        
+        if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.icon) == false {
+            throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         
         return true

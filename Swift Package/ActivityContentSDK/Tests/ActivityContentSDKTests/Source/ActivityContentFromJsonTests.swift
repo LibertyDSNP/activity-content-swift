@@ -106,7 +106,7 @@ class ActivityContentFromJsonTests: XCTestCase {
     
     func testSetAdditionalFieldsToJson() {
         let object = BaseLink(href: URL(string: "http://www.example.com")!)
-        object.additionalFields = [
+        object.addAdditionalFields([
             /// Any key that matches a native var is excluded from the encoded JSON
             "href" : "http://www.attemptToOverride.com",
             "type" : "ATTEMPT_TO_OVERRIDE",
@@ -135,7 +135,7 @@ class ActivityContentFromJsonTests: XCTestCase {
                     ]
                 ]
             ]
-        ]
+        ])
         
         let json = """
             {

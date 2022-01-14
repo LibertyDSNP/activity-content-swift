@@ -53,6 +53,12 @@ public class ActivityContent {
             return self
         }
         
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.note.addAdditionalFields(additionalFields)
+            return self
+        }
+        
         public func build() throws -> Note {
             try self.note.isValid()
             return self.note
@@ -101,6 +107,12 @@ public class ActivityContent {
             return self
         }
         
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.profile.addAdditionalFields(additionalFields)
+            return self
+        }
+        
         public func build() throws -> Profile {
             try self.profile.isValid()
             return self.profile
@@ -122,6 +134,12 @@ public class ActivityContent {
         @discardableResult
         public func setHref(_ href: URL) -> Self {
             self.linkAttachment.href = href
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.linkAttachment.addAdditionalFields(additionalFields)
             return self
         }
         
@@ -155,6 +173,12 @@ public class ActivityContent {
             return self
         }
         
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.audioAttachment.addAdditionalFields(additionalFields)
+            return self
+        }
+        
         public func build() throws -> AudioAttachment {
             try self.audioAttachment.isValid()
             return self.audioAttachment
@@ -185,6 +209,12 @@ public class ActivityContent {
             return self
         }
         
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.videoAttachment.addAdditionalFields(additionalFields)
+            return self
+        }
+        
         public func build() throws -> VideoAttachment {
             try self.videoAttachment.isValid()
             return self.videoAttachment
@@ -192,7 +222,7 @@ public class ActivityContent {
     }
     
     public class AudioLinkBuilder {
-     
+        
         private var audioLink = AudioLink()
         
         public init() {}
@@ -212,6 +242,12 @@ public class ActivityContent {
         @discardableResult
         public func addHashes(_ hashes: [Hash]) -> Self {
             self.audioLink.hash?.append(contentsOf: hashes)
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.audioLink.addAdditionalFields(additionalFields)
             return self
         }
 
@@ -251,6 +287,12 @@ public class ActivityContent {
             self.videoLink.height = size?.height != nil ? Float(size!.height) : nil
             return self
         }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.videoLink.addAdditionalFields(additionalFields)
+            return self
+        }
 
         public func build() throws -> VideoLink {
             try self.videoLink.isValid()
@@ -267,6 +309,12 @@ public class ActivityContent {
         @discardableResult
         public func setName(_ name: String) -> Self {
             self.hashtag.name = name
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.hashtag.addAdditionalFields(additionalFields)
             return self
         }
         
@@ -294,6 +342,12 @@ public class ActivityContent {
             return self
         }
         
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.mention.addAdditionalFields(additionalFields)
+            return self
+        }
+        
         public func build() throws -> Mention {
             try self.mention.isValid()
             return self.mention
@@ -315,6 +369,12 @@ public class ActivityContent {
         @discardableResult
         public func setValue(_ value: String) -> Self {
             self.hash.value = value
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.hash.addAdditionalFields(additionalFields)
             return self
         }
         
@@ -355,6 +415,12 @@ public class ActivityContent {
             return self
         }
 
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.imageLink.addAdditionalFields(additionalFields)
+            return self
+        }
+        
         public func build() throws -> ImageLink {
             try self.imageLink.isValid()
             return self.imageLink
@@ -376,6 +442,12 @@ public class ActivityContent {
         @discardableResult
         public func addImageLinks(_ imageLinks: [ImageLink]) -> Self {
             self.imageAttachment.url?.append(contentsOf: imageLinks)
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.imageAttachment.addAdditionalFields(additionalFields)
             return self
         }
         
@@ -425,6 +497,12 @@ public class ActivityContent {
         @discardableResult
         public func setUnits(_ units: LocationUnits?) -> Self {
             self.location.units = units
+            return self
+        }
+        
+        @discardableResult
+        public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
+            self.location.addAdditionalFields(additionalFields)
             return self
         }
         

@@ -14,7 +14,10 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
 
     internal init() {}
     
-    public internal(set) var additionalFields: [String : Any]?
+    public private(set) var additionalFields: [String : Any]? = [:]
+    internal func addAdditionalFields(_ additionalFields: [String : Any]) {
+        self.additionalFields = self.additionalFields?.merging(additionalFields, uniquingKeysWith: { (_, last) in last })
+    }
     
     internal var allKeys: [CodingKey] { return CodingKeys.allCases }
     private enum CodingKeys: CodingKey, CaseIterable {}

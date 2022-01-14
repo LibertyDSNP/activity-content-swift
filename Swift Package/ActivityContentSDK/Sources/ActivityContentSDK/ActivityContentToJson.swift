@@ -7,19 +7,6 @@
 
 import Foundation
 
-internal struct DynamicCodingKeys: CodingKey {
-    var stringValue: String
-    init?(stringValue: String) {
-        self.stringValue = stringValue
-    }
-    
-    var intValue: Int?
-    init?(intValue: Int) {
-        /// We are not using this, return nil
-        return nil
-    }
-}
-
 public protocol ActivityContentToJson: Codable {
     
     var json: String? { get }

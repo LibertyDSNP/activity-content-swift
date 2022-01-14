@@ -11,8 +11,6 @@ class TagArray: ActivityContentFromJson {
     
     internal let tags: [BaseTag]?
     
-    internal var jsonSource: String?
-    
     enum TagsTypeKey: CodingKey {
         case type
     }

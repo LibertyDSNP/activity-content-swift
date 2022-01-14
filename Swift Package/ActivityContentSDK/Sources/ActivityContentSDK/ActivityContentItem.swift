@@ -10,8 +10,6 @@ import AnyCodable
 
 public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson {
     
-    internal var jsonSource: String?
-
     internal init() {}
     
     public private(set) var additionalFields: [String : Any]? = [:]

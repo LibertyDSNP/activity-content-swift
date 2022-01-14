@@ -147,12 +147,6 @@ public class Profile: ActivityContentItem {
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if let published = published {
-            if ValidationUtil.isValid(date: published) == false {
-                throw ActivityContentError.invalidDate
-            }
-        }
-        
         if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.icon) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }

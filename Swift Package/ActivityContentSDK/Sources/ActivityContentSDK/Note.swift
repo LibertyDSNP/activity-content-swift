@@ -164,12 +164,6 @@ public class Note:  ActivityContentItem {
             throw ActivityContentError.missingContentField
         }
         
-        if let published = published {
-            if ValidationUtil.isValid(date: published) == false {
-                throw ActivityContentError.invalidDate
-            }
-        }
-        
         return true
     }
 }

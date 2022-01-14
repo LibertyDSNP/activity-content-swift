@@ -74,4 +74,41 @@ class LocationTests: XCTestCase {
         XCTAssertEqual(object?.type, "Place")
         XCTAssertEqual(object?.units, .km)
     }
+    
+    func testLocationIsNotValid_MissingName() {
+        do {
+            let object = Location()
+            try object.isValid()
+            XCTFail()
+        } catch ActivityContentError.missingNameField {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testLocationIsNotValid_MissingUnits() {
+        do {
+            let object = Location()
+            object.name = "Location"
+            object.units = nil
+            try object.isValid()
+            XCTFail()
+        } catch ActivityContentError.missingUnitsField {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testLocationIsValid() {
+        do {
+            let object = Location()
+            object.name = "Location"
+            try object.isValid()
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
 }

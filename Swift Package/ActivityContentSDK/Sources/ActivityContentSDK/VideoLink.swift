@@ -59,8 +59,8 @@ public class VideoLink: BaseLink {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
         self.hash = try container.decode([Hash].self, forKey: .hash)
-        self.height = try container.decode(Float.self, forKey: .height)
-        self.width = try container.decode(Float.self, forKey: .width)
+        self.height = try? container.decode(Float.self, forKey: .height)
+        self.width = try? container.decode(Float.self, forKey: .width)
         try super.init(from: decoder)
     }
     

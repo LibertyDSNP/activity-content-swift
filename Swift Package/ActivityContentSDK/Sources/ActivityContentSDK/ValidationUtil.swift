@@ -83,7 +83,7 @@ class ValidationUtil {
         "video/mpeg",
         "video/ogg",
         "video/webm",
-        "video/H256",
+        "video/H265",
         "video/mp4",
     ]
     

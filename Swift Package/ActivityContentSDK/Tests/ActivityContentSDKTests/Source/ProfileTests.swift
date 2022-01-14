@@ -140,4 +140,36 @@ class ProfileTests: XCTestCase {
         XCTAssertEqual((object?.tag?[1] as? Mention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Profile")
     }
+    
+    func testProfileIsNotValid_NonSupportedIconFormat() {
+        do {
+            let object = Profile()
+            let link = ImageLink(
+                href: URL(string: "http://www.example.com")!,
+                mediaType: "image/unsupported",
+                hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+            object.icon = [link]
+            try object.isValid()
+            XCTFail()
+        } catch ActivityContentError.linksDoNotContainSupportedFormat {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testProfileIsValid() {
+        do {
+            let object = Profile()
+            let link = ImageLink(
+                href: URL(string: "http://www.example.com")!,
+                mediaType: "image/png",
+                hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+            object.icon = [link]
+            try object.isValid()
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
 }

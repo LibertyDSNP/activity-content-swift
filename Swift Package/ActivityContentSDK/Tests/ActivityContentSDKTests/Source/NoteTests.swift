@@ -255,4 +255,28 @@ class NoteTests: XCTestCase {
         XCTAssertEqual((object?.tag?[1] as? Mention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Note")
     }
+    
+    
+    func testNoteIsNotValid_MissingContent() {
+        do {
+            let object = Note()
+            try object.isValid()
+            XCTFail()
+        } catch ActivityContentError.missingContentField {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testNoteIsValid() {
+        do {
+            let object = Note()
+            object.content = "Hello World"
+            try object.isValid()
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
 }

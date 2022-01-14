@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ActivityContentAudioLink: BaseLink {
+public class ActivityContentAudioLink: ActivityContentBaseLink {
     
     /**
      MIME type of href content
@@ -19,7 +19,7 @@ public class ActivityContentAudioLink: BaseLink {
      
      - Requires: MUST include at least one supported hash
      */
-    public internal(set) var hash: [Hash]? = []
+    public internal(set) var hash: [ActivityContentHash]? = []
     
     internal override init() {
         super.init()
@@ -27,7 +27,7 @@ public class ActivityContentAudioLink: BaseLink {
     
     internal init(href: URL,
                   mediaType: String,
-                  hash: [Hash]) {
+                  hash: [ActivityContentHash]) {
         self.mediaType = mediaType
         self.hash = hash
         super.init(href: href)
@@ -42,7 +42,7 @@ public class ActivityContentAudioLink: BaseLink {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
-        self.hash = try container.decode([Hash].self, forKey: .hash)
+        self.hash = try container.decode([ActivityContentHash].self, forKey: .hash)
         try super.init(from: decoder)
     }
     

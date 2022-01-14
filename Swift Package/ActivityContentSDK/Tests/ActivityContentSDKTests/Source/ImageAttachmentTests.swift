@@ -14,7 +14,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
         let link = ActivityContentImageLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "image/png",
-            hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+            hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         let object = ActivityContentImageAttachment(url: [link], name: "Image Attachment")
         
         let json = """
@@ -75,7 +75,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/unsupported",
-                hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
             XCTFail()
@@ -92,7 +92,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/png",
-                hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
             XCTAssertTrue(true)

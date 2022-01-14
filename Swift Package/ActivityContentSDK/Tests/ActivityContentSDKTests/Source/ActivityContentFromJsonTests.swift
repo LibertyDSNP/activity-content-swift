@@ -10,7 +10,7 @@ import XCTest
 
 class ActivityContentFromJsonTests: XCTestCase {
     
-    func testBaseLinkWithCustomFields() {
+    func testActivityContentBaseLinkWithCustomFields() {
         let json = """
             {
               "href" : "http://www.example.com",
@@ -24,7 +24,7 @@ class ActivityContentFromJsonTests: XCTestCase {
               "not_href" : true
             }
             """
-        let object = BaseLink(json: json)
+        let object = ActivityContentBaseLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
@@ -105,7 +105,7 @@ class ActivityContentFromJsonTests: XCTestCase {
     }
     
     func testSetAdditionalFieldsToJson() {
-        let object = BaseLink(href: URL(string: "http://www.example.com")!)
+        let object = ActivityContentBaseLink(href: URL(string: "http://www.example.com")!)
         object.addAdditionalFields([
             /// Any key that matches a native var is excluded from the encoded JSON
             "href" : "http://www.attemptToOverride.com",
@@ -125,7 +125,7 @@ class ActivityContentFromJsonTests: XCTestCase {
             "mixedArray" : [
                 100,
                 42.24,
-                BaseLink(href: URL(string: "http://www.example.com")!),
+                ActivityContentBaseLink(href: URL(string: "http://www.example.com")!),
                 false,
                 "string",
                 [

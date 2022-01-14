@@ -1,5 +1,5 @@
 //
-//  Hash.swift
+//  ActivityContentHash.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 12/27/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Hash: ActivityContentItem {
+public class ActivityContentHash: ActivityContentItem {
     
     /**
      The algorithm of the given hash

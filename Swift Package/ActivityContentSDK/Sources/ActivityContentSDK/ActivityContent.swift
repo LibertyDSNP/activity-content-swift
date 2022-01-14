@@ -88,7 +88,7 @@ extension ActivityContent.Builders.Tags {
 extension ActivityContent {
     public struct NoteBuilder {
 
-        private var note = Note()
+        private var note = ActivityContentNote()
         
         public init() {}
         
@@ -111,19 +111,19 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func addAttachments(_ attachments: [BaseAttachment]) -> Self {
+        public func addAttachments(_ attachments: [ActivityContentBaseAttachment]) -> Self {
             self.note.attachment?.append(contentsOf: attachments)
             return self
         }
         
         @discardableResult
-        public func addTags(_ tags: [BaseTag]) -> Self {
+        public func addTags(_ tags: [ActivityContentBaseTag]) -> Self {
             self.note.tag?.append(contentsOf: tags)
             return self
         }
         
         @discardableResult
-        public func setLocation(_ location: Location?) -> Self {
+        public func setLocation(_ location: ActivityContentLocation?) -> Self {
             self.note.location = location
             return self
         }
@@ -134,7 +134,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> Note {
+        public func build() throws -> ActivityContentNote {
             try self.note.isValid()
             return self.note
         }
@@ -142,7 +142,7 @@ extension ActivityContent {
     
     public struct ProfileBuilder {
 
-        private var profile = Profile()
+        private var profile = ActivityContentProfile()
         
         public init() {}
         
@@ -171,13 +171,13 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func setLocation(_ location: Location?) -> Self {
+        public func setLocation(_ location: ActivityContentLocation?) -> Self {
             self.profile.location = location
             return self
         }
         
         @discardableResult
-        public func addTags(_ tags: [BaseTag]) -> Self {
+        public func addTags(_ tags: [ActivityContentBaseTag]) -> Self {
             self.profile.tag?.append(contentsOf: tags)
             return self
         }
@@ -188,7 +188,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> Profile {
+        public func build() throws -> ActivityContentProfile {
             try self.profile.isValid()
             return self.profile
         }
@@ -196,7 +196,7 @@ extension ActivityContent {
     
     public struct LinkAttachmentBuilder {
         
-        private var linkAttachment = LinkAttachment()
+        private var linkAttachment = ActivityContentLinkAttachment()
         
         public init() {}
         
@@ -218,7 +218,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> LinkAttachment {
+        public func build() throws -> ActivityContentLinkAttachment {
             try self.linkAttachment.isValid()
             return self.linkAttachment
         }
@@ -315,7 +315,7 @@ extension ActivityContent {
         }
 
         @discardableResult
-        public func addHashes(_ hashes: [Hash]) -> Self {
+        public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
             self.audioLink.hash?.append(contentsOf: hashes)
             return self
         }
@@ -351,7 +351,7 @@ extension ActivityContent {
         }
 
         @discardableResult
-        public func addHashes(_ hashes: [Hash]) -> Self {
+        public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
             self.videoLink.hash?.append(contentsOf: hashes)
             return self
         }
@@ -377,7 +377,7 @@ extension ActivityContent {
     
     public struct HashtagBuilder {
         
-        private var hashtag = Hashtag()
+        private var hashtag = ActivityContentHashtag()
         
         public init() {}
         
@@ -393,7 +393,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> Hashtag {
+        public func build() throws -> ActivityContentHashtag {
             try self.hashtag.isValid()
             return self.hashtag
         }
@@ -431,7 +431,7 @@ extension ActivityContent {
     
     public struct HashBuilder {
         
-        private var hash = Hash()
+        private var hash = ActivityContentHash()
         
         public init() {}
         
@@ -453,7 +453,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> Hash {
+        public func build() throws -> ActivityContentHash {
             try self.hash.isValid()
             return self.hash
         }
@@ -478,7 +478,7 @@ extension ActivityContent {
         }
 
         @discardableResult
-        public func addHashes(_ hashes: [Hash]) -> Self {
+        public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
             self.imageLink.hash?.append(contentsOf: hashes)
             return self
         }
@@ -534,7 +534,7 @@ extension ActivityContent {
     
     public struct LocationBuilder {
         
-        private var location = Location()
+        private var location = ActivityContentLocation()
         
         public init() {}
         
@@ -570,7 +570,7 @@ extension ActivityContent {
         }
         
         @discardableResult
-        public func setUnits(_ units: LocationUnits?) -> Self {
+        public func setUnits(_ units: ActivityContentLocationUnits?) -> Self {
             self.location.units = units
             return self
         }
@@ -581,7 +581,7 @@ extension ActivityContent {
             return self
         }
         
-        public func build() throws -> Location {
+        public func build() throws -> ActivityContentLocation {
             try self.location.isValid()
             return self.location
         }

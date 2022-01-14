@@ -9,7 +9,7 @@ import Foundation
 
 class TagArray: ActivityContentFromJson {
     
-    internal let tags: [BaseTag]?
+    internal let tags: [ActivityContentBaseTag]?
     
     enum TagsTypeKey: CodingKey {
         case type
@@ -21,7 +21,7 @@ class TagArray: ActivityContentFromJson {
     
     required init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        var tags: [BaseTag] = []
+        var tags: [ActivityContentBaseTag] = []
         var tagsArray = container
         while (!container.isAtEnd) {
             let tag = try container.nestedContainer(keyedBy: TagsTypeKey.self)
@@ -30,8 +30,8 @@ class TagArray: ActivityContentFromJson {
             case .mention:
                 tags.append(try tagsArray.decode(ActivityContentMention.self))
             case .none:
-                /// Hashtags do not specify a "type" value
-                tags.append(try tagsArray.decode(Hashtag.self))
+                /// ActivityContentHashtags do not specify a "type" value
+                tags.append(try tagsArray.decode(ActivityContentHashtag.self))
             }
         }
         

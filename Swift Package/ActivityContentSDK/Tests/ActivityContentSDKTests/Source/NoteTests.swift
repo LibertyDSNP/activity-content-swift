@@ -1,5 +1,5 @@
 //
-//  NoteTests.swift
+//  ActivityContentNoteTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/3/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class NoteTests: XCTestCase {
+class ActivityContentNoteTests: XCTestCase {
     
-    func testNoteEncodePartial() {
-        let object = Note(content: "This is a note",
+    func testActivityContentNoteEncodePartial() {
+        let object = ActivityContentNote(content: "This is a note",
                           name: nil,
                           published: nil,
                           attachment: nil,
@@ -30,18 +30,18 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testNoteEncodeFull() {
-        let object = Note(content: "This is a note",
+    func testActivityContentNoteEncodeFull() {
+        let object = ActivityContentNote(content: "This is a note",
                           name: "Sample Name",
                           published: Date(timeIntervalSince1970: 1640321788.6924329),
                           attachment: [
-                            ActivityContentImageAttachment(url: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
-                            ActivityContentVideoAttachment(url: [ActivityContentVideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
-                            ActivityContentAudioAttachment(url: [ActivityContentAudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
-                            LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
+                            ActivityContentImageAttachment(url: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [ActivityContentHash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Image Name"),
+                            ActivityContentVideoAttachment(url: [ActivityContentVideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [ActivityContentHash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)], name: "Video Name", duration: 30),
+                            ActivityContentAudioAttachment(url: [ActivityContentAudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [ActivityContentHash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)])], name: "Audio Name", duration: 30),
+                            ActivityContentLinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
                           ],
-                          tag: [Hashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")],
-                          location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
+                          tag: [ActivityContentHashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")],
+                          location: ActivityContentLocation(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm))
         
         let json = """
             {
@@ -141,7 +141,7 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testNoteDecode() {
+    func testActivityContentNoteDecode() {
         let json = """
             {
               "@context" : "https://www.w3.org/ns/activitystreams",
@@ -236,12 +236,12 @@ class NoteTests: XCTestCase {
             }
             """
         
-        let object = Note(json: json)
+        let object = ActivityContentNote(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.attachment?.count, 4)
         XCTAssertEqual((object?.attachment?[0] as? ActivityContentImageAttachment)?.name, "Image Name")
-        XCTAssertEqual((object?.attachment?[1] as? LinkAttachment)?.name, "Link Name")
+        XCTAssertEqual((object?.attachment?[1] as? ActivityContentLinkAttachment)?.name, "Link Name")
         XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.name, "Video Name")
         XCTAssertEqual((object?.attachment?[3] as? ActivityContentAudioAttachment)?.name, "Audio Name")
         XCTAssertEqual(object?.content, "This is a note")
@@ -251,15 +251,15 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(object?.name, "Sample Name")
         XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.692)
         XCTAssertEqual(object?.tag?.count, 2)
-        XCTAssertEqual((object?.tag?[0] as? Hashtag)?.name, "#hashtag")
+        XCTAssertEqual((object?.tag?[0] as? ActivityContentHashtag)?.name, "#hashtag")
         XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Note")
     }
     
     
-    func testNoteIsNotValid_MissingContent() {
+    func testActivityContentNoteIsNotValid_MissingContent() {
         do {
-            let object = Note()
+            let object = ActivityContentNote()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingContentField {
@@ -269,9 +269,9 @@ class NoteTests: XCTestCase {
         }
     }
     
-    func testNoteIsValid() {
+    func testActivityContentNoteIsValid() {
         do {
-            let object = Note()
+            let object = ActivityContentNote()
             object.content = "Hello World"
             try object.isValid()
             XCTAssertTrue(true)

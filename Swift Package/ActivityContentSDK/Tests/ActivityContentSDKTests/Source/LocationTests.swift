@@ -1,5 +1,5 @@
 //
-//  LocationTests.swift
+//  ActivityContentLocationTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/12/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class LocationTests: XCTestCase {
+class ActivityContentLocationTests: XCTestCase {
     
-    func testLocationEncodePartial() {
-        let object = Location(name: "Location Name")
+    func testActivityContentLocationEncodePartial() {
+        let object = ActivityContentLocation(name: "Location Name")
         
         let json = """
             {
@@ -24,8 +24,8 @@ class LocationTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testLocationEncodeFull() {
-        let object = Location(name: "Location Name",
+    func testActivityContentLocationEncodeFull() {
+        let object = ActivityContentLocation(name: "Location Name",
                               accuracy: 100,
                               altitude: 50,
                               latitude: 123.45,
@@ -49,7 +49,7 @@ class LocationTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testNoteDecode() {
+    func testActivityContentNoteDecode() {
         let json = """
             {
               "accuracy" : 100,
@@ -63,7 +63,7 @@ class LocationTests: XCTestCase {
             }
             """
         
-        let object = Location(json: json)
+        let object = ActivityContentLocation(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.accuracy, 100)
         XCTAssertEqual(object?.altitude, 50)
@@ -75,9 +75,9 @@ class LocationTests: XCTestCase {
         XCTAssertEqual(object?.units, .km)
     }
     
-    func testLocationIsNotValid_MissingName() {
+    func testActivityContentLocationIsNotValid_MissingName() {
         do {
-            let object = Location()
+            let object = ActivityContentLocation()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingNameField {
@@ -87,9 +87,9 @@ class LocationTests: XCTestCase {
         }
     }
     
-    func testLocationIsNotValid_MissingUnits() {
+    func testActivityContentLocationIsNotValid_MissingUnits() {
         do {
-            let object = Location()
+            let object = ActivityContentLocation()
             object.name = "Location"
             object.units = nil
             try object.isValid()
@@ -101,9 +101,9 @@ class LocationTests: XCTestCase {
         }
     }
     
-    func testLocationIsValid() {
+    func testActivityContentLocationIsValid() {
         do {
-            let object = Location()
+            let object = ActivityContentLocation()
             object.name = "Location"
             try object.isValid()
             XCTAssertTrue(true)

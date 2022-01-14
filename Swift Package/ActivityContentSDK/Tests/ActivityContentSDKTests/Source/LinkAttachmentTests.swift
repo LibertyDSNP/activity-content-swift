@@ -11,7 +11,7 @@ import XCTest
 class LinkAttachmentTests: XCTestCase {
 
     func testLinkAttachmentEncode() {
-        let object = LinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Attachment")
+        let object = ActivityContentLinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Attachment")
         
         let json = """
             {
@@ -33,7 +33,7 @@ class LinkAttachmentTests: XCTestCase {
             }
             """
         
-        let object = LinkAttachment(json: json)
+        let object = ActivityContentLinkAttachment(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.name, "Link Attachment")
         XCTAssertEqual(object?.type, "Link")
@@ -43,7 +43,7 @@ class LinkAttachmentTests: XCTestCase {
     
     func testLinkAttachmentIsNotValid_MissingHref() {
         do {
-            let object = LinkAttachment()
+            let object = ActivityContentLinkAttachment()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingHrefField {
@@ -55,7 +55,7 @@ class LinkAttachmentTests: XCTestCase {
     
     func testLinkAttachmentIsNotValid_InvalidHref() {
         do {
-            let object = LinkAttachment()
+            let object = ActivityContentLinkAttachment()
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
@@ -68,7 +68,7 @@ class LinkAttachmentTests: XCTestCase {
     
     func testLinkAttachmentIsValid() {
         do {
-            let object = LinkAttachment()
+            let object = ActivityContentLinkAttachment()
             object.href = URL(string: "http://www.example.com")!
             try object.isValid()
             XCTAssertTrue(true)

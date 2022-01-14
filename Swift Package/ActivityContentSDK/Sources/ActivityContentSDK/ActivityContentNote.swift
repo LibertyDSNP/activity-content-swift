@@ -1,5 +1,5 @@
 //
-//  Note.swift
+//  ActivityContentNote.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 12/27/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Note:  ActivityContentItem {
+public class ActivityContentNote:  ActivityContentItem {
     
     /**
      JSON-LD @context
@@ -19,7 +19,7 @@ public class Note:  ActivityContentItem {
     /**
      Identifies the type of the object
      
-     - Requires: MUST be set to Note
+     - Requires: MUST be set to ActivityContentNote
      */
     public private(set) var type: String = "Note"
     
@@ -52,21 +52,21 @@ public class Note:  ActivityContentItem {
      
      - Requires: MUST be one of the Supported Attachments
      */
-    public internal(set) var attachment: [BaseAttachment]? = []
+    public internal(set) var attachment: [ActivityContentBaseAttachment]? = []
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    public internal(set) var tag: [BaseTag]? = []
+    public internal(set) var tag: [ActivityContentBaseTag]? = []
     
     /**
      For location
      
      - Requires: MUST follow Location Type
      */
-    public internal(set) var location: Location?
+    public internal(set) var location: ActivityContentLocation?
     
     internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
     private enum CodingKeys: String, CodingKey, CaseIterable {
@@ -88,9 +88,9 @@ public class Note:  ActivityContentItem {
     internal init(content: String,
                   name: String? = nil,
                   published: Date? = nil,
-                  attachment: [BaseAttachment]? = nil,
-                  tag: [BaseTag]? = nil,
-                  location: Location? = nil) {
+                  attachment: [ActivityContentBaseAttachment]? = nil,
+                  tag: [ActivityContentBaseTag]? = nil,
+                  location: ActivityContentLocation? = nil) {
         self.content = content
         self.name = name
         self.published = published
@@ -123,7 +123,7 @@ public class Note:  ActivityContentItem {
         let tagArray = try? container.decode(TagArray.self, forKey: .tag)
         self.tag = tagArray?.tags
         
-        self.location = try? container.decode(Location.self, forKey: .location)
+        self.location = try? container.decode(ActivityContentLocation.self, forKey: .location)
         
         try super.init(from: decoder)
     }

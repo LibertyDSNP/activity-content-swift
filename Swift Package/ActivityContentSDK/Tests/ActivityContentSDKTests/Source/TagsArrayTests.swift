@@ -33,9 +33,9 @@ class TagsArrayTests: XCTestCase {
         let object = TagArray(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.tags?.count, 4)
-        XCTAssertEqual((object?.tags?[0] as? Hashtag)?.name, "#hashtag1")
+        XCTAssertEqual((object?.tags?[0] as? ActivityContentHashtag)?.name, "#hashtag1")
         XCTAssertEqual((object?.tags?[1] as? ActivityContentMention)?.id, "dsnp://user1")
-        XCTAssertEqual((object?.tags?[2] as? Hashtag)?.name, "#hashtag2")
+        XCTAssertEqual((object?.tags?[2] as? ActivityContentHashtag)?.name, "#hashtag2")
         XCTAssertEqual((object?.tags?[3] as? ActivityContentMention)?.id, "dsnp://user2")
     }
 }

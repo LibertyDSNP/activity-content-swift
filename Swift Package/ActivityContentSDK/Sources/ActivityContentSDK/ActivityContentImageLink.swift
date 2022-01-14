@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ActivityContentImageLink: BaseLink {
+public class ActivityContentImageLink: ActivityContentBaseLink {
     
     /**
      MIME type of href content
@@ -19,7 +19,7 @@ public class ActivityContentImageLink: BaseLink {
      
      - Requires: MUST include at least one supported hash
      */
-    public internal(set) var hash: [Hash]? = []
+    public internal(set) var hash: [ActivityContentHash]? = []
     
     /**
      A hint as to the rendering height in device-independent pixels
@@ -37,7 +37,7 @@ public class ActivityContentImageLink: BaseLink {
     
     internal init(href: URL,
                   mediaType: String,
-                  hash: [Hash],
+                  hash: [ActivityContentHash],
                   height: Float? = nil,
                   width: Float? = nil) {
         self.mediaType = mediaType
@@ -58,7 +58,7 @@ public class ActivityContentImageLink: BaseLink {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.mediaType = try container.decode(String.self, forKey: .mediaType)
-        self.hash = try container.decode([Hash].self, forKey: .hash)
+        self.hash = try container.decode([ActivityContentHash].self, forKey: .hash)
         self.height = try? container.decode(Float.self, forKey: .height)
         self.width = try? container.decode(Float.self, forKey: .width)
         

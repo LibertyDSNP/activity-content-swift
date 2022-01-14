@@ -1,5 +1,5 @@
 //
-//  LinkAttachment.swift
+//  ActivityContentHashtag.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-public class LinkAttachment: BaseLink {
+public class ActivityContentHashtag: ActivityContentBaseTag {
     
     /**
-     The display name for the link
+     The text of the tag
      */
     public internal(set) var name: String?
     
@@ -18,10 +18,9 @@ public class LinkAttachment: BaseLink {
         super.init()
     }
     
-    internal init(href: URL,
-                  name: String? = nil) {
+    internal init(name: String) {
         self.name = name
-        super.init(href: href)
+        super.init()
     }
     
     internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
@@ -31,26 +30,20 @@ public class LinkAttachment: BaseLink {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try? container.decode(String.self, forKey: .name)
+        self.name = try container.decode(String.self, forKey: .name)
         try super.init(from: decoder)
     }
     
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        if let name = self.name {
-            try container.encode(name, forKey: .name)
-        }
+        try container.encode(self.name, forKey: .name)
     }
     
     @discardableResult
     internal func isValid() throws -> Bool {
-        if self.href == nil {
-            throw ActivityContentError.missingHrefField
-        }
-        
-        if ValidationUtil.isValid(href: self.href) == false {
-            throw ActivityContentError.invalidHref
+        if self.name == nil {
+            throw ActivityContentError.missingNameField
         }
         
         return true

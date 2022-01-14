@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ActivityContentMention: BaseTag {
+public class ActivityContentMention: ActivityContentBaseTag {
     
     /**
      The text of the tag

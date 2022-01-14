@@ -1,5 +1,5 @@
 //
-//  Profile.swift
+//  ActivityContentProfile.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 12/27/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Profile: ActivityContentItem {
+public class ActivityContentProfile: ActivityContentItem {
     
     /**
      JSON-LD @context
@@ -50,16 +50,16 @@ public class Profile: ActivityContentItem {
     /**
      For location
      
-     - Requires: MUST follow Location Type
+     - Requires: MUST follow ActivityContentLocation Type
      */
-    public internal(set) var location: Location?
+    public internal(set) var location: ActivityContentLocation?
     
     /**
      Array of tags/mentions
      
      - Requires: MUST follow Tag Type
      */
-    public internal(set) var tag: [BaseTag]? = []
+    public internal(set) var tag: [ActivityContentBaseTag]? = []
     
     internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
     private enum CodingKeys: String, CodingKey, CaseIterable {
@@ -81,8 +81,8 @@ public class Profile: ActivityContentItem {
                   icon: [ActivityContentImageLink]? = nil,
                   summary: String? = nil,
                   published: Date? = nil,
-                  location: Location? = nil,
-                  tag: [BaseTag]? = nil) {
+                  location: ActivityContentLocation? = nil,
+                  tag: [ActivityContentBaseTag]? = nil) {
         self.name = name
         self.icon = icon
         self.summary = summary
@@ -107,7 +107,7 @@ public class Profile: ActivityContentItem {
             self.published = formatter.date(from: formattedDate)
         }
         
-        self.location = try? container.decode(Location.self, forKey: .location)
+        self.location = try? container.decode(ActivityContentLocation.self, forKey: .location)
         
         /// Tags array is heterogeneous, and so must be parsed based on tag type.
         let tagArray = try? container.decode(TagArray.self, forKey: .tag)

@@ -14,7 +14,7 @@ class ActivityContentAudioLinkTests: XCTestCase {
         let object = ActivityContentAudioLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: "audio/ogg",
-            hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+            hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         
         let json = """
             {
@@ -101,7 +101,7 @@ class ActivityContentAudioLinkTests: XCTestCase {
             let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
             object.href = URL(string: "https://www.example.com")
-            object.hash = [Hash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+            object.hash = [ActivityContentHash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
@@ -116,7 +116,7 @@ class ActivityContentAudioLinkTests: XCTestCase {
             let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
             object.href = URL(string: "https://www.example.com")
-            object.hash = [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+            object.hash = [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTAssertTrue(true)
         } catch {

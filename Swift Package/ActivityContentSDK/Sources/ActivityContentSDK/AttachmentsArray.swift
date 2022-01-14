@@ -9,7 +9,7 @@ import Foundation
 
 class AttachmentsArray: Codable {
     
-    internal let attachments: [BaseAttachment]?
+    internal let attachments: [ActivityContentBaseAttachment]?
     
     enum AttachmentsTypeKey: CodingKey {
         case type
@@ -24,7 +24,7 @@ class AttachmentsArray: Codable {
     
     required init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        var attachments: [BaseAttachment] = []
+        var attachments: [ActivityContentBaseAttachment] = []
         var attachmentsArray = container
         while (!container.isAtEnd) {
             let tag = try container.nestedContainer(keyedBy: AttachmentsTypeKey.self)
@@ -37,7 +37,7 @@ class AttachmentsArray: Codable {
             case .video:
                 attachments.append(try attachmentsArray.decode(ActivityContentVideoAttachment.self))
             case .link:
-                attachments.append(try attachmentsArray.decode(LinkAttachment.self))
+                attachments.append(try attachmentsArray.decode(ActivityContentLinkAttachment.self))
             case .none:
                 break
             }

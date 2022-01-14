@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ActivityContentImageAttachment: BaseAttachment {
+public class ActivityContentImageAttachment: ActivityContentBaseAttachment {
     
     /**
      Identifies the type of the object

@@ -1,5 +1,5 @@
 //
-//  ProfileTests.swift
+//  ActivityContentProfileTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/4/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class ProfileTests: XCTestCase {
+class ActivityContentProfileTests: XCTestCase {
     
-    func testProfileEncodePartial() {
-        let object = Profile()
+    func testActivityContentProfileEncodePartial() {
+        let object = ActivityContentProfile()
         
         let json = """
             {
@@ -23,13 +23,13 @@ class ProfileTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testProfileEncodeFull() {
-        let object = Profile(name: "Profile Name",
-                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [Hash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)],
+    func testActivityContentProfileEncodeFull() {
+        let object = ActivityContentProfile(name: "Profile Name",
+                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [ActivityContentHash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)],
                              summary: "Profile Summary",
                              published: Date(timeIntervalSince1970: 1640321788.6924329),
-                             location: Location(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
-                             tag: [Hashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")])
+                             location: ActivityContentLocation(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
+                             tag: [ActivityContentHashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")])
         
         let json = """
             {
@@ -79,7 +79,7 @@ class ProfileTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testProfileDecode() {
+    func testActivityContentProfileDecode() {
         let json = """
             {
               "@context" : "https://www.w3.org/ns/activitystreams",
@@ -125,7 +125,7 @@ class ProfileTests: XCTestCase {
             }
             """
         
-        let object = Profile(json: json)
+        let object = ActivityContentProfile(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.name, "Profile Name")
@@ -136,18 +136,18 @@ class ProfileTests: XCTestCase {
         XCTAssertNotNil(object?.location)
         XCTAssertEqual(object?.location?.accuracy, 50)
         XCTAssertEqual(object?.tag?.count, 2)
-        XCTAssertEqual((object?.tag?[0] as? Hashtag)?.name, "#hashtag")
+        XCTAssertEqual((object?.tag?[0] as? ActivityContentHashtag)?.name, "#hashtag")
         XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://user")
         XCTAssertEqual(object?.type, "Profile")
     }
     
-    func testProfileIsNotValid_NonSupportedIconFormat() {
+    func testActivityContentProfileIsNotValid_NonSupportedIconFormat() {
         do {
-            let object = Profile()
+            let object = ActivityContentProfile()
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/unsupported",
-                hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.icon = [link]
             try object.isValid()
             XCTFail()
@@ -158,13 +158,13 @@ class ProfileTests: XCTestCase {
         }
     }
     
-    func testProfileIsValid() {
+    func testActivityContentProfileIsValid() {
         do {
-            let object = Profile()
+            let object = ActivityContentProfile()
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: "image/png",
-                hash: [Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.icon = [link]
             try object.isValid()
             XCTAssertTrue(true)

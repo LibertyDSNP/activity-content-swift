@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ActivityContentAudioAttachment: BaseAttachment {
+public class ActivityContentAudioAttachment: ActivityContentBaseAttachment {
     
     /**
      Identifies the type of the object

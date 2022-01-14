@@ -1,5 +1,5 @@
 //
-//  Location.swift
+//  ActivityContentLocation.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 12/27/21.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-public enum LocationUnits: String, Codable {
+public enum ActivityContentLocationUnits: String, Codable {
     case cm, feet, inches, km, m, miles
 }
 
-public class Location: ActivityContentItem {
+public class ActivityContentLocation: ActivityContentItem {
     
     /**
      Identifies the type of the object
@@ -55,7 +55,7 @@ public class Location: ActivityContentItem {
      
      - Requires: MUST be one of: cm, feet, inches, km, m, miles
      */
-    public internal(set) var units: LocationUnits? = .m
+    public internal(set) var units: ActivityContentLocationUnits? = .m
     
     internal init(name: String,
                   accuracy: Float? = nil,
@@ -63,7 +63,7 @@ public class Location: ActivityContentItem {
                   latitude: Double? = nil,
                   longitude: Double? = nil,
                   radius: Float? = nil,
-                  units: LocationUnits? = .m) {
+                  units: ActivityContentLocationUnits? = .m) {
         self.name = name
         self.accuracy = accuracy
         self.altitude = altitude
@@ -99,7 +99,7 @@ public class Location: ActivityContentItem {
         self.latitude = try? container.decode(Double.self, forKey: .latitude)
         self.longitude = try? container.decode(Double.self, forKey: .longitude)
         self.radius = try? container.decode(Float.self, forKey: .radius)
-        self.units = try? container.decode(LocationUnits.self, forKey: .units)
+        self.units = try? container.decode(ActivityContentLocationUnits.self, forKey: .units)
         
         try super.init(from: decoder)
     }

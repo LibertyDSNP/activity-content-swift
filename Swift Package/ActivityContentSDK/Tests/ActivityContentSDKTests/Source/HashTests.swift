@@ -11,7 +11,7 @@ import XCTest
 class HashTests: XCTestCase {
 
     func testHashEncode() {
-        let object = Hash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+        let object = ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
         
         let json = """
             {
@@ -32,7 +32,7 @@ class HashTests: XCTestCase {
             }
             """
         
-        let object = Hash(json: json)
+        let object = ActivityContentHash(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.algorithm, "keccak")
         XCTAssertEqual(object?.value, "0x1234")
@@ -40,7 +40,7 @@ class HashTests: XCTestCase {
     
     func testHashIsNotValid_MissingAlgorithm() {
         do {
-            let object = Hash()
+            let object = ActivityContentHash()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingAlgorithmField {
@@ -52,7 +52,7 @@ class HashTests: XCTestCase {
     
     func testHashIsNotValid_MissingHashValue() {
         do {
-            let object = Hash()
+            let object = ActivityContentHash()
             object.algorithm = "algorithm"
             try object.isValid()
             XCTFail()
@@ -65,7 +65,7 @@ class HashTests: XCTestCase {
     
     func testHashIsNotValid_InvalidHashValue() {
         do {
-            let object = Hash()
+            let object = ActivityContentHash()
             object.algorithm = "algorithm"
             object.value = "0xinvalid"
             try object.isValid()
@@ -79,7 +79,7 @@ class HashTests: XCTestCase {
     
     func testHashIsValid() {
         do {
-            let object = Hash()
+            let object = ActivityContentHash()
             object.algorithm = "algorithm"
             object.value = "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
             try object.isValid()

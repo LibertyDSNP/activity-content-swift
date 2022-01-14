@@ -1,5 +1,5 @@
 //
-//  BaseLinkTests.swift
+//  ActivityContentBaseLinkTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/6/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class BaseLinkTests: XCTestCase {
+class ActivityContentBaseLinkTests: XCTestCase {
     
-    func testBaseLinkEncode() {
-        let object = BaseLink(href: URL(string: "http://www.example.com")!)
+    func testActivityContentBaseLinkEncode() {
+        let object = ActivityContentBaseLink(href: URL(string: "http://www.example.com")!)
         
         let json = """
             {
@@ -23,20 +23,20 @@ class BaseLinkTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testBaseLinkDecode() {
+    func testActivityContentBaseLinkDecode() {
         let json = """
             {
               "href" : "http://www.example.com",
               "type" : "Link"
             }
             """
-        let object = BaseLink(json: json)
+        let object = ActivityContentBaseLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
     }
     
-    func testBaseLinkCustomFields() {
+    func testActivityContentBaseLinkCustomFields() {
         let json = """
             {
               "href" : "http://www.example.com",
@@ -50,7 +50,7 @@ class BaseLinkTests: XCTestCase {
             }
             """
         
-        let object = BaseLink(json: json)
+        let object = ActivityContentBaseLink(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")

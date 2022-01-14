@@ -1,5 +1,5 @@
 //
-//  HashtagTests.swift
+//  ActivityContentHashtagTests.swift
 //  ActivityContentSDKTests
 //
 //  Created by Unfinished on 1/10/22.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import ActivityContentSDK
 
-class HashtagTests: XCTestCase {
+class ActivityContentHashtagTests: XCTestCase {
 
-    func testHashtagEncode() {
-        let object = Hashtag(name: "#hashtag")
+    func testActivityContentHashtagEncode() {
+        let object = ActivityContentHashtag(name: "#hashtag")
         
         let json = """
             {
@@ -22,20 +22,20 @@ class HashtagTests: XCTestCase {
         XCTAssertEqual(object.json, json)
     }
     
-    func testHashtagDecode() {
+    func testActivityContentHashtagDecode() {
         let json = """
             {
               "name" : "#hashtag"
             }
             """
-        let object = Hashtag(json: json)
+        let object = ActivityContentHashtag(json: json)
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.name, "#hashtag")
     }
     
-    func testHashtagIsNotValid_MissingName() {
+    func testActivityContentHashtagIsNotValid_MissingName() {
         do {
-            let object = Hashtag()
+            let object = ActivityContentHashtag()
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingNameField {
@@ -45,9 +45,9 @@ class HashtagTests: XCTestCase {
         }
     }
     
-    func testHashtagIsValid() {
+    func testActivityContentHashtagIsValid() {
         do {
-            let object = Hashtag()
+            let object = ActivityContentHashtag()
             object.name = "#hashtag"
             try object.isValid()
             XCTAssertTrue(true)

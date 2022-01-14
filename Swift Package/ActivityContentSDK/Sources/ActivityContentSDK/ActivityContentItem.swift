@@ -10,14 +10,26 @@ import AnyCodable
 
 public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson {
     
-    public internal(set) var additionalFields: [String : Any]?
-    
     internal var jsonSource: String?
 
     internal init() {}
     
+    public internal(set) var additionalFields: [String : Any]?
+    
     internal var allKeys: [CodingKey] { return CodingKeys.allCases }
     private enum CodingKeys: CodingKey, CaseIterable {}
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DynamicCodingKeys.self)
+        let allKeysOnSelf = self.allKeys.map({ $0.stringValue })
+        for (key, value) in self.additionalFields ?? [:] {
+            if allKeysOnSelf.contains(key) == false {
+                try container.encode(AnyCodable(value), forKey: DynamicCodingKeys(stringValue: key)!)
+            } else {
+                print("Warning: Preventing the attempted override of `\(key)`")
+            }
+        }
+    }
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)

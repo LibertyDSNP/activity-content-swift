@@ -103,4 +103,69 @@ class ActivityContentFromJsonTests: XCTestCase {
         let boolCustom = object?.additionalFields?["boolCustom"] as? Bool
         XCTAssertEqual(boolCustom, true)
     }
+    
+    func testSetAdditionalFieldsToJson() {
+        let object = BaseLink(href: URL(string: "http://www.example.com")!)
+        object.additionalFields = [
+            /// Any key that matches a native var is excluded from the encoded JSON
+            "href" : "http://www.attemptToOverride.com",
+            "type" : "ATTEMPT_TO_OVERRIDE",
+            
+            /// String : String
+            "string" : "test",
+            
+            /// String : [Int]
+            "intArray" : [
+                1,
+                2,
+                3
+            ],
+            
+            /// String : [<Mixed>]
+            "mixedArray" : [
+                100,
+                42.24,
+                BaseLink(href: URL(string: "http://www.example.com")!),
+                false,
+                "string",
+                [
+                    [
+                        "key" : "value",
+                        "bool" : true
+                    ]
+                ]
+            ]
+        ]
+        
+        let json = """
+            {
+              "href" : "http:\\/\\/www.example.com",
+              "intArray" : [
+                1,
+                2,
+                3
+              ],
+              "mixedArray" : [
+                100,
+                42.240000000000002,
+                {
+                  "href" : "http:\\/\\/www.example.com",
+                  "type" : "Link"
+                },
+                false,
+                "string",
+                [
+                  {
+                    "bool" : true,
+                    "key" : "value"
+                  }
+                ]
+              ],
+              "string" : "test",
+              "type" : "Link"
+            }
+            """
+    
+        XCTAssertEqual(object.json!, json)
+    }
 }

@@ -55,13 +55,13 @@ class ActivityContentBaseLinkTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         
-        let float = object?.additionalFields?["float"] as? Double
+        let float = object?.additionalFields["float"] as? Double
         XCTAssertEqual(float, 1.4)
-        let int = object?.additionalFields?["int"] as? Int
+        let int = object?.additionalFields["int"] as? Int
         XCTAssertEqual(int, 1)
-        let double = object?.additionalFields?["double"] as? Double
+        let double = object?.additionalFields["double"] as? Double
         XCTAssertEqual(double, 3.14159)
-        let dictionary = object?.additionalFields?["dictionary"]
+        let dictionary = object?.additionalFields["dictionary"]
         XCTAssertNotNil(dictionary)
         if let dictionary = dictionary as? [String : Any] {
             let bool = dictionary["bool"] as? Bool

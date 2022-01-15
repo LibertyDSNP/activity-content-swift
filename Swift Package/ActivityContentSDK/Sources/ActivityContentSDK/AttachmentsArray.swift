@@ -28,7 +28,7 @@ class AttachmentsArray: Codable {
         var attachmentsArray = container
         while (!container.isAtEnd) {
             let tag = try container.nestedContainer(keyedBy: AttachmentsTypeKey.self)
-            let type = try tag.decodeIfPresent(AttachmentTypes.self, forKey: AttachmentsTypeKey.type)
+            let type = try? tag.decodeIfPresent(AttachmentTypes.self, forKey: AttachmentsTypeKey.type)
             switch type {
             case .audio:
                 attachments.append(try attachmentsArray.decode(ActivityContentAudioAttachment.self))

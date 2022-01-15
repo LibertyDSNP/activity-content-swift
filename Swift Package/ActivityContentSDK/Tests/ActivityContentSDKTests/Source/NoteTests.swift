@@ -256,6 +256,42 @@ class ActivityContentNoteTests: XCTestCase {
         XCTAssertEqual(object?.type, "Note")
     }
     
+    func testActivityContentNoteDecodeWhenAttachmentIsUnknown() {
+        let json = """
+            {
+              "@context" : "https://www.w3.org/ns/activitystreams",
+              "attachment" : [
+                {
+                  "name" : "Unknown Name",
+                  "type" : "Unknown",
+                  "url" : [
+                    {
+                      "hash" : [
+                        {
+                          "algorithm" : "keccak",
+                          "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+                        }
+                      ],
+                      "height" : 400,
+                      "href" : "http://www.example.com/image.png",
+                      "mediaType" : "image/png",
+                      "type" : "Link",
+                      "width" : 400
+                    }
+                  ]
+                }
+              ],
+              "mediaType" : "text/plain",
+              "type" : "Note"
+            }
+            """
+        
+        let object = ActivityContentNote(json: json)
+        XCTAssertNotNil(object)
+        XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
+        XCTAssertNil(object?.attachment)
+        XCTAssertEqual(object?.type, "Note")
+    }
     
     func testActivityContentNoteIsNotValid_MissingContent() {
         do {

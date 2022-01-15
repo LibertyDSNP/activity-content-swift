@@ -12,9 +12,9 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
     
     internal init() {}
     
-    public private(set) var additionalFields: [String : Any]? = [:]
+    public private(set) var additionalFields: [String : Any] = [:]
     internal func addAdditionalFields(_ additionalFields: [String : Any]) {
-        self.additionalFields = self.additionalFields?.merging(additionalFields, uniquingKeysWith: { (_, last) in last })
+        self.additionalFields = self.additionalFields.merging(additionalFields, uniquingKeysWith: { (_, last) in last })
     }
     
     internal var allKeys: [CodingKey] { return CodingKeys.allCases }
@@ -24,7 +24,7 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
         var container = encoder.container(keyedBy: DynamicCodingKeys.self)
         let allKeysOnSelf = self.allKeys.map({ $0.stringValue })
         
-        for (key, value) in self.additionalFields ?? [:] {
+        for (key, value) in self.additionalFields {
             if allKeysOnSelf.contains(key) == false {
                 try container.encode(AnyCodable(value), forKey: DynamicCodingKeys(stringValue: key)!)
             } else {
@@ -45,7 +45,7 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
             }
         }
         
-        self.additionalFields = additionalFields.isEmpty == false ? additionalFields : nil
+        self.additionalFields = additionalFields
     }
 
 }

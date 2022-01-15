@@ -14,9 +14,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.buildNote()
+        self.buildNote()
 //         self.buildProfile()
-         self.buildAttachments()
+//         self.buildAttachments()
     }
     
     private func buildNote() {

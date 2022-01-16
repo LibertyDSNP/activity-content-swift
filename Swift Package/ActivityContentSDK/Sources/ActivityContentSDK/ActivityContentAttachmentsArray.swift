@@ -1,5 +1,5 @@
 //
-//  AttachmentsArray.swift
+//  ActivityContentAttachmentsArray.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AttachmentsArray: Codable {
+class ActivityContentAttachmentsArray: Codable {
     
     internal let attachments: [ActivityContentBaseAttachment]?
     

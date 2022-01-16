@@ -81,7 +81,7 @@ public class ActivityContentNote:  ActivityContentItem {
              location
     }
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -116,11 +116,11 @@ public class ActivityContentNote:  ActivityContentItem {
         }
         
         /// Attachments array is heterogeneous, and so must be parsed based on tag type.
-        let attachmentsArray = try? container.decode(AttachmentsArray.self, forKey: .attachment)
+        let attachmentsArray = try? container.decode(ActivityContentAttachmentsArray.self, forKey: .attachment)
         self.attachment = attachmentsArray?.attachments
         
         /// Tags array is heterogeneous, and so must be parsed based on tag type.
-        let tagArray = try? container.decode(TagArray.self, forKey: .tag)
+        let tagArray = try? container.decode(ActivityContentTagsArray.self, forKey: .tag)
         self.tag = tagArray?.tags
         
         self.location = try? container.decode(ActivityContentLocation.self, forKey: .location)
@@ -159,7 +159,7 @@ public class ActivityContentNote:  ActivityContentItem {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if self.content == nil {
             throw ActivityContentError.missingContentField
         }

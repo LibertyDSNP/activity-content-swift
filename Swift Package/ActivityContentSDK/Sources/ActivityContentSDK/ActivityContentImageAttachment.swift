@@ -28,7 +28,7 @@ public class ActivityContentImageAttachment: ActivityContentBaseAttachment {
      */
     public internal(set) var name: String?
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -63,7 +63,7 @@ public class ActivityContentImageAttachment: ActivityContentBaseAttachment {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }

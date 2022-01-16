@@ -23,7 +23,7 @@ public class ActivityContentBaseLink: ActivityContentBaseAttachment {
      */
     public internal(set) var href: URL?
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     

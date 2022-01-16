@@ -73,7 +73,7 @@ public class ActivityContentProfile: ActivityContentItem {
              tag
     }
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -110,7 +110,7 @@ public class ActivityContentProfile: ActivityContentItem {
         self.location = try? container.decode(ActivityContentLocation.self, forKey: .location)
         
         /// Tags array is heterogeneous, and so must be parsed based on tag type.
-        let tagArray = try? container.decode(TagArray.self, forKey: .tag)
+        let tagArray = try? container.decode(ActivityContentTagsArray.self, forKey: .tag)
         self.tag = tagArray?.tags
         
         try super.init(from: decoder)
@@ -146,7 +146,7 @@ public class ActivityContentProfile: ActivityContentItem {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.icon) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }

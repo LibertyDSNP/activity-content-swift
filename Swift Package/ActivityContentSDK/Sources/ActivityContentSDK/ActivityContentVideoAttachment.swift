@@ -33,7 +33,7 @@ public class ActivityContentVideoAttachment: ActivityContentBaseAttachment {
      */
     public internal(set) var duration: TimeInterval?
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -73,7 +73,7 @@ public class ActivityContentVideoAttachment: ActivityContentBaseAttachment {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if ValidationUtil.hasAtLeastOneSupportedVideoMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }

@@ -19,7 +19,7 @@ public class ActivityContentHash: ActivityContentItem {
      */
     public internal(set) var value: String?
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -51,7 +51,7 @@ public class ActivityContentHash: ActivityContentItem {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if self.algorithm == nil {
             throw ActivityContentError.missingAlgorithmField
         }

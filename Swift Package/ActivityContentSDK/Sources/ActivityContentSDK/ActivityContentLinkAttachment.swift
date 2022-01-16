@@ -14,7 +14,7 @@ public class ActivityContentLinkAttachment: ActivityContentBaseLink {
      */
     public internal(set) var name: String?
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -44,7 +44,7 @@ public class ActivityContentLinkAttachment: ActivityContentBaseLink {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if self.href == nil {
             throw ActivityContentError.missingHrefField
         }

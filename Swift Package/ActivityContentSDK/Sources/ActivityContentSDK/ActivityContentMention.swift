@@ -28,7 +28,7 @@ public class ActivityContentMention: ActivityContentBaseTag {
      */
     internal var id: DSNPUserId?
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -63,7 +63,7 @@ public class ActivityContentMention: ActivityContentBaseTag {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if self.id == nil {
             throw ActivityContentError.missingDsnpUserUriField
         }

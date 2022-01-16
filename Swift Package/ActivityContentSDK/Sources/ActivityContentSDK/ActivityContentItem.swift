@@ -10,7 +10,7 @@ import AnyCodable
 
 public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson {
     
-    internal init() {}
+    internal required init() {}
     
     public private(set) var additionalFields: [String : Any] = [:]
     internal func addAdditionalFields(_ additionalFields: [String : Any]) {
@@ -48,4 +48,8 @@ public class ActivityContentItem: ActivityContentToJson, ActivityContentFromJson
         self.additionalFields = additionalFields
     }
 
+    @discardableResult
+    internal func isValid() throws -> Bool {
+        return true
+    }
 }

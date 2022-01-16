@@ -1,5 +1,5 @@
 //
-//  TagsArray.swift
+//  ActivityContentTagsArray.swift
 //  ActivityContentSDK
 //
 //  Created by Unfinished on 1/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TagArray: ActivityContentFromJson {
+class ActivityContentTagsArray: ActivityContentFromJson {
     
     internal let tags: [ActivityContentBaseTag]?
     

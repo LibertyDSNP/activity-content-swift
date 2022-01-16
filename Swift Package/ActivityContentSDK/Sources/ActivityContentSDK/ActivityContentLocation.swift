@@ -74,7 +74,7 @@ public class ActivityContentLocation: ActivityContentItem {
         super.init()
     }
     
-    internal override init() {
+    internal required init() {
         super.init()
     }
     
@@ -132,7 +132,7 @@ public class ActivityContentLocation: ActivityContentItem {
     }
     
     @discardableResult
-    internal func isValid() throws -> Bool {
+    internal override func isValid() throws -> Bool {
         if self.name == nil {
             throw ActivityContentError.missingNameField
         }

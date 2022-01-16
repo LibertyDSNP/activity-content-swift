@@ -75,22 +75,8 @@ class ActivityContentTests_AudioAttachment: XCTestCase {
     func testBuildWithValidJsonInvalidObject() {
         let json = """
             {
-              "duration" : 180,
               "name" : "Audio Attachment",
-              "type" : "Audio",
-              "url" : [
-                {
-                  "hash" : [
-                    {
-                      "algorithm" : "nope",
-                      "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
-                    }
-                  ],
-                  "href" : "http://www.example.com",
-                  "mediaType" : "audio/ogg",
-                  "type" : "Link"
-                }
-              ]
+              "type" : "Audio"
             }
             """
         let builder = ActivityContent.Builders.Attachments.Audio(json: json)

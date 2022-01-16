@@ -89,6 +89,69 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
         }
     }
     
+    func testActivityContentAudioAttachmentIsNotValid_InvalidType() {
+        let json = """
+            {
+              "duration" : 180,
+              "type" : "Invalid",
+              "url" : [
+                {
+                  "hash" : [
+                    {
+                      "algorithm" : "keccak",
+                      "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+                    }
+                  ],
+                  "href" : "http://www.example.com",
+                  "mediaType" : "audio/ogg",
+                  "type" : "Link"
+                }
+              ]
+            }
+            """
+        
+        let object = ActivityContentAudioAttachment(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testActivityContentAudioAttachmentIsNotValid_NonSupportedHash() {
+        let json = """
+            {
+              "type" : "Audio",
+              "url" : [
+                {
+                  "hash" : [
+                    {
+                      "algorithm" : "invalid",
+                      "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+                    }
+                  ],
+                  "href" : "http://www.example.com",
+                  "mediaType" : "audio/ogg",
+                  "type" : "Link"
+                }
+              ]
+            }
+            """
+        
+        let object = ActivityContentAudioAttachment(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentAudioAttachmentIsValid() {
         do {
             let object = ActivityContentAudioAttachment()

@@ -46,6 +46,6 @@ public class ActivityContentHashtag: ActivityContentBaseTag {
             throw ActivityContentError.missingNameField
         }
         
-        return true
+        return try super.isValid()
     }
 }

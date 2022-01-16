@@ -64,6 +64,6 @@ public class ActivityContentHash: ActivityContentItem {
             throw ActivityContentError.invalidHash
         }
                 
-        return true
+        return try super.isValid()
     }
 }

@@ -74,10 +74,16 @@ public class ActivityContentVideoAttachment: ActivityContentBaseAttachment {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.type != "Video" {
+            throw ActivityContentError.invalidType
+        }
+        
         if ValidationUtil.hasAtLeastOneSupportedVideoMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         
-        return true
+        try self.url?.forEach({ try $0.isValid() })
+        
+        return try super.isValid()
     }
 }

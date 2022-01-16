@@ -51,4 +51,22 @@ public class ActivityContentBaseLink: ActivityContentBaseAttachment {
         try container.encode(self.type, forKey: .type)
         try container.encode(self.href, forKey: .href)
     }
+    
+    @discardableResult
+    internal override func isValid() throws -> Bool {
+        if self.type != "Link" {
+            throw ActivityContentError.invalidType
+        }
+        
+        if self.href == nil {
+            throw ActivityContentError.missingHrefField
+        }
+        
+        if ValidationUtil.isValid(href: self.href) == false {
+            throw ActivityContentError.invalidHref
+        }
+
+        return try super.isValid()
+    }
+
 }

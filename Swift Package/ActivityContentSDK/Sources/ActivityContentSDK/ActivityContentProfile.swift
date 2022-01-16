@@ -147,10 +147,22 @@ public class ActivityContentProfile: ActivityContentItem {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.context != "https://www.w3.org/ns/activitystreams" {
+            throw ActivityContentError.invalidContext
+        }
+        
+        if self.type != "Profile" {
+            throw ActivityContentError.invalidType
+        }
+        
         if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.icon) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         
-        return true
+        try self.icon?.forEach({ try $0.isValid() })
+        try self.tag?.forEach({ try $0.isValid() })
+        try self.location?.isValid()
+        
+        return try super.isValid()
     }
 }

@@ -11,34 +11,6 @@ import CoreLocation
 
 class ActivityContentTests: XCTestCase {
     
-    func testBuildAudioAttachment() {
-        let object = try? ActivityContent.Builders.Attachments.Audio()
-            .setName("Audio Attachment")
-            .addAudioLinks([
-                try! ActivityContent.Builders.Attachments.AudioLink()
-                    .setHref(URL(string: "https://www.example.com")!)
-                    .setMediaType("audio/ogg")
-                    .addHashes([
-                        try! ActivityContent.Builders.Hash()
-                            .setAlgorithm("keccak")
-                            .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
-                            .build()
-                    ])
-                    .build()
-            ])
-            .addDuration(180)
-            .addAdditionalFields(["custom_1" : true, "custom_2" : true])
-            .addAdditionalFields(["custom_1" : false])
-            .build()
-        
-        XCTAssertEqual(object?.type, "Audio")
-        XCTAssertEqual(object?.name, "Audio Attachment")
-        XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "audio/ogg")
-        XCTAssertEqual(object?.additionalFields["custom_1"] as? Bool, false)
-        XCTAssertEqual(object?.additionalFields["custom_2"] as? Bool, true)
-    }
-    
     func testBuildAudioLink() {
         let object = try? ActivityContent.Builders.Attachments.AudioLink()
             .setHref(URL(string: "https://www.example.com")!)
@@ -165,18 +137,6 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.name, "Link Attachment")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
-    }
-    
-    func testBuildHash() {
-        let object = try? ActivityContent.Builders.Hash()
-            .setAlgorithm("keccak")
-            .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
-            .addAdditionalFields(["custom" : true])
-            .build()
-        
-        XCTAssertEqual(object?.algorithm, "keccak")
-        XCTAssertEqual(object?.value, "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     

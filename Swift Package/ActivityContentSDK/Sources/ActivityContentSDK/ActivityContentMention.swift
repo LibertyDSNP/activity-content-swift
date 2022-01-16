@@ -64,6 +64,10 @@ public class ActivityContentMention: ActivityContentBaseTag {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.type != "Mention" {
+            throw ActivityContentError.invalidType
+        }
+        
         if self.id == nil {
             throw ActivityContentError.missingDsnpUserUriField
         }
@@ -72,6 +76,6 @@ public class ActivityContentMention: ActivityContentBaseTag {
             throw ActivityContentError.invalidDsnpUserUri
         }
         
-        return true
+        return try super.isValid()
     }
 }

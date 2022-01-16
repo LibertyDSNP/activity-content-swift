@@ -133,6 +133,10 @@ public class ActivityContentLocation: ActivityContentItem {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.type != "Place" {
+            throw ActivityContentError.invalidType
+        }
+        
         if self.name == nil {
             throw ActivityContentError.missingNameField
         }
@@ -141,6 +145,6 @@ public class ActivityContentLocation: ActivityContentItem {
             throw ActivityContentError.missingUnitsField
         }
         
-        return true
+        return try super.isValid()
     }
 }

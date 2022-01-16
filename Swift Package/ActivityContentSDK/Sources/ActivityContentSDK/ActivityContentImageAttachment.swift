@@ -64,10 +64,16 @@ public class ActivityContentImageAttachment: ActivityContentBaseAttachment {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.type != "Image" {
+            throw ActivityContentError.invalidType
+        }
+        
         if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         
-        return true
+        try self.url?.forEach({ try $0.isValid() })
+        
+        return try super.isValid()
     }
 }

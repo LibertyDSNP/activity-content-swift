@@ -69,10 +69,26 @@ class ActivityContentVideoLinkTests: XCTestCase {
         }
     }
     
+    func testActivityContentVideoLinkIsNotValid_NonSupportedHash() {
+        do {
+            let object = ActivityContentVideoLink()
+            object.mediaType = "video/H265"
+            object.href = URL(string: "https://www.example.com")
+            object.hash = [ActivityContentHash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+            try object.isValid()
+            XCTFail()
+        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentVideoLinkIsNotValid_MissingHref() {
         do {
             let object = ActivityContentVideoLink()
             object.mediaType = "video/H265"
+            object.hash = [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingHrefField {
@@ -86,25 +102,11 @@ class ActivityContentVideoLinkTests: XCTestCase {
         do {
             let object = ActivityContentVideoLink()
             object.mediaType = "video/H265"
+            object.hash = [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.invalidHref {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
-    }
-    
-    func testActivityContentVideoLinkIsNotValid_NonSupportedHash() {
-        do {
-            let object = ActivityContentVideoLink()
-            object.mediaType = "video/H265"
-            object.href = URL(string: "https://www.example.com")
-            object.hash = [ActivityContentHash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
-            try object.isValid()
-            XCTFail()
-        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
             XCTAssertTrue(true)
         } catch {
             XCTFail()

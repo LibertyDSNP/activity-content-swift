@@ -45,14 +45,6 @@ public class ActivityContentLinkAttachment: ActivityContentBaseLink {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
-        if self.href == nil {
-            throw ActivityContentError.missingHrefField
-        }
-        
-        if ValidationUtil.isValid(href: self.href) == false {
-            throw ActivityContentError.invalidHref
-        }
-        
-        return true
+        return try super.isValid()
     }
 }

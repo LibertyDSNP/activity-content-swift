@@ -160,10 +160,25 @@ public class ActivityContentNote:  ActivityContentItem {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.context != "https://www.w3.org/ns/activitystreams" {
+            throw ActivityContentError.invalidContext
+        }
+        
+        if self.type != "Note" {
+            throw ActivityContentError.invalidType
+        }
+        
+        if self.mediaType != "text/plain" {
+            throw ActivityContentError.invalidMediaType
+        }
+        
         if self.content == nil {
             throw ActivityContentError.missingContentField
         }
         
-        return true
+        try self.attachment?.forEach({ try $0.isValid() })
+        try self.tag?.forEach({ try $0.isValid() })
+
+        return try super.isValid()
     }
 }

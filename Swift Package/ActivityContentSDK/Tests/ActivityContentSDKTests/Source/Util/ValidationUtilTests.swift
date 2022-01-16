@@ -26,12 +26,10 @@ class ValidationUtilTests: XCTestCase {
     
     func testIsInvalidDsnpUserUri() {
         let invalid: [Any?] = [
+            "dsnp://",
             "dsnp://user",
-            "dsnp://0",
-            "dsnp://0123",
             "dsnp://02345678901234567890",
             "dsnp://123456789012345678901",
-            "dsnp://",
             "dsnp:// 1034",
             nil
         ]

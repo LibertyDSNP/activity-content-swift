@@ -24,6 +24,9 @@ enum ActivityContentError: Error {
     case invalidDsnpUserUri
     case invalidHash
     case invalidDate
+    case invalidType
+    case invalidContext
+    case invalidMediaType
 
     // Arrays do not contain supported value
     case linksDoNotContainSupportedFormat

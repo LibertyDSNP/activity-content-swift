@@ -57,7 +57,7 @@ public class ActivityContentAudioAttachment: ActivityContentBaseAttachment {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
-        self.url = try container.decode([ActivityContentAudioLink].self, forKey: .url)
+        self.url = try? container.decode([ActivityContentAudioLink].self, forKey: .url)
         self.name = try? container.decode(String.self, forKey: .name)
         self.duration = try? container.decode(TimeInterval.self, forKey: .duration)
         try super.init(from: decoder)
@@ -74,10 +74,16 @@ public class ActivityContentAudioAttachment: ActivityContentBaseAttachment {
     
     @discardableResult
     internal override func isValid() throws -> Bool {
+        if self.type != "Audio" {
+            throw ActivityContentError.invalidType
+        }
+        
         if ValidationUtil.hasAtLeastOneSupportedAudioMediaType(links: self.url) == false {
             throw ActivityContentError.linksDoNotContainSupportedFormat
         }
         
-        return true
+        try self.url?.forEach({ try $0.isValid() })
+        
+        return try super.isValid()
     }
 }

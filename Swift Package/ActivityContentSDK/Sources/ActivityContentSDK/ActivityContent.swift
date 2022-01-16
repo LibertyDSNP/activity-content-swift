@@ -20,6 +20,13 @@ public struct ActivityContent {
             private var hash = ActivityContentHash()
             
             public init() {}
+            public init?(json: String) {
+                if let hash = ActivityContentHash(json: json) {
+                    self.hash = hash
+                } else {
+                    return nil
+                }
+            }
             
             @discardableResult
             public func setAlgorithm(_ algorithm: String) -> Self {
@@ -50,6 +57,13 @@ public struct ActivityContent {
             private var location = ActivityContentLocation()
             
             public init() {}
+            public init?(json: String) {
+                if let location = ActivityContentLocation(json: json) {
+                    self.location = location
+                } else {
+                    return nil
+                }
+            }
             
             @discardableResult
             public func setName(_ name: String) -> Self {
@@ -103,10 +117,17 @@ public struct ActivityContent {
         public struct Tags {}
         
         public struct Note {
-
+            
             private var note = ActivityContentNote()
             
             public init() {}
+            public init?(json: String) {
+                if let note = ActivityContentNote(json: json) {
+                    self.note = note
+                } else {
+                    return nil
+                }
+            }
             
             @discardableResult
             public func setContent(_ content: String) -> Self {
@@ -157,10 +178,17 @@ public struct ActivityContent {
         }
         
         public struct Profile {
-
+            
             private var profile = ActivityContentProfile()
             
             public init() {}
+            public init?(json: String) {
+                if let profile = ActivityContentProfile(json: json) {
+                    self.profile = profile
+                } else {
+                    return nil
+                }
+            }
             
             @discardableResult
             public func setName(_ name: String?) -> Self {
@@ -219,6 +247,13 @@ extension ActivityContent.Builders.Attachments {
         private var audioAttachment = ActivityContentAudioAttachment()
         
         public init() {}
+        public init?(json: String) {
+            if let audioAttachment = ActivityContentAudioAttachment(json: json) {
+                self.audioAttachment = audioAttachment
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setName(_ name: String?) -> Self {
@@ -255,6 +290,13 @@ extension ActivityContent.Builders.Attachments {
         private var audioLink = ActivityContentAudioLink()
         
         public init() {}
+        public init?(json: String) {
+            if let audioLink = ActivityContentAudioLink(json: json) {
+                self.audioLink = audioLink
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setHref(_ href: URL) -> Self {
@@ -267,7 +309,7 @@ extension ActivityContent.Builders.Attachments {
             self.audioLink.mediaType = mediaType
             return self
         }
-
+        
         @discardableResult
         public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
             self.audioLink.hash?.append(contentsOf: hashes)
@@ -279,7 +321,7 @@ extension ActivityContent.Builders.Attachments {
             self.audioLink.addAdditionalFields(additionalFields)
             return self
         }
-
+        
         public func build() throws -> ActivityContentAudioLink {
             try self.audioLink.isValid()
             return self.audioLink
@@ -291,6 +333,13 @@ extension ActivityContent.Builders.Attachments {
         private var imageAttachment = ActivityContentImageAttachment()
         
         public init() {}
+        public init?(json: String) {
+            if let imageAttachment = ActivityContentImageAttachment(json: json) {
+                self.imageAttachment = imageAttachment
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setName(_ name: String?) -> Self {
@@ -321,6 +370,13 @@ extension ActivityContent.Builders.Attachments {
         private var imageLink = ActivityContentImageLink()
         
         public init() {}
+        public init?(json: String) {
+            if let imageLink = ActivityContentImageLink(json: json) {
+                self.imageLink = imageLink
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setHref(_ href: URL) -> Self {
@@ -333,7 +389,7 @@ extension ActivityContent.Builders.Attachments {
             self.imageLink.mediaType = mediaType
             return self
         }
-
+        
         @discardableResult
         public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
             self.imageLink.hash?.append(contentsOf: hashes)
@@ -346,7 +402,7 @@ extension ActivityContent.Builders.Attachments {
             self.imageLink.height = size?.height != nil ? Float(size!.height) : nil
             return self
         }
-
+        
         @discardableResult
         public func addAdditionalFields(_ additionalFields: [String : Any]) -> Self {
             self.imageLink.addAdditionalFields(additionalFields)
@@ -364,6 +420,13 @@ extension ActivityContent.Builders.Attachments {
         private var videoAttachment = ActivityContentVideoAttachment()
         
         public init() {}
+        public init?(json: String) {
+            if let videoAttachment = ActivityContentVideoAttachment(json: json) {
+                self.videoAttachment = videoAttachment
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setName(_ name: String?) -> Self {
@@ -396,10 +459,17 @@ extension ActivityContent.Builders.Attachments {
     }
     
     public struct VideoLink {
-     
+        
         private var videoLink = ActivityContentVideoLink()
         
         public init() {}
+        public init?(json: String) {
+            if let videoLink = ActivityContentVideoLink(json: json) {
+                self.videoLink = videoLink
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setHref(_ href: URL) -> Self {
@@ -412,7 +482,7 @@ extension ActivityContent.Builders.Attachments {
             self.videoLink.mediaType = mediaType
             return self
         }
-
+        
         @discardableResult
         public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
             self.videoLink.hash?.append(contentsOf: hashes)
@@ -431,7 +501,7 @@ extension ActivityContent.Builders.Attachments {
             self.videoLink.addAdditionalFields(additionalFields)
             return self
         }
-
+        
         public func build() throws -> ActivityContentVideoLink {
             try self.videoLink.isValid()
             return self.videoLink
@@ -443,6 +513,13 @@ extension ActivityContent.Builders.Attachments {
         private var linkAttachment = ActivityContentLinkAttachment()
         
         public init() {}
+        public init?(json: String) {
+            if let linkAttachment = ActivityContentLinkAttachment(json: json) {
+                self.linkAttachment = linkAttachment
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setName(_ name: String?) -> Self {
@@ -476,6 +553,13 @@ extension ActivityContent.Builders.Tags {
         private var hashtag = ActivityContentHashtag()
         
         public init() {}
+        public init?(json: String) {
+            if let hashtag = ActivityContentHashtag(json: json) {
+                self.hashtag = hashtag
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setName(_ name: String) -> Self {
@@ -500,6 +584,13 @@ extension ActivityContent.Builders.Tags {
         private var mention = ActivityContentMention()
         
         public init() {}
+        public init?(json: String) {
+            if let mention = ActivityContentMention(json: json) {
+                self.mention = mention
+            } else {
+                return nil
+            }
+        }
         
         @discardableResult
         public func setName(_ name: String?) -> Self {

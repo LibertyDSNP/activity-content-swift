@@ -69,10 +69,25 @@ class ActivityContentAudioLinkTests: XCTestCase {
         }
     }
     
+    func testActivityContentAudioLinkIsNotValid_NonSupportedHash() {
+        do {
+            let object = ActivityContentAudioLink()
+            object.mediaType = "audio/ogg"
+            object.hash = [ActivityContentHash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+            try object.isValid()
+            XCTFail()
+        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentAudioLinkIsNotValid_MissingHref() {
         do {
             let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
+            object.hash = [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingHrefField {
@@ -86,25 +101,11 @@ class ActivityContentAudioLinkTests: XCTestCase {
         do {
             let object = ActivityContentAudioLink()
             object.mediaType = "audio/ogg"
+            object.hash = [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.invalidHref {
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
-    }
-    
-    func testActivityContentAudioLinkIsNotValid_NonSupportedHash() {
-        do {
-            let object = ActivityContentAudioLink()
-            object.mediaType = "audio/ogg"
-            object.href = URL(string: "https://www.example.com")
-            object.hash = [ActivityContentHash(algorithm: "invalid", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
-            try object.isValid()
-            XCTFail()
-        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
             XCTAssertTrue(true)
         } catch {
             XCTFail()

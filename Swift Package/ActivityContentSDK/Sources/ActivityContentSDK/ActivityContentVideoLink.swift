@@ -83,18 +83,12 @@ public class ActivityContentVideoLink: ActivityContentBaseLink {
             throw ActivityContentError.missingMediaTypeField
         }
         
-        if self.href == nil {
-            throw ActivityContentError.missingHrefField
-        }
-        
-        if ValidationUtil.isValid(href: self.href) == false {
-            throw ActivityContentError.invalidHref
-        }
-        
         if ValidationUtil.hasAtLeastOneSupportedHashAlgorithm(hashes: self.hash) == false {
             throw ActivityContentError.hashesDoNotContainSupportedAlgorithm
         }
         
-        return true
+        try self.hash?.forEach({ try $0.isValid() })
+        
+        return try super.isValid()
     }
 }

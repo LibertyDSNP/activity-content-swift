@@ -141,6 +141,48 @@ class ActivityContentProfileTests: XCTestCase {
         XCTAssertEqual(object?.type, "Profile")
     }
     
+    func testActivityContentProfileIsNotValid_InvalidContext() {
+        let json = """
+            {
+              "@context" : "Invalid",
+              "name" : "Profile Name",
+              "summary" : "Profile Summary",
+              "type" : "Profile"
+            }
+            """
+        
+        let object = ActivityContentProfile(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidContext {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testActivityContentProfileIsNotValid_InvalidType() {
+        let json = """
+            {
+              "@context" : "https://www.w3.org/ns/activitystreams",
+              "name" : "Profile Name",
+              "summary" : "Profile Summary",
+              "type" : "Invalid"
+            }
+            """
+        
+        let object = ActivityContentProfile(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentProfileIsNotValid_NonSupportedIconFormat() {
         do {
             let object = ActivityContentProfile()

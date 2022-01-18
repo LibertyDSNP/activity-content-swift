@@ -75,6 +75,31 @@ class ActivityContentLocationTests: XCTestCase {
         XCTAssertEqual(object?.units, .km)
     }
     
+    func testActivityContentLocationIsNotValid_InvalidType() {
+        let json = """
+            {
+              "accuracy" : 100,
+              "altitude" : 50,
+              "latitude" : 123.45,
+              "longitude" : -123.45,
+              "name" : "Location Name",
+              "radius" : 25,
+              "type" : "Invalid",
+              "units" : "km"
+            }
+            """
+        
+        let object = ActivityContentLocation(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentLocationIsNotValid_MissingName() {
         do {
             let object = ActivityContentLocation()

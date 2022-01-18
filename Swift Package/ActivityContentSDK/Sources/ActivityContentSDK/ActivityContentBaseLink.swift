@@ -41,7 +41,7 @@ public class ActivityContentBaseLink: ActivityContentBaseAttachment {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
-        self.href = try container.decode(URL.self, forKey: .href)
+        self.href = try? container.decode(URL.self, forKey: .href)
         try super.init(from: decoder)
     }
     

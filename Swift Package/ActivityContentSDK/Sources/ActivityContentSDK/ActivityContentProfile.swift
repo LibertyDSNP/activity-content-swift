@@ -155,8 +155,10 @@ public class ActivityContentProfile: ActivityContentItem {
             throw ActivityContentError.invalidType
         }
         
-        if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.icon) == false {
-            throw ActivityContentError.linksDoNotContainSupportedFormat
+        if !(self.icon?.isEmpty ?? true) {
+            if ValidationUtil.hasAtLeastOneSupportedImageMediaType(links: self.icon) == false {
+                throw ActivityContentError.linksDoNotContainSupportedFormat
+            }
         }
         
         try self.icon?.forEach({ try $0.isValid() })

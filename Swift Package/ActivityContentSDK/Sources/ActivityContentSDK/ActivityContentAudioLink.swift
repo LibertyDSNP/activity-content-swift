@@ -41,8 +41,8 @@ public class ActivityContentAudioLink: ActivityContentBaseLink {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mediaType = try container.decode(String.self, forKey: .mediaType)
-        self.hash = try container.decode([ActivityContentHash].self, forKey: .hash)
+        self.mediaType = try? container.decode(String.self, forKey: .mediaType)
+        self.hash = try? container.decode([ActivityContentHash].self, forKey: .hash)
         try super.init(from: decoder)
     }
     

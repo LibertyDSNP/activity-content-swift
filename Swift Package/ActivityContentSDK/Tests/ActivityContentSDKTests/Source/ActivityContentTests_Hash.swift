@@ -29,11 +29,11 @@ class ActivityContentTests_Hash: XCTestCase {
     
     func testBuildWithValidJson() {
         let json = """
-        {
-          "algorithm" : "keccak",
-          "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
-        }
-        """
+            {
+              "algorithm" : "keccak",
+              "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+            }
+            """
         let object = try? ActivityContent.Builders.Hash(json: json)?.build()
         XCTAssertEqual(object?.algorithm, "keccak")
         XCTAssertEqual(object?.value, "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
@@ -41,11 +41,11 @@ class ActivityContentTests_Hash: XCTestCase {
     
     func testBuildWithValidJsonInvalidObject() {
         let json = """
-        {
-          "algorithm" : "keccak",
-          "value" : "invalid"
-        }
-        """
+            {
+              "algorithm" : "keccak",
+              "value" : "invalid"
+            }
+            """
         let builder = ActivityContent.Builders.Hash(json: json)
         XCTAssertNotNil(builder)
         let object = try? builder?.build()

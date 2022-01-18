@@ -48,9 +48,9 @@ public class ActivityContentMention: ActivityContentBaseTag {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
+        self.name = try? container.decode(String.self, forKey: .name)
         self.type = try container.decode(String.self, forKey: .type)
-        self.id = try container.decode(DSNPUserId.self, forKey: .id)
+        self.id = try? container.decode(DSNPUserId.self, forKey: .id)
         try super.init(from: decoder)
     }
     

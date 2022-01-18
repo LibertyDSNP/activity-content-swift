@@ -57,8 +57,8 @@ public class ActivityContentImageLink: ActivityContentBaseLink {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mediaType = try container.decode(String.self, forKey: .mediaType)
-        self.hash = try container.decode([ActivityContentHash].self, forKey: .hash)
+        self.mediaType = try? container.decode(String.self, forKey: .mediaType)
+        self.hash = try? container.decode([ActivityContentHash].self, forKey: .hash)
         self.height = try? container.decode(Float.self, forKey: .height)
         self.width = try? container.decode(Float.self, forKey: .width)
         

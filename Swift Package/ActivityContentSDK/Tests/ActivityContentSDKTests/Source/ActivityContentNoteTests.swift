@@ -293,6 +293,69 @@ class ActivityContentNoteTests: XCTestCase {
         XCTAssertEqual(object?.type, "Note")
     }
     
+    func testActivityContentNoteIsNotValid_InvalidContext() {
+        let json = """
+            {
+              "@context" : "Invalid",
+              "content" : "This is a note",
+              "mediaType" : "text/plain",
+              "type" : "Note"
+            }
+            """
+        
+        let object = ActivityContentNote(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidContext {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testActivityContentNoteIsNotValid_InvalidType() {
+        let json = """
+            {
+              "@context" : "https://www.w3.org/ns/activitystreams",
+              "content" : "This is a note",
+              "mediaType" : "text/plain",
+              "type" : "Invalid"
+            }
+            """
+        
+        let object = ActivityContentNote(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testActivityContentNoteIsNotValid_InvalidMediaType() {
+        let json = """
+            {
+              "@context" : "https://www.w3.org/ns/activitystreams",
+              "content" : "This is a note",
+              "mediaType" : "text/invalid",
+              "type" : "Note"
+            }
+            """
+        
+        let object = ActivityContentNote(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidMediaType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentNoteIsNotValid_MissingContent() {
         do {
             let object = ActivityContentNote()

@@ -13,12 +13,12 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildAudioLink() {
         let object = try? ActivityContent.Builders.Attachments.AudioLink()
-            .setHref(URL(string: "https://www.example.com")!)
-            .setMediaType("audio/ogg")
+            .withHref(URL(string: "https://www.example.com")!)
+            .withMediaType("audio/ogg")
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .setAlgorithm("keccak")
-                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                    .withAlgorithm("keccak")
+                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
             .addAdditionalFields(["custom" : true])
@@ -33,15 +33,15 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildImageAttachment() {
         let object = try? ActivityContent.Builders.Attachments.Image()
-            .setName("Image Attachment")
+            .withName("Image Attachment")
             .addImageLinks([
                 try? ActivityContent.Builders.Attachments.ImageLink()
-                    .setHref(URL(string: "https://www.example.com")!)
-                    .setMediaType("image/png")
+                    .withHref(URL(string: "https://www.example.com")!)
+                    .withMediaType("image/png")
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .setAlgorithm("keccak")
-                            .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                            .withAlgorithm("keccak")
+                            .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
                     .build()
@@ -57,13 +57,13 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildImageLink() {
         let object = try? ActivityContent.Builders.Attachments.ImageLink()
-            .setHref(URL(string: "https://www.example.com")!)
-            .setMediaType("image/png")
-            .setSize(CGSize(width: 320, height: 480))
+            .withHref(URL(string: "https://www.example.com")!)
+            .withMediaType("image/png")
+            .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .setAlgorithm("keccak")
-                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                    .withAlgorithm("keccak")
+                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
             .addAdditionalFields(["custom" : true])
@@ -80,15 +80,15 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildVideoAttachment() {
         let object = try? ActivityContent.Builders.Attachments.Video()
-            .setName("Video Attachment")
+            .withName("Video Attachment")
             .addVideoLinks([
                 try? ActivityContent.Builders.Attachments.VideoLink()
-                    .setHref(URL(string: "https://www.example.com")!)
-                    .setMediaType("video/H265")
+                    .withHref(URL(string: "https://www.example.com")!)
+                    .withMediaType("video/H265")
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .setAlgorithm("keccak")
-                            .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                            .withAlgorithm("keccak")
+                            .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
                     .build()
@@ -106,13 +106,13 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildVideoLink() {
         let object = try? ActivityContent.Builders.Attachments.VideoLink()
-            .setHref(URL(string: "https://www.example.com")!)
-            .setMediaType("video/H265")
-            .setSize(CGSize(width: 320, height: 480))
+            .withHref(URL(string: "https://www.example.com")!)
+            .withMediaType("video/H265")
+            .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .setAlgorithm("keccak")
-                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                    .withAlgorithm("keccak")
+                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
             .addAdditionalFields(["custom" : true])
@@ -129,8 +129,8 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildLinkAttachment() {
         let object = try? ActivityContent.Builders.Attachments.Link()
-            .setName("Link Attachment")
-            .setHref(URL(string: "https://www.example.com")!)
+            .withName("Link Attachment")
+            .withHref(URL(string: "https://www.example.com")!)
             .addAdditionalFields(["custom" : true])
             .build()
         
@@ -142,12 +142,12 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildLocation() {
         let object = try? ActivityContent.Builders.Location()
-            .setName("Location Name")
-            .setAccuracy(100)
-            .setAltitude(200)
-            .setCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.45))
-            .setRadius(50)
-            .setUnits(.km)
+            .withName("Location Name")
+            .withAccuracy(100)
+            .withAltitude(200)
+            .withCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.45))
+            .withRadius(50)
+            .withUnits(.km)
             .addAdditionalFields(["custom" : true])
             .build()
         
@@ -164,7 +164,7 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildHashtag() {
         let object = try? ActivityContent.Builders.Tags.Hashtag()
-            .setName("#hashtag")
+            .withName("#hashtag")
             .addAdditionalFields(["custom" : true])
             .build()
         
@@ -174,8 +174,8 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildMention() {
         let object = try? ActivityContent.Builders.Tags.Mention()
-            .setName("Mention Name")
-            .setDSNPUserId("dsnp://1234")
+            .withName("Mention Name")
+            .withDSNPUserId("dsnp://1234")
             .addAdditionalFields(["custom" : true])
             .build()
         
@@ -187,19 +187,19 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildNote() {
         let object = try? ActivityContent.Builders.Note()
-            .setContent("Note Content")
-            .setName("Note Name")
-            .setPublished(Date(timeIntervalSince1970: 1640321788.6924329))
+            .withContent("Note Content")
+            .withName("Note Name")
+            .withPublished(Date(timeIntervalSince1970: 1640321788.6924329))
             .addAttachments([
                 try? ActivityContent.Builders.Attachments.Audio()
                     .addAudioLinks([
                         try? ActivityContent.Builders.Attachments.AudioLink()
-                            .setHref(URL(string: "https://www.example.com")!)
-                            .setMediaType("audio/ogg")
+                            .withHref(URL(string: "https://www.example.com")!)
+                            .withMediaType("audio/ogg")
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .setAlgorithm("keccak")
-                                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                    .withAlgorithm("keccak")
+                                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
                             .build()
@@ -208,12 +208,12 @@ class ActivityContentTests: XCTestCase {
                 try? ActivityContent.Builders.Attachments.Image()
                     .addImageLinks([
                         try? ActivityContent.Builders.Attachments.ImageLink()
-                            .setHref(URL(string: "https://www.example.com")!)
-                            .setMediaType("image/png")
+                            .withHref(URL(string: "https://www.example.com")!)
+                            .withMediaType("image/png")
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .setAlgorithm("keccak")
-                                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                    .withAlgorithm("keccak")
+                                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
                             .build()
@@ -222,32 +222,32 @@ class ActivityContentTests: XCTestCase {
                 try? ActivityContent.Builders.Attachments.Video()
                     .addVideoLinks([
                         try? ActivityContent.Builders.Attachments.VideoLink()
-                            .setHref(URL(string: "https://www.example.com")!)
-                            .setMediaType("video/H265")
+                            .withHref(URL(string: "https://www.example.com")!)
+                            .withMediaType("video/H265")
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .setAlgorithm("keccak")
-                                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                    .withAlgorithm("keccak")
+                                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
                             .build()
                     ])
                     .build(),
                 try? ActivityContent.Builders.Attachments.Link()
-                    .setName("Link Attachment")
-                    .setHref(URL(string: "https://www.example.com")!)
+                    .withName("Link Attachment")
+                    .withHref(URL(string: "https://www.example.com")!)
                     .build()
             ])
             .addTags([
                 try? ActivityContent.Builders.Tags.Hashtag()
-                    .setName("#hashtag")
+                    .withName("#hashtag")
                     .build(),
                 try? ActivityContent.Builders.Tags.Mention()
-                    .setDSNPUserId("dsnp://1234")
+                    .withDSNPUserId("dsnp://1234")
                     .build()
             ])
-            .setLocation(try? ActivityContent.Builders.Location()
-                            .setName("Location Name")
+            .withLocation(try? ActivityContent.Builders.Location()
+                            .withName("Location Name")
                             .build())
             .addAdditionalFields(["custom" : true])
             .build()
@@ -272,30 +272,30 @@ class ActivityContentTests: XCTestCase {
     
     func testBuildProfile() {
         let object = try? ActivityContent.Builders.Profile()
-            .setName("Profile Name")
+            .withName("Profile Name")
             .addIcons([
                 try? ActivityContent.Builders.Attachments.ImageLink()
-                    .setHref(URL(string: "https://www.example.com")!)
-                    .setMediaType("image/png")
+                    .withHref(URL(string: "https://www.example.com")!)
+                    .withMediaType("image/png")
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .setAlgorithm("keccak")
-                            .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                            .withAlgorithm("keccak")
+                            .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
                     .build()
             ])
-            .setSummary("Profile Summary")
-            .setPublished(Date(timeIntervalSince1970: 1640321788.6924329))
-            .setLocation(try? ActivityContent.Builders.Location()
-                            .setName("Location Name")
+            .withSummary("Profile Summary")
+            .withPublished(Date(timeIntervalSince1970: 1640321788.6924329))
+            .withLocation(try? ActivityContent.Builders.Location()
+                            .withName("Location Name")
                             .build())
             .addTags([
                 try? ActivityContent.Builders.Tags.Hashtag()
-                    .setName("#hashtag")
+                    .withName("#hashtag")
                     .build(),
                 try? ActivityContent.Builders.Tags.Mention()
-                    .setDSNPUserId("dsnp://1234")
+                    .withDSNPUserId("dsnp://1234")
                     .build()
             ])
             .addAdditionalFields(["custom" : true])

@@ -12,12 +12,12 @@ class ActivityContentTests_VideoLink: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.VideoLink()
-            .setHref(URL(string: "https://www.example.com")!)
-            .setMediaType("video/mp4")
+            .withHref(URL(string: "https://www.example.com")!)
+            .withMediaType("video/mp4")
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .setAlgorithm("keccak")
-                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                    .withAlgorithm("keccak")
+                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
             .addAdditionalFields(["custom" : true])

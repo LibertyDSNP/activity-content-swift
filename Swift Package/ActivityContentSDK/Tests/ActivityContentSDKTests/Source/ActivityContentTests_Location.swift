@@ -13,12 +13,12 @@ class ActivityContentTests_Location: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Location()
-            .setName("Location Name")
-            .setAccuracy(50)
-            .setAltitude(100)
-            .setCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.45))
-            .setRadius(25)
-            .setUnits(.cm)
+            .withName("Location Name")
+            .withAccuracy(50)
+            .withAltitude(100)
+            .withCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.45))
+            .withRadius(25)
+            .withUnits(.cm)
             .addAdditionalFields(["custom" : true])
             .build()
         

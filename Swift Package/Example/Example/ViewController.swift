@@ -23,20 +23,20 @@ class ViewController: UIViewController {
         do {
             
             let note = try ActivityContent.Builders.Note()
-                .setContent("Note Content")
-                .setName("Note Name")
-                .setPublished(Date.now)
+                .withContent("Note Content")
+                .withName("Note Name")
+                .withPublished(Date.now)
                 .addAttachments([
                     try ActivityContent.Builders.Attachments.Image()
-                        .setName("Image Attachment")
+                        .withName("Image Attachment")
                         .addImageLinks([
                             try ActivityContent.Builders.Attachments.ImageLink()
-                                .setHref(URL(string: "http://www.example.com/image.png")!)
-                                .setMediaType("image/png")
+                                .withHref(URL(string: "http://www.example.com/image.png")!)
+                                .withMediaType("image/png")
                                 .addHashes([
                                     try ActivityContent.Builders.Hash()
-                                        .setAlgorithm("keccak")
-                                        .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                        .withAlgorithm("keccak")
+                                        .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                         .build()
                                 ])
                                 .build()
@@ -45,27 +45,27 @@ class ViewController: UIViewController {
                 ])
                 .addTags([
                     try ActivityContent.Builders.Tags.Hashtag()
-                        .setName("#hashtag")
+                        .withName("#hashtag")
                         .build(),
                     try ActivityContent.Builders.Tags.Mention()
-                        .setName("Mention Name")
-                        .setDSNPUserId("dsnp://1234")
+                        .withName("Mention Name")
+                        .withDSNPUserId("dsnp://1234")
                         .build()
                 ])
-                .setLocation(try ActivityContent.Builders.Location()
-                                .setName("Location Name")
-                                .setAccuracy(50)
-                                .setAltitude(100)
-                                .setCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.34))
-                                .setRadius(25)
-                                .setUnits(.cm)
+                .withLocation(try ActivityContent.Builders.Location()
+                                .withName("Location Name")
+                                .withAccuracy(50)
+                                .withAltitude(100)
+                                .withCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.34))
+                                .withRadius(25)
+                                .withUnits(.cm)
                                 .build())
                 .addAdditionalFields([
                     "content" : "override", // ignored
                     "customBool" : true,
                     "customString" : "hello",
                     "customLink" : try ActivityContent.Builders.Attachments.Link()
-                        .setHref(URL(string: "http://www.example.com")!)
+                        .withHref(URL(string: "http://www.example.com")!)
                         .build()
                 ])
                 .build()
@@ -81,36 +81,36 @@ class ViewController: UIViewController {
         do {
             
             let profile = try ActivityContent.Builders.Profile()
-                .setName("Profile Name")
+                .withName("Profile Name")
                 .addIcons([
                     try ActivityContent.Builders.Attachments.ImageLink()
-                        .setHref(URL(string: "http://www.example.com/image.png")!)
-                        .setMediaType("image/png")
+                        .withHref(URL(string: "http://www.example.com/image.png")!)
+                        .withMediaType("image/png")
                         .addHashes([
                             try ActivityContent.Builders.Hash()
-                                .setAlgorithm("keccak")
-                                .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                .withAlgorithm("keccak")
+                                .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                 .build()
                         ])
                         .build()
                 ])
-                .setSummary("Profile Summary")
-                .setPublished(Date.now)
-                .setLocation(try ActivityContent.Builders.Location()
-                                .setName("Location Name")
-                                .setAccuracy(50)
-                                .setAltitude(100)
-                                .setCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.34))
-                                .setRadius(25)
-                                .setUnits(.cm)
+                .withSummary("Profile Summary")
+                .withPublished(Date.now)
+                .withLocation(try ActivityContent.Builders.Location()
+                                .withName("Location Name")
+                                .withAccuracy(50)
+                                .withAltitude(100)
+                                .withCoordinate(CLLocationCoordinate2D(latitude: 123.45, longitude: -123.34))
+                                .withRadius(25)
+                                .withUnits(.cm)
                                 .build())
                 .addTags([
                     try ActivityContent.Builders.Tags.Hashtag()
-                        .setName("#hashtag")
+                        .withName("#hashtag")
                         .build(),
                     try ActivityContent.Builders.Tags.Mention()
-                        .setName("Mention Name")
-                        .setDSNPUserId("dsnp://1234")
+                        .withName("Mention Name")
+                        .withDSNPUserId("dsnp://1234")
                         .build()
                 ])
                 .build()
@@ -129,15 +129,15 @@ class ViewController: UIViewController {
                 
                 // Image Attachment
                 try ActivityContent.Builders.Attachments.Image()
-                    .setName("Image Attachment")
+                    .withName("Image Attachment")
                     .addImageLinks([
                         try ActivityContent.Builders.Attachments.ImageLink()
-                            .setHref(URL(string: "http://www.example.com/image.png")!)
-                            .setMediaType("image/png")
+                            .withHref(URL(string: "http://www.example.com/image.png")!)
+                            .withMediaType("image/png")
                             .addHashes([
                                 try ActivityContent.Builders.Hash()
-                                    .setAlgorithm("keccak")
-                                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                    .withAlgorithm("keccak")
+                                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
                             .build()
@@ -146,16 +146,16 @@ class ViewController: UIViewController {
                 
                 // Video Attachment
                 try ActivityContent.Builders.Attachments.Video()
-                    .setName("Video Attachment")
+                    .withName("Video Attachment")
                     .addDuration(180)
                     .addVideoLinks([
                         try ActivityContent.Builders.Attachments.VideoLink()
-                            .setHref(URL(string: "http://www.example.com/image.png")!)
-                            .setMediaType("video/mp4")
+                            .withHref(URL(string: "http://www.example.com/image.png")!)
+                            .withMediaType("video/mp4")
                             .addHashes([
                                 try ActivityContent.Builders.Hash()
-                                    .setAlgorithm("keccak")
-                                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                    .withAlgorithm("keccak")
+                                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
                             .build()
@@ -164,16 +164,16 @@ class ViewController: UIViewController {
                 
                 // Audio Attachment
                 try ActivityContent.Builders.Attachments.Audio()
-                    .setName("Audio Attachment")
+                    .withName("Audio Attachment")
                     .addDuration(240)
                     .addAudioLinks([
                         try ActivityContent.Builders.Attachments.AudioLink()
-                            .setHref(URL(string: "http://www.example.com/image.png")!)
-                            .setMediaType("audio/mpeg")
+                            .withHref(URL(string: "http://www.example.com/image.png")!)
+                            .withMediaType("audio/mpeg")
                             .addHashes([
                                 try ActivityContent.Builders.Hash()
-                                    .setAlgorithm("keccak")
-                                    .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                                    .withAlgorithm("keccak")
+                                    .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
                             .build()
@@ -182,13 +182,13 @@ class ViewController: UIViewController {
                 
                 // Link Attachment
                 try ActivityContent.Builders.Attachments.Link()
-                    .setName("Link Attachment")
-                    .setHref(URL(string: "http://www.example.com/image.png")!)
+                    .withName("Link Attachment")
+                    .withHref(URL(string: "http://www.example.com/image.png")!)
                     .build()
             ]
             
             let note = try ActivityContent.Builders.Note()
-                .setContent("Note Content")
+                .withContent("Note Content")
                 .addAttachments(attachments)
                 .build()
             

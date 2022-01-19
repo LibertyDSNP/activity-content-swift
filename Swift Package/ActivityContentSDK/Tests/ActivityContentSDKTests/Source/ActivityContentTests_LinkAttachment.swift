@@ -12,8 +12,8 @@ class ActivityContentTests_LinkAttachment: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.Link()
-            .setName("Link Attachment")
-            .setHref(URL(string: "https://www.example.com")!)
+            .withName("Link Attachment")
+            .withHref(URL(string: "https://www.example.com")!)
             .addAdditionalFields(["custom" : true])
             .build()
         

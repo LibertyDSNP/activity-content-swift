@@ -29,13 +29,13 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func setAlgorithm(_ algorithm: String) -> Self {
+            public func withAlgorithm(_ algorithm: String) -> Self {
                 self.hash.algorithm = algorithm
                 return self
             }
             
             @discardableResult
-            public func setValue(_ value: String) -> Self {
+            public func withValue(_ value: String) -> Self {
                 self.hash.value = value
                 return self
             }
@@ -66,38 +66,38 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func setName(_ name: String) -> Self {
+            public func withName(_ name: String) -> Self {
                 self.location.name = name
                 return self
             }
             
             @discardableResult
-            public func setAccuracy(_ accuracy: Float?) -> Self {
+            public func withAccuracy(_ accuracy: Float?) -> Self {
                 self.location.accuracy = accuracy
                 return self
             }
             
             @discardableResult
-            public func setAltitude(_ altitude: Float?) -> Self {
+            public func withAltitude(_ altitude: Float?) -> Self {
                 self.location.altitude = altitude
                 return self
             }
             
             @discardableResult
-            public func setCoordinate(_ coordinate: CLLocationCoordinate2D?) -> Self {
+            public func withCoordinate(_ coordinate: CLLocationCoordinate2D?) -> Self {
                 self.location.latitude = coordinate?.latitude
                 self.location.longitude = coordinate?.longitude
                 return self
             }
             
             @discardableResult
-            public func setRadius(_ radius: Float?) -> Self {
+            public func withRadius(_ radius: Float?) -> Self {
                 self.location.radius = radius
                 return self
             }
             
             @discardableResult
-            public func setUnits(_ units: ActivityContentLocationUnits?) -> Self {
+            public func withUnits(_ units: ActivityContentLocationUnits?) -> Self {
                 self.location.units = units
                 return self
             }
@@ -130,19 +130,19 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func setContent(_ content: String) -> Self {
+            public func withContent(_ content: String) -> Self {
                 self.note.content = content
                 return self
             }
             
             @discardableResult
-            public func setName(_ name: String?) -> Self {
+            public func withName(_ name: String?) -> Self {
                 self.note.name = name
                 return self
             }
             
             @discardableResult
-            public func setPublished(_ published: Date?) -> Self {
+            public func withPublished(_ published: Date?) -> Self {
                 self.note.published = published
                 return self
             }
@@ -162,7 +162,7 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func setLocation(_ location: ActivityContentLocation?) -> Self {
+            public func withLocation(_ location: ActivityContentLocation?) -> Self {
                 self.note.location = location
                 return self
             }
@@ -193,7 +193,7 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func setName(_ name: String?) -> Self {
+            public func withName(_ name: String?) -> Self {
                 self.profile.name = name
                 return self
             }
@@ -206,19 +206,19 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func setSummary(_ summary: String?) -> Self {
+            public func withSummary(_ summary: String?) -> Self {
                 self.profile.summary = summary
                 return self
             }
             
             @discardableResult
-            public func setPublished(_ published: Date?) -> Self {
+            public func withPublished(_ published: Date?) -> Self {
                 self.profile.published = published
                 return self
             }
             
             @discardableResult
-            public func setLocation(_ location: ActivityContentLocation?) -> Self {
+            public func withLocation(_ location: ActivityContentLocation?) -> Self {
                 self.profile.location = location
                 return self
             }
@@ -260,7 +260,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setName(_ name: String?) -> Self {
+        public func withName(_ name: String?) -> Self {
             self.audioAttachment.name = name
             return self
         }
@@ -304,13 +304,13 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setHref(_ href: URL) -> Self {
+        public func withHref(_ href: URL) -> Self {
             self.audioLink.href = href
             return self
         }
         
         @discardableResult
-        public func setMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: String) -> Self {
             self.audioLink.mediaType = mediaType
             return self
         }
@@ -348,7 +348,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setName(_ name: String?) -> Self {
+        public func withName(_ name: String?) -> Self {
             self.imageAttachment.name = name
             return self
         }
@@ -386,13 +386,13 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setHref(_ href: URL) -> Self {
+        public func withHref(_ href: URL) -> Self {
             self.imageLink.href = href
             return self
         }
         
         @discardableResult
-        public func setMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: String) -> Self {
             self.imageLink.mediaType = mediaType
             return self
         }
@@ -405,7 +405,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setSize(_ size: CGSize?) -> Self {
+        public func withSize(_ size: CGSize?) -> Self {
             self.imageLink.width = size?.width != nil ? Float(size!.width) : nil
             self.imageLink.height = size?.height != nil ? Float(size!.height) : nil
             return self
@@ -437,7 +437,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setName(_ name: String?) -> Self {
+        public func withName(_ name: String?) -> Self {
             self.videoAttachment.name = name
             return self
         }
@@ -481,13 +481,13 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setHref(_ href: URL) -> Self {
+        public func withHref(_ href: URL) -> Self {
             self.videoLink.href = href
             return self
         }
         
         @discardableResult
-        public func setMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: String) -> Self {
             self.videoLink.mediaType = mediaType
             return self
         }
@@ -500,7 +500,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setSize(_ size: CGSize?) -> Self {
+        public func withSize(_ size: CGSize?) -> Self {
             self.videoLink.width = size?.width != nil ? Float(size!.width) : nil
             self.videoLink.height = size?.height != nil ? Float(size!.height) : nil
             return self
@@ -532,13 +532,13 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func setName(_ name: String?) -> Self {
+        public func withName(_ name: String?) -> Self {
             self.linkAttachment.name = name
             return self
         }
         
         @discardableResult
-        public func setHref(_ href: URL) -> Self {
+        public func withHref(_ href: URL) -> Self {
             self.linkAttachment.href = href
             return self
         }
@@ -572,7 +572,7 @@ extension ActivityContent.Builders.Tags {
         }
         
         @discardableResult
-        public func setName(_ name: String) -> Self {
+        public func withName(_ name: String) -> Self {
             self.hashtag.name = name
             return self
         }
@@ -603,13 +603,13 @@ extension ActivityContent.Builders.Tags {
         }
         
         @discardableResult
-        public func setName(_ name: String?) -> Self {
+        public func withName(_ name: String?) -> Self {
             self.mention.name = name
             return self
         }
         
         @discardableResult
-        public func setDSNPUserId(_ dsnpUserId: DSNPUserId) -> Self {
+        public func withDSNPUserId(_ dsnpUserId: DSNPUserId) -> Self {
             self.mention.id = dsnpUserId
             return self
         }

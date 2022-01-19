@@ -12,8 +12,8 @@ class ActivityContentTests_Mention: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Tags.Mention()
-            .setName("Mention Name")
-            .setDSNPUserId("dsnp://1234")
+            .withName("Mention Name")
+            .withDSNPUserId("dsnp://1234")
             .addAdditionalFields(["custom" : true])
             .build()
         

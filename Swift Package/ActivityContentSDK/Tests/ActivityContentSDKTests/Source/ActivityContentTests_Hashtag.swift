@@ -12,7 +12,7 @@ class ActivityContentTests_Hashtag: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Tags.Hashtag()
-            .setName("#hashtag")
+            .withName("#hashtag")
             .addAdditionalFields(["custom" : true])
             .build()
         

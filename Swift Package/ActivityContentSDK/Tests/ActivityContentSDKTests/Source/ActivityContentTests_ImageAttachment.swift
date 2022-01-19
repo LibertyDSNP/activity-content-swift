@@ -12,15 +12,15 @@ class ActivityContentTests_ImageAttachment: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.Image()
-            .setName("Image Attachment")
+            .withName("Image Attachment")
             .addImageLinks([
                 try? ActivityContent.Builders.Attachments.ImageLink()
-                    .setHref(URL(string: "https://www.example.com")!)
-                    .setMediaType("image/png")
+                    .withHref(URL(string: "https://www.example.com")!)
+                    .withMediaType("image/png")
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .setAlgorithm("keccak")
-                            .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+                            .withAlgorithm("keccak")
+                            .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
                     .build()

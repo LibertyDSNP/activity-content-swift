@@ -18,7 +18,9 @@ public class ActivityContentHash: ActivityContentItem {
      Hash value serialization
      */
     public internal(set) var value: String?
-    
+
+    private let kAlgorithmKeccak = "keccak"
+
     internal required init() {
         super.init()
     }
@@ -31,13 +33,13 @@ public class ActivityContentHash: ActivityContentItem {
     }
     
     internal init(keccakHashWithString content: String?) {
-        self.algorithm = "keccak"
+        self.algorithm = self.kAlgorithmKeccak
         self.value = HashUtil.hash(string: content)
         super.init()
     }
     
     internal init(keccakHashWithData content: Data?) {
-        self.algorithm = "keccak"
+        self.algorithm = self.kAlgorithmKeccak
         self.value = HashUtil.hash(data: content)
         super.init()
     }

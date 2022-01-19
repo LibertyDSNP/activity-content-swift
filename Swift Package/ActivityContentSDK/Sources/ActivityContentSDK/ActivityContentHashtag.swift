@@ -30,7 +30,7 @@ public class ActivityContentHashtag: ActivityContentBaseTag {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
+        self.name = try? container.decode(String.self, forKey: .name)
         try super.init(from: decoder)
     }
     

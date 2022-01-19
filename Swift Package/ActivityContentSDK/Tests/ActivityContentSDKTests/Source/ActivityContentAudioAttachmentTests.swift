@@ -92,7 +92,6 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
     func testActivityContentAudioAttachmentIsNotValid_InvalidType() {
         let json = """
             {
-              "duration" : 180,
               "type" : "Invalid",
               "url" : [
                 {

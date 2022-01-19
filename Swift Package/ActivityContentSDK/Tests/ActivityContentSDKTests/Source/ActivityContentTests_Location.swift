@@ -62,7 +62,7 @@ class ActivityContentTests_Location: XCTestCase {
         XCTAssertEqual(object?.radius, 25)
         XCTAssertEqual(object?.type, "Place")
         XCTAssertEqual(object?.units, .km)
-
+        XCTAssertTrue(try object?.isValid() ?? false)
     }
     
     func testBuildWithValidJsonInvalidObject() {

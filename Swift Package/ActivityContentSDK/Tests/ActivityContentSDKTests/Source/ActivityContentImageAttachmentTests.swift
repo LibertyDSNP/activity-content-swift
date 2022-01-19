@@ -69,6 +69,37 @@ class ActivityContentImageAttachmentTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
+    func testActivityContentImageAttachmentIsNotValid_InvalidType() {
+        let json = """
+            {
+              "type" : "Invalid",
+              "url" : [
+                {
+                  "hash" : [
+                    {
+                      "algorithm" : "keccak",
+                      "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+                    }
+                  ],
+                  "href" : "http://www.example.com",
+                  "mediaType" : "image/png",
+                  "type" : "Link"
+                }
+              ]
+            }
+            """
+        
+        let object = ActivityContentImageAttachment(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentImageAttachmentIsNotValid_NonSupportedImageFormat() {
         do {
             let object = ActivityContentImageAttachment()

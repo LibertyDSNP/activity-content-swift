@@ -72,6 +72,37 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
+    func testActivityContentVideoAttachmentIsNotValid_InvalidType() {
+        let json = """
+            {
+              "type" : "Invalid",
+              "url" : [
+                {
+                  "hash" : [
+                    {
+                      "algorithm" : "keccak",
+                      "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+                    }
+                  ],
+                  "href" : "http://www.example.com",
+                  "mediaType" : "video/mp4",
+                  "type" : "Link"
+                }
+              ]
+            }
+            """
+        
+        let object = ActivityContentVideoAttachment(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testActivityContentVideoAttachmentIsNotValid_NonSupportedVideoFormat() {
         do {
             let object = ActivityContentVideoAttachment()

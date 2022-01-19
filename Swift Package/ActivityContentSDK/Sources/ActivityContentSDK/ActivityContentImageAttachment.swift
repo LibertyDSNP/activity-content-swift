@@ -49,7 +49,7 @@ public class ActivityContentImageAttachment: ActivityContentBaseAttachment {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
-        self.url = try container.decode([ActivityContentImageLink].self, forKey: .url)
+        self.url = try? container.decode([ActivityContentImageLink].self, forKey: .url)
         self.name = try? container.decode(String.self, forKey: .name)
         try super.init(from: decoder)
     }

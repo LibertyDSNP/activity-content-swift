@@ -41,6 +41,25 @@ class LinkAttachmentTests: XCTestCase {
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
+    func testActivityContentLinkAttachmentIsNotValid_InvalidType() {
+        let json = """
+            {
+              "href" : "http://www.example.com",
+              "type" : "Invalid"
+            }
+            """
+        
+        let object = ActivityContentLinkAttachment(json: json)
+        do {
+            try object?.isValid()
+            XCTFail()
+        } catch ActivityContentError.invalidType {
+            XCTAssertTrue(true)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testLinkAttachmentIsNotValid_MissingHref() {
         do {
             let object = ActivityContentLinkAttachment()

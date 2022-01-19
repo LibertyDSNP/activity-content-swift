@@ -57,7 +57,7 @@ public class ActivityContentVideoAttachment: ActivityContentBaseAttachment {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .type)
-        self.url = try container.decode([ActivityContentVideoLink].self, forKey: .url)
+        self.url = try? container.decode([ActivityContentVideoLink].self, forKey: .url)
         self.name = try? container.decode(String.self, forKey: .name)
         self.duration = try? container.decode(TimeInterval.self, forKey: .duration)
         try super.init(from: decoder)

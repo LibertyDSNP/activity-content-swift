@@ -25,7 +25,7 @@ class ActivityContentProfileTests: XCTestCase {
     
     func testActivityContentProfileEncodeFull() {
         let object = ActivityContentProfile(name: "Profile Name",
-                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [ActivityContentHash(algorithm: "keccak", value: HashUtil.hash(content: "Lorem Ipsum")!)], height: 400, width: 400)],
+                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)],
                              summary: "Profile Summary",
                              published: Date(timeIntervalSince1970: 1640321788.6924329),
                              location: ActivityContentLocation(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),

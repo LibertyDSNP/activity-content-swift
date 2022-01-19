@@ -10,6 +10,19 @@ import XCTest
 
 class HashTests: XCTestCase {
 
+    func testKeccakInitWithString() {
+        let object = ActivityContentHash(keccakHashWithString: "Lorem Ipsum")
+        XCTAssertEqual(object.algorithm, "keccak")
+        XCTAssertEqual(object.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
+    }
+    
+    func testKeccakInitWithData() {
+        let data = "Lorem Ipsum".data(using: .utf8)
+        let object = ActivityContentHash(keccakHashWithData: data)
+        XCTAssertEqual(object.algorithm, "keccak")
+        XCTAssertEqual(object.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
+    }
+    
     func testHashEncode() {
         let object = ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
         

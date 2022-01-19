@@ -28,6 +28,14 @@ public struct ActivityContent {
                 }
             }
             
+            public init(keccakHashWithString content: String?) {
+                self.hash = ActivityContentHash(keccakHashWithString: content)
+            }
+            
+            public init(keccakHashWithData content: Data?) {
+                self.hash = ActivityContentHash(keccakHashWithData: content)
+            }
+            
             @discardableResult
             public func withAlgorithm(_ algorithm: String) -> Self {
                 self.hash.algorithm = algorithm

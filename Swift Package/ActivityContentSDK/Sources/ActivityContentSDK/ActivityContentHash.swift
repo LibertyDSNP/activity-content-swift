@@ -30,6 +30,18 @@ public class ActivityContentHash: ActivityContentItem {
         super.init()
     }
     
+    internal init(keccakHashWithString content: String?) {
+        self.algorithm = "keccak"
+        self.value = HashUtil.hash(string: content)
+        super.init()
+    }
+    
+    internal init(keccakHashWithData content: Data?) {
+        self.algorithm = "keccak"
+        self.value = HashUtil.hash(data: content)
+        super.init()
+    }
+    
     internal override var allKeys: [CodingKey] { return super.allKeys + CodingKeys.allCases }
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case algorithm

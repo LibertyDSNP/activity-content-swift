@@ -22,6 +22,27 @@ class ActivityContentTests_Hash: XCTestCase {
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
+    func testBuildWithKeccakInitWithString() {
+        let object = try? ActivityContent.Builders.Hash(keccakHashWithString: "Lorem Ipsum")
+            .addAdditionalFields(["custom" : true])
+            .build()
+        
+        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
+        XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
+    }
+    
+    func testBuildWithKeccakInitWithData() {
+        let data = "Lorem Ipsum".data(using: .utf8)
+        let object = try? ActivityContent.Builders.Hash(keccakHashWithData: data)
+            .addAdditionalFields(["custom" : true])
+            .build()
+        
+        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
+        XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
+    }
+    
     func testBuildWithInvalidJson() {
         let builder = ActivityContent.Builders.Hash(json: "invalid")
         XCTAssertNil(builder)

@@ -15,9 +15,15 @@ extension Data {
 }
 
 class HashUtil {
-    static func hash(content: String?) -> HexString? {
-        guard let content = content else { return nil }
-        let hash = content.keccak().hexDescription
+    static func hash(string: String?) -> HexString? {
+        guard let string = string else { return nil }
+        let hash = string.keccak().hexDescription
+        return "0x\(hash)"
+    }
+    
+    static func hash(data: Data?) -> HexString? {
+        guard let data = data else { return nil }
+        let hash = data.keccak().hexDescription
         return "0x\(hash)"
     }
 }

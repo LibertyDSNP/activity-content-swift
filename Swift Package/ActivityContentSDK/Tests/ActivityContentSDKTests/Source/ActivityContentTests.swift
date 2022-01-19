@@ -16,7 +16,7 @@ class ActivityContentTests: XCTestCase {
             .setHref(URL(string: "https://www.example.com")!)
             .setMediaType("audio/ogg")
             .addHashes([
-                try! ActivityContent.Builders.Hash()
+                try? ActivityContent.Builders.Hash()
                     .setAlgorithm("keccak")
                     .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
@@ -35,11 +35,11 @@ class ActivityContentTests: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.Image()
             .setName("Image Attachment")
             .addImageLinks([
-                try! ActivityContent.Builders.Attachments.ImageLink()
+                try? ActivityContent.Builders.Attachments.ImageLink()
                     .setHref(URL(string: "https://www.example.com")!)
                     .setMediaType("image/png")
                     .addHashes([
-                        try! ActivityContent.Builders.Hash()
+                        try? ActivityContent.Builders.Hash()
                             .setAlgorithm("keccak")
                             .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
@@ -61,7 +61,7 @@ class ActivityContentTests: XCTestCase {
             .setMediaType("image/png")
             .setSize(CGSize(width: 320, height: 480))
             .addHashes([
-                try! ActivityContent.Builders.Hash()
+                try? ActivityContent.Builders.Hash()
                     .setAlgorithm("keccak")
                     .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
@@ -82,11 +82,11 @@ class ActivityContentTests: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.Video()
             .setName("Video Attachment")
             .addVideoLinks([
-                try! ActivityContent.Builders.Attachments.VideoLink()
+                try? ActivityContent.Builders.Attachments.VideoLink()
                     .setHref(URL(string: "https://www.example.com")!)
                     .setMediaType("video/H265")
                     .addHashes([
-                        try! ActivityContent.Builders.Hash()
+                        try? ActivityContent.Builders.Hash()
                             .setAlgorithm("keccak")
                             .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
@@ -110,7 +110,7 @@ class ActivityContentTests: XCTestCase {
             .setMediaType("video/H265")
             .setSize(CGSize(width: 320, height: 480))
             .addHashes([
-                try! ActivityContent.Builders.Hash()
+                try? ActivityContent.Builders.Hash()
                     .setAlgorithm("keccak")
                     .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
@@ -191,13 +191,13 @@ class ActivityContentTests: XCTestCase {
             .setName("Note Name")
             .setPublished(Date(timeIntervalSince1970: 1640321788.6924329))
             .addAttachments([
-                try! ActivityContent.Builders.Attachments.Audio()
+                try? ActivityContent.Builders.Attachments.Audio()
                     .addAudioLinks([
-                        try! ActivityContent.Builders.Attachments.AudioLink()
+                        try? ActivityContent.Builders.Attachments.AudioLink()
                             .setHref(URL(string: "https://www.example.com")!)
                             .setMediaType("audio/ogg")
                             .addHashes([
-                                try! ActivityContent.Builders.Hash()
+                                try? ActivityContent.Builders.Hash()
                                     .setAlgorithm("keccak")
                                     .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
@@ -205,13 +205,13 @@ class ActivityContentTests: XCTestCase {
                             .build()
                     ])
                     .build(),
-                try! ActivityContent.Builders.Attachments.Image()
+                try? ActivityContent.Builders.Attachments.Image()
                     .addImageLinks([
-                        try! ActivityContent.Builders.Attachments.ImageLink()
+                        try? ActivityContent.Builders.Attachments.ImageLink()
                             .setHref(URL(string: "https://www.example.com")!)
                             .setMediaType("image/png")
                             .addHashes([
-                                try! ActivityContent.Builders.Hash()
+                                try? ActivityContent.Builders.Hash()
                                     .setAlgorithm("keccak")
                                     .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
@@ -219,13 +219,13 @@ class ActivityContentTests: XCTestCase {
                             .build()
                     ])
                     .build(),
-                try! ActivityContent.Builders.Attachments.Video()
+                try? ActivityContent.Builders.Attachments.Video()
                     .addVideoLinks([
-                        try! ActivityContent.Builders.Attachments.VideoLink()
+                        try? ActivityContent.Builders.Attachments.VideoLink()
                             .setHref(URL(string: "https://www.example.com")!)
                             .setMediaType("video/H265")
                             .addHashes([
-                                try! ActivityContent.Builders.Hash()
+                                try? ActivityContent.Builders.Hash()
                                     .setAlgorithm("keccak")
                                     .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
@@ -233,20 +233,20 @@ class ActivityContentTests: XCTestCase {
                             .build()
                     ])
                     .build(),
-                try! ActivityContent.Builders.Attachments.Link()
+                try? ActivityContent.Builders.Attachments.Link()
                     .setName("Link Attachment")
                     .setHref(URL(string: "https://www.example.com")!)
                     .build()
             ])
             .addTags([
-                try! ActivityContent.Builders.Tags.Hashtag()
+                try? ActivityContent.Builders.Tags.Hashtag()
                     .setName("#hashtag")
                     .build(),
-                try! ActivityContent.Builders.Tags.Mention()
+                try? ActivityContent.Builders.Tags.Mention()
                     .setDSNPUserId("dsnp://1234")
                     .build()
             ])
-            .setLocation(try! ActivityContent.Builders.Location()
+            .setLocation(try? ActivityContent.Builders.Location()
                             .setName("Location Name")
                             .build())
             .addAdditionalFields(["custom" : true])
@@ -274,11 +274,11 @@ class ActivityContentTests: XCTestCase {
         let object = try? ActivityContent.Builders.Profile()
             .setName("Profile Name")
             .addIcons([
-                try! ActivityContent.Builders.Attachments.ImageLink()
+                try? ActivityContent.Builders.Attachments.ImageLink()
                     .setHref(URL(string: "https://www.example.com")!)
                     .setMediaType("image/png")
                     .addHashes([
-                        try! ActivityContent.Builders.Hash()
+                        try? ActivityContent.Builders.Hash()
                             .setAlgorithm("keccak")
                             .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
@@ -287,14 +287,14 @@ class ActivityContentTests: XCTestCase {
             ])
             .setSummary("Profile Summary")
             .setPublished(Date(timeIntervalSince1970: 1640321788.6924329))
-            .setLocation(try! ActivityContent.Builders.Location()
+            .setLocation(try? ActivityContent.Builders.Location()
                             .setName("Location Name")
                             .build())
             .addTags([
-                try! ActivityContent.Builders.Tags.Hashtag()
+                try? ActivityContent.Builders.Tags.Hashtag()
                     .setName("#hashtag")
                     .build(),
-                try! ActivityContent.Builders.Tags.Mention()
+                try? ActivityContent.Builders.Tags.Mention()
                     .setDSNPUserId("dsnp://1234")
                     .build()
             ])

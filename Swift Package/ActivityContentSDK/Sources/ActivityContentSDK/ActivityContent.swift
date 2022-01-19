@@ -148,13 +148,15 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func addAttachments(_ attachments: [ActivityContentBaseAttachment]) -> Self {
+            public func addAttachments(_ attachments: [ActivityContentBaseAttachment?]) -> Self {
+                let attachments = attachments.compactMap { $0 }
                 self.note.attachment?.append(contentsOf: attachments)
                 return self
             }
             
             @discardableResult
-            public func addTags(_ tags: [ActivityContentBaseTag]) -> Self {
+            public func addTags(_ tags: [ActivityContentBaseTag?]) -> Self {
+                let tags = tags.compactMap { $0 }
                 self.note.tag?.append(contentsOf: tags)
                 return self
             }
@@ -197,7 +199,8 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func addIcons(_ icons: [ActivityContentImageLink]) -> Self {
+            public func addIcons(_ icons: [ActivityContentImageLink?]) -> Self {
+                let icons = icons.compactMap { $0 }
                 self.profile.icon?.append(contentsOf: icons)
                 return self
             }
@@ -221,7 +224,8 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func addTags(_ tags: [ActivityContentBaseTag]) -> Self {
+            public func addTags(_ tags: [ActivityContentBaseTag?]) -> Self {
+                let tags = tags.compactMap { $0 }
                 self.profile.tag?.append(contentsOf: tags)
                 return self
             }
@@ -262,7 +266,8 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func addAudioLinks(_ audioLinks: [ActivityContentAudioLink]) -> Self {
+        public func addAudioLinks(_ audioLinks: [ActivityContentAudioLink?]) -> Self {
+            let audioLinks = audioLinks.compactMap { $0 }
             self.audioAttachment.url?.append(contentsOf: audioLinks)
             return self
         }
@@ -311,7 +316,8 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
+        public func addHashes(_ hashes: [ActivityContentHash?]) -> Self {
+            let hashes = hashes.compactMap { $0 }
             self.audioLink.hash?.append(contentsOf: hashes)
             return self
         }
@@ -348,7 +354,8 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func addImageLinks(_ imageLinks: [ActivityContentImageLink]) -> Self {
+        public func addImageLinks(_ imageLinks: [ActivityContentImageLink?]) -> Self {
+            let imageLinks = imageLinks.compactMap { $0 }
             self.imageAttachment.url?.append(contentsOf: imageLinks)
             return self
         }
@@ -391,7 +398,8 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
+        public func addHashes(_ hashes: [ActivityContentHash?]) -> Self {
+            let hashes = hashes.compactMap { $0 }
             self.imageLink.hash?.append(contentsOf: hashes)
             return self
         }
@@ -435,7 +443,8 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func addVideoLinks(_ videoLinks: [ActivityContentVideoLink]) -> Self {
+        public func addVideoLinks(_ videoLinks: [ActivityContentVideoLink?]) -> Self {
+            let videoLinks = videoLinks.compactMap { $0 }
             self.videoAttachment.url?.append(contentsOf: videoLinks)
             return self
         }
@@ -484,7 +493,8 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func addHashes(_ hashes: [ActivityContentHash]) -> Self {
+        public func addHashes(_ hashes: [ActivityContentHash?]) -> Self {
+            let hashes = hashes.compactMap { $0 }
             self.videoLink.hash?.append(contentsOf: hashes)
             return self
         }

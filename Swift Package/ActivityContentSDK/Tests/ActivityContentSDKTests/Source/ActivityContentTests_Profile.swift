@@ -39,11 +39,11 @@ class ActivityContentTests_Profile: XCTestCase {
     
         let object = try? ActivityContent.Builders.Profile()
             .setName("Profile Name")
-            .addIcons([imageLink!])
+            .addIcons([imageLink])
             .setSummary("Profile Summary")
             .setPublished(Date(timeIntervalSince1970: 1640321788.6924329))
             .setLocation(location)
-            .addTags([hashtag!, mention!])
+            .addTags([hashtag, mention])
             .addAdditionalFields(["custom" : true])
             .build()
         

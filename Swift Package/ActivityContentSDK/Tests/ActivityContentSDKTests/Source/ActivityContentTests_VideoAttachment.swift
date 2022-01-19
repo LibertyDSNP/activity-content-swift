@@ -14,11 +14,11 @@ class ActivityContentTests_VideoAttachment: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.Video()
             .setName("Video Attachment")
             .addVideoLinks([
-                try! ActivityContent.Builders.Attachments.VideoLink()
+                try? ActivityContent.Builders.Attachments.VideoLink()
                     .setHref(URL(string: "https://www.example.com")!)
                     .setMediaType("video/mp4")
                     .addHashes([
-                        try! ActivityContent.Builders.Hash()
+                        try? ActivityContent.Builders.Hash()
                             .setAlgorithm("keccak")
                             .setValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()

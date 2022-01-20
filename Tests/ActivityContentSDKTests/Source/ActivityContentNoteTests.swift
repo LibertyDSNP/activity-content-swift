@@ -328,7 +328,9 @@ class ActivityContentNoteTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidType {
+            
+            // Debug: Force Fail
+        } catch ActivityContentError.missingContentField {
             XCTAssertTrue(true)
         } catch {
             XCTFail()

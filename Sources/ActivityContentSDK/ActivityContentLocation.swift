@@ -7,12 +7,8 @@
 
 import Foundation
 
-public enum ActivityContentLocationUnits: String, Codable {
-    case cm, feet, inches, km, m, miles
-}
-
 public class ActivityContentLocation: ActivityContentItem {
-    
+
     /**
      Identifies the type of the object
      
@@ -55,15 +51,18 @@ public class ActivityContentLocation: ActivityContentItem {
      
      - Requires: MUST be one of: cm, feet, inches, km, m, miles
      */
-    public internal(set) var units: ActivityContentLocationUnits? = .m
-    
+    public internal(set) var units: ActivityContentLocation.Unit? = .m
+    public enum Unit: String, Codable {
+        case cm, feet, inches, km, m, miles
+    }
+
     internal init(name: String,
                   accuracy: Float? = nil,
                   altitude: Float? = nil,
                   latitude: Double? = nil,
                   longitude: Double? = nil,
                   radius: Float? = nil,
-                  units: ActivityContentLocationUnits? = .m) {
+                  units: ActivityContentLocation.Unit? = .m) {
         self.name = name
         self.accuracy = accuracy
         self.altitude = altitude
@@ -99,7 +98,7 @@ public class ActivityContentLocation: ActivityContentItem {
         self.latitude = try? container.decode(Double.self, forKey: .latitude)
         self.longitude = try? container.decode(Double.self, forKey: .longitude)
         self.radius = try? container.decode(Float.self, forKey: .radius)
-        self.units = try? container.decode(ActivityContentLocationUnits.self, forKey: .units)
+        self.units = try? container.decode(ActivityContentLocation.Unit.self, forKey: .units)
         
         try super.init(from: decoder)
     }

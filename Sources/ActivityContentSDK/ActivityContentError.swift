@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ActivityContentError: Error {
+public enum ActivityContentError: Error {
     
     // Missing data
     case missingContentField

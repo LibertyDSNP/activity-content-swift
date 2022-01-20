@@ -105,7 +105,7 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func withUnits(_ units: ActivityContentLocationUnits?) -> Self {
+            public func withUnits(_ units: ActivityContentLocation.Unit?) -> Self {
                 self.location.units = units
                 return self
             }

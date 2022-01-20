@@ -13,7 +13,8 @@ platform :ios do
       destination: 'platform=iOS Simulator,name=iPhone 12',
       scheme: "ActivityContentSDK",
       configuration: "Debug",
-      code_coverage: true
+      code_coverage: true,
+      include_simulator_logs: false
     )
   end
 

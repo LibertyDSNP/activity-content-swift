@@ -17,4 +17,4 @@ jobs:
     # - name: Build and test ( macOS 12.0 Monterey)
       # run: xcodebuild test -scheme ActivityContentSDK -destination 'platform:macOS, arch:x86_64, id:4203018E-580F-C1B5-9525-B745CECA79EB'
     - name: Build and test ( iOS 15.0)
-      run: xcodebuild test -scheme ActivityContentSDK -destination 'platform:iOS Simulator, id:62C7D48B-8950-4B18-AEBB-1705CADE142F, OS:15.0, name:iPhone 12 Pro'
+      run: xcodebuild test -scheme ActivityContentSDK -destination "platform=iOS Simulator, id=62C7D48B-8950-4B18-AEBB-1705CADE142F, OS=15.0, name=iPhone 12 Pro"

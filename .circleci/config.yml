@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: gem install bundler -v 1.17.2
+          command: gem install bundler -v 2.3.5
       - run: bundle install
       - run:
           name: Build and Run Tests
@@ -27,4 +27,4 @@ workflows:
           filters:
             branches:
               only:
-                - dev
+                - master

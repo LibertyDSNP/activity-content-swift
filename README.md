@@ -13,7 +13,7 @@ For details on DSNP or Activity Content please see
 
 ### Swift Package Manager
 
-1. From XCode, select File > Add Packages. Enter https://github.com/LibertyDSNP/activity-content-swift as the package URL.
+1. From XCode, select File > Add Packages. Enter `https://github.com/LibertyDSNP/activity-content-swift` as the package URL.
 2. Once the SDK has been added to your project, import using:
 
 ```swift

@@ -12,12 +12,12 @@ class ActivityContentTests_Hash: XCTestCase {
     
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Hash()
-            .withAlgorithm("keccak")
+            .withAlgorithm(.keccak)
             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
             .addAdditionalFields(["custom" : true])
             .build()
         
-        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.algorithm, .keccak)
         XCTAssertEqual(object?.value, "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -27,7 +27,7 @@ class ActivityContentTests_Hash: XCTestCase {
             .addAdditionalFields(["custom" : true])
             .build()
         
-        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.algorithm, .keccak)
         XCTAssertEqual(object?.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -38,7 +38,7 @@ class ActivityContentTests_Hash: XCTestCase {
             .addAdditionalFields(["custom" : true])
             .build()
         
-        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.algorithm, .keccak)
         XCTAssertEqual(object?.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -56,7 +56,7 @@ class ActivityContentTests_Hash: XCTestCase {
             }
             """
         let object = try? ActivityContent.Builders.Hash(json: json)?.build()
-        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.algorithm, .keccak)
         XCTAssertEqual(object?.value, "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
     }
     

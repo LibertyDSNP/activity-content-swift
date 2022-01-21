@@ -12,19 +12,19 @@ class HashTests: XCTestCase {
 
     func testKeccakInitWithString() {
         let object = ActivityContentHash(keccakHashWithString: "Lorem Ipsum")
-        XCTAssertEqual(object.algorithm, "keccak")
+        XCTAssertEqual(object.algorithm, .keccak)
         XCTAssertEqual(object.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
     }
     
     func testKeccakInitWithData() {
         let data = "Lorem Ipsum".data(using: .utf8)
         let object = ActivityContentHash(keccakHashWithData: data)
-        XCTAssertEqual(object.algorithm, "keccak")
+        XCTAssertEqual(object.algorithm, .keccak)
         XCTAssertEqual(object.value, "0x1735d6988f7bd80965929051eacb1e6a0a1b65151eaba85f42e20b5aecbde345")
     }
     
     func testHashEncode() {
-        let object = ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
+        let object = ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
         
         let json = """
             {
@@ -47,7 +47,7 @@ class HashTests: XCTestCase {
         
         let object = ActivityContentHash(json: json)
         XCTAssertNotNil(object)
-        XCTAssertEqual(object?.algorithm, "keccak")
+        XCTAssertEqual(object?.algorithm, .keccak)
         XCTAssertEqual(object?.value, "0x1234")
     }
     
@@ -66,7 +66,7 @@ class HashTests: XCTestCase {
     func testHashIsNotValid_MissingHashValue() {
         do {
             let object = ActivityContentHash()
-            object.algorithm = "algorithm"
+            object.algorithm = .custom(algorithm: "algorithm")
             try object.isValid()
             XCTFail()
         } catch ActivityContentError.missingHashValueField {
@@ -79,7 +79,7 @@ class HashTests: XCTestCase {
     func testHashIsNotValid_InvalidHashValue() {
         do {
             let object = ActivityContentHash()
-            object.algorithm = "algorithm"
+            object.algorithm = .custom(algorithm: "algorithm")
             object.value = "0xinvalid"
             try object.isValid()
             XCTFail()
@@ -93,12 +93,19 @@ class HashTests: XCTestCase {
     func testHashIsValid() {
         do {
             let object = ActivityContentHash()
-            object.algorithm = "algorithm"
+            object.algorithm = .custom(algorithm: "algorithm")
             object.value = "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
             try object.isValid()
             XCTAssertTrue(true)
         } catch {
             XCTFail()
         }
+    }
+    
+    func testAlgorithmTypes() {
+        let keccak = ActivityContentHash.AlgorithmType(string: "keccak")
+        let custom = ActivityContentHash.AlgorithmType(string: "custom")
+        XCTAssertEqual(keccak?.stringValue, "keccak")
+        XCTAssertEqual(custom?.stringValue, "custom")
     }
 }

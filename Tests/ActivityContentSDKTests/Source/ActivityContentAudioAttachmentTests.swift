@@ -14,7 +14,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
         let link = ActivityContentAudioLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: .ogg,
-            hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+            hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         let object = ActivityContentAudioAttachment(url: [link], name: "Audio Attachment", duration: 180)
         
         let json = """
@@ -78,7 +78,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
             let link = ActivityContentAudioLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: .custom(mediaType: "audio/unsupported"),
-                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
             XCTFail()
@@ -128,7 +128,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
                 {
                   "hash" : [
                     {
-                      "algorithm" : "invalid",
+                      "algorithm" : "unsupported",
                       "value" : "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
                     }
                   ],
@@ -157,7 +157,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
             let link = ActivityContentAudioLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: .ogg,
-                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
             XCTAssertTrue(true)

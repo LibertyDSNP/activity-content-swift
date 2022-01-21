@@ -19,7 +19,7 @@ class ActivityContentTests_VideoAttachment: XCTestCase {
                     .withMediaType(.mp4)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])

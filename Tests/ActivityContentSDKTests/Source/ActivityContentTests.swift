@@ -17,7 +17,7 @@ class ActivityContentTests: XCTestCase {
             .withMediaType(.ogg)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -26,7 +26,7 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
         XCTAssertEqual(object?.mediaType, .ogg)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -40,7 +40,7 @@ class ActivityContentTests: XCTestCase {
                     .withMediaType(.png)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
@@ -62,7 +62,7 @@ class ActivityContentTests: XCTestCase {
             .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -71,7 +71,7 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
         XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.width, 320)
         XCTAssertEqual(object?.height, 480)
@@ -87,7 +87,7 @@ class ActivityContentTests: XCTestCase {
                     .withMediaType(.H265)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
@@ -111,7 +111,7 @@ class ActivityContentTests: XCTestCase {
             .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -120,7 +120,7 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
         XCTAssertEqual(object?.mediaType, .H265)
         XCTAssertEqual(object?.width, 320)
         XCTAssertEqual(object?.height, 480)
@@ -198,7 +198,7 @@ class ActivityContentTests: XCTestCase {
                             .withMediaType(.ogg)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .withAlgorithm("keccak")
+                                    .withAlgorithm(.keccak)
                                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
@@ -212,7 +212,7 @@ class ActivityContentTests: XCTestCase {
                             .withMediaType(.png)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .withAlgorithm("keccak")
+                                    .withAlgorithm(.keccak)
                                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
@@ -226,7 +226,7 @@ class ActivityContentTests: XCTestCase {
                             .withMediaType(.H265)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .withAlgorithm("keccak")
+                                    .withAlgorithm(.keccak)
                                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
@@ -279,7 +279,7 @@ class ActivityContentTests: XCTestCase {
                     .withMediaType(.png)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])

@@ -37,7 +37,7 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func withAlgorithm(_ algorithm: String) -> Self {
+            public func withAlgorithm(_ algorithm: ActivityContentHash.AlgorithmType) -> Self {
                 self.hash.algorithm = algorithm
                 return self
             }

@@ -107,7 +107,7 @@ class ActivityContentFromJsonTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, .png)
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
         XCTAssertTrue(try object?.isValid() ?? false)
         
         /// Verify that we can access custom values as various native types

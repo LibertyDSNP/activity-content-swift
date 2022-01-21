@@ -126,7 +126,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedHashAlgorithm(hashes: [ActivityContentHash]?) -> Bool {
         for hash in hashes ?? [] {
             if let algorithm = hash.algorithm {
-                if self.kSupportedHashAlgorithms.contains(algorithm) {
+                if self.kSupportedHashAlgorithms.contains(algorithm.stringValue) {
                     return true
                 }
             }

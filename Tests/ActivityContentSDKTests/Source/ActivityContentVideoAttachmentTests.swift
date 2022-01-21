@@ -14,7 +14,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
         let link = ActivityContentVideoLink(
             href: URL(string: "http://www.example.com")!,
             mediaType: .H265,
-            hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+            hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         let object = ActivityContentVideoAttachment(url: [link], name: "Video Attachment", duration: 180)
         
         let json = """
@@ -109,7 +109,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
             let link = ActivityContentVideoLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: .custom(mediaType: "video/unsupported"),
-                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
             XCTFail()
@@ -126,7 +126,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
             let link = ActivityContentVideoLink(
                 href: URL(string: "http://www.example.com")!,
                 mediaType: .H265,
-                hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+                hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
             XCTAssertTrue(true)

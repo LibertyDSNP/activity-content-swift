@@ -318,7 +318,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func withMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: ActivityContentAudioLink.AudioMediaType) -> Self {
             self.audioLink.mediaType = mediaType
             return self
         }

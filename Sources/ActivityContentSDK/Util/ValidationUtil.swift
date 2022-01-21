@@ -90,7 +90,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedAudioMediaType(links: [ActivityContentAudioLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedAudioMediaTypes.contains(mediaType) {
+                if self.kSupportedAudioMediaTypes.contains(mediaType.stringValue) {
                     return true
                 }
             }

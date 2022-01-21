@@ -14,7 +14,7 @@ class ActivityContentTests: XCTestCase {
     func testBuildAudioLink() {
         let object = try? ActivityContent.Builders.Attachments.AudioLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("audio/ogg")
+            .withMediaType(.ogg)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
                     .withAlgorithm("keccak")
@@ -27,7 +27,7 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
-        XCTAssertEqual(object?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.mediaType, .ogg)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
@@ -195,7 +195,7 @@ class ActivityContentTests: XCTestCase {
                     .addAudioLinks([
                         try? ActivityContent.Builders.Attachments.AudioLink()
                             .withHref(URL(string: "https://www.example.com")!)
-                            .withMediaType("audio/ogg")
+                            .withMediaType(.ogg)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
                                     .withAlgorithm("keccak")
@@ -263,7 +263,7 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual((object?.tag?[0] as? ActivityContentHashtag)?.name, "#hashtag")
         XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://1234")
         XCTAssertEqual(object?.attachment?.count, 4)
-        XCTAssertEqual((object?.attachment?[0] as? ActivityContentAudioAttachment)?.url?.first?.mediaType, "audio/ogg")
+        XCTAssertEqual((object?.attachment?[0] as? ActivityContentAudioAttachment)?.url?.first?.mediaType, .ogg)
         XCTAssertEqual((object?.attachment?[1] as? ActivityContentImageAttachment)?.url?.first?.mediaType, .png)
         XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.url?.first?.mediaType, .H265)
         XCTAssertEqual((object?.attachment?[3] as? ActivityContentLinkAttachment)?.href?.absoluteString, "https://www.example.com")

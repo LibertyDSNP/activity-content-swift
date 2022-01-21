@@ -13,7 +13,7 @@ class ActivityContentTests_AudioLink: XCTestCase {
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.AudioLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("audio/ogg")
+            .withMediaType(.ogg)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
                     .withAlgorithm("keccak")
@@ -25,7 +25,7 @@ class ActivityContentTests_AudioLink: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.mediaType, .ogg)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -52,7 +52,7 @@ class ActivityContentTests_AudioLink: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.AudioLink(json: json)?.build()
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertEqual(object?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.mediaType, .ogg)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
     }
     

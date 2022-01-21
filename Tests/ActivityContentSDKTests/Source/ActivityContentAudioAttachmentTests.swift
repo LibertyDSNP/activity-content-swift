@@ -13,7 +13,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
     func testActivityContentAudioAttachmentEncode() {
         let link = ActivityContentAudioLink(
             href: URL(string: "http://www.example.com")!,
-            mediaType: "audio/ogg",
+            mediaType: .ogg,
             hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         let object = ActivityContentAudioAttachment(url: [link], name: "Audio Attachment", duration: 180)
         
@@ -68,7 +68,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Audio")
         XCTAssertEqual(object?.name, "Audio Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.url?.first?.mediaType, .ogg)
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
@@ -77,7 +77,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
             let object = ActivityContentAudioAttachment()
             let link = ActivityContentAudioLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "audio/unsupported",
+                mediaType: .custom(mediaType: "audio/unsupported"),
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
@@ -156,7 +156,7 @@ class ActivityContentAudioAttachmentTests: XCTestCase {
             let object = ActivityContentAudioAttachment()
             let link = ActivityContentAudioLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "audio/ogg",
+                mediaType: .ogg,
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()

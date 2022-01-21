@@ -16,7 +16,7 @@ class ActivityContentTests_AudioAttachment: XCTestCase {
             .addAudioLinks([
                 try? ActivityContent.Builders.Attachments.AudioLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("audio/ogg")
+                    .withMediaType(.ogg)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
                             .withAlgorithm("keccak")
@@ -33,7 +33,7 @@ class ActivityContentTests_AudioAttachment: XCTestCase {
         XCTAssertEqual(object?.type, "Audio")
         XCTAssertEqual(object?.name, "Audio Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.url?.first?.mediaType, .ogg)
         XCTAssertEqual(object?.additionalFields["custom_1"] as? Bool, false)
         XCTAssertEqual(object?.additionalFields["custom_2"] as? Bool, true)
     }
@@ -68,7 +68,7 @@ class ActivityContentTests_AudioAttachment: XCTestCase {
         XCTAssertEqual(object?.type, "Audio")
         XCTAssertEqual(object?.name, "Audio Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.url?.first?.mediaType, .ogg)
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     

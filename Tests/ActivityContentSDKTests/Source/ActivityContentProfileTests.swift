@@ -25,7 +25,7 @@ class ActivityContentProfileTests: XCTestCase {
     
     func testActivityContentProfileEncodeFull() {
         let object = ActivityContentProfile(name: "Profile Name",
-                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)],
+                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: .png, hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)],
                              summary: "Profile Summary",
                              published: Date(timeIntervalSince1970: 1640321788.6924329),
                              location: ActivityContentLocation(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
@@ -130,7 +130,7 @@ class ActivityContentProfileTests: XCTestCase {
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.name, "Profile Name")
         XCTAssertEqual(object?.icon?.count, 1)
-        XCTAssertEqual(object?.icon?[0].mediaType, "image/png")
+        XCTAssertEqual(object?.icon?[0].mediaType, .png)
         XCTAssertEqual(object?.summary, "Profile Summary")
         XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.692)
         XCTAssertNotNil(object?.location)
@@ -188,7 +188,7 @@ class ActivityContentProfileTests: XCTestCase {
             let object = ActivityContentProfile()
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "image/unsupported",
+                mediaType: .custom(mediaType: "image/unsupported"),
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.icon = [link]
             try object.isValid()
@@ -205,7 +205,7 @@ class ActivityContentProfileTests: XCTestCase {
             let object = ActivityContentProfile()
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "image/png",
+                mediaType: .png,
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.icon = [link]
             try object.isValid()

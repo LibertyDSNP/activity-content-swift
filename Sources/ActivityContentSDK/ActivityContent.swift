@@ -400,7 +400,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func withMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: ActivityContentImageLink.ImageMediaType) -> Self {
             self.imageLink.mediaType = mediaType
             return self
         }

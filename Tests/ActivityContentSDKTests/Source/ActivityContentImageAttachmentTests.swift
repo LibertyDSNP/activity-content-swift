@@ -13,7 +13,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
     func testActivityContentImageAttachmentEncode() {
         let link = ActivityContentImageLink(
             href: URL(string: "http://www.example.com")!,
-            mediaType: "image/png",
+            mediaType: .png,
             hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         let object = ActivityContentImageAttachment(url: [link], name: "Image Attachment")
         
@@ -65,7 +65,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Image")
         XCTAssertEqual(object?.name, "Image Attachment")
-        XCTAssertEqual(object?.url?.first?.mediaType, "image/png")
+        XCTAssertEqual(object?.url?.first?.mediaType, .png)
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
@@ -105,7 +105,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
             let object = ActivityContentImageAttachment()
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "image/unsupported",
+                mediaType: .custom(mediaType: "image/unsupported"),
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
@@ -122,7 +122,7 @@ class ActivityContentImageAttachmentTests: XCTestCase {
             let object = ActivityContentImageAttachment()
             let link = ActivityContentImageLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "image/png",
+                mediaType: .png,
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()

@@ -102,7 +102,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedImageMediaType(links: [ActivityContentImageLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedImageMediaTypes.contains(mediaType) {
+                if self.kSupportedImageMediaTypes.contains(mediaType.stringValue) {
                     return true
                 }
             }

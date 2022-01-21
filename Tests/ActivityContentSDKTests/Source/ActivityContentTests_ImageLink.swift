@@ -13,7 +13,7 @@ class ActivityContentTests_ImageLink: XCTestCase {
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.ImageLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("image/png")
+            .withMediaType(.png)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
                     .withAlgorithm("keccak")
@@ -25,7 +25,7 @@ class ActivityContentTests_ImageLink: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.mediaType, "image/png")
+        XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -52,7 +52,7 @@ class ActivityContentTests_ImageLink: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.ImageLink(json: json)?.build()
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertEqual(object?.mediaType, "image/png")
+        XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
     }
     

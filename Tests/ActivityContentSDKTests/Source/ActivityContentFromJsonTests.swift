@@ -106,7 +106,7 @@ class ActivityContentFromJsonTests: XCTestCase {
         XCTAssertNotNil(object)
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertEqual(object?.mediaType, "image/png")
+        XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
         XCTAssertTrue(try object?.isValid() ?? false)
         

@@ -1,4 +1,6 @@
-![status](https://github.com/LibertyDSNP/activity-content-swift/actions/workflows/swift.yml/badge.svg)
+<a href="https://github.com/LibertyDSNP/activity-content-swift/actions">
+  <img src="https://github.com/LibertyDSNP/activity-content-swift/actions/workflows/swift.yml/badge.svg" alt="Continuous Integration">
+</a>
 
 ## Activity Content SDK
 

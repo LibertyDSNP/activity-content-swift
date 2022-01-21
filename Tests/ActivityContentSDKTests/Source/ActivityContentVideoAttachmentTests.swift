@@ -13,7 +13,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
     func testActivityContentVideoAttachmentEncode() {
         let link = ActivityContentVideoLink(
             href: URL(string: "http://www.example.com")!,
-            mediaType: "video/H265",
+            mediaType: .H265,
             hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
         let object = ActivityContentVideoAttachment(url: [link], name: "Video Attachment", duration: 180)
         
@@ -68,7 +68,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Video")
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "video/H265")
+        XCTAssertEqual(object?.url?.first?.mediaType, .H265)
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     
@@ -108,7 +108,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
             let object = ActivityContentVideoAttachment()
             let link = ActivityContentVideoLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "video/unsupported",
+                mediaType: .custom(mediaType: "video/unsupported"),
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()
@@ -125,7 +125,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
             let object = ActivityContentVideoAttachment()
             let link = ActivityContentVideoLink(
                 href: URL(string: "http://www.example.com")!,
-                mediaType: "video/H265",
+                mediaType: .H265,
                 hash: [ActivityContentHash(algorithm: "keccak", value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
             object.url = [link]
             try object.isValid()

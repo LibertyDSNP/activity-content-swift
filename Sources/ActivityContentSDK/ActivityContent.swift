@@ -495,7 +495,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func withMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: ActivityContentVideoLink.VideoMediaType) -> Self {
             self.videoLink.mediaType = mediaType
             return self
         }

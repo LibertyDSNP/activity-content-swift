@@ -101,6 +101,7 @@ public class ActivityContentImageLink: ActivityContentBaseLink {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        // Convert mediaType string to enum
         let mediaTypeString = try? container.decode(String.self, forKey: .mediaType)
         self.mediaType = ImageMediaType(string: mediaTypeString)
         

@@ -16,7 +16,7 @@ class ActivityContentTests_VideoAttachment: XCTestCase {
             .addVideoLinks([
                 try? ActivityContent.Builders.Attachments.VideoLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("video/mp4")
+                    .withMediaType(.mp4)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
                             .withAlgorithm("keccak")
@@ -33,7 +33,7 @@ class ActivityContentTests_VideoAttachment: XCTestCase {
         XCTAssertEqual(object?.type, "Video")
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "video/mp4")
+        XCTAssertEqual(object?.url?.first?.mediaType, .mp4)
         XCTAssertEqual(object?.additionalFields["custom_1"] as? Bool, false)
         XCTAssertEqual(object?.additionalFields["custom_2"] as? Bool, true)
     }
@@ -68,7 +68,7 @@ class ActivityContentTests_VideoAttachment: XCTestCase {
         XCTAssertEqual(object?.type, "Video")
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "video/mp4")
+        XCTAssertEqual(object?.url?.first?.mediaType, .mp4)
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     

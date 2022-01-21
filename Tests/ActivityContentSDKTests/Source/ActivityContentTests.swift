@@ -84,7 +84,7 @@ class ActivityContentTests: XCTestCase {
             .addVideoLinks([
                 try? ActivityContent.Builders.Attachments.VideoLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("video/H265")
+                    .withMediaType(.H265)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
                             .withAlgorithm("keccak")
@@ -100,14 +100,14 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Video")
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "video/H265")
+        XCTAssertEqual(object?.url?.first?.mediaType, .H265)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
     func testBuildVideoLink() {
         let object = try? ActivityContent.Builders.Attachments.VideoLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("video/H265")
+            .withMediaType(.H265)
             .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
@@ -121,7 +121,7 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
-        XCTAssertEqual(object?.mediaType, "video/H265")
+        XCTAssertEqual(object?.mediaType, .H265)
         XCTAssertEqual(object?.width, 320)
         XCTAssertEqual(object?.height, 480)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
@@ -223,7 +223,7 @@ class ActivityContentTests: XCTestCase {
                     .addVideoLinks([
                         try? ActivityContent.Builders.Attachments.VideoLink()
                             .withHref(URL(string: "https://www.example.com")!)
-                            .withMediaType("video/H265")
+                            .withMediaType(.H265)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
                                     .withAlgorithm("keccak")
@@ -265,7 +265,7 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.attachment?.count, 4)
         XCTAssertEqual((object?.attachment?[0] as? ActivityContentAudioAttachment)?.url?.first?.mediaType, "audio/ogg")
         XCTAssertEqual((object?.attachment?[1] as? ActivityContentImageAttachment)?.url?.first?.mediaType, .png)
-        XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.url?.first?.mediaType, "video/H265")
+        XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.url?.first?.mediaType, .H265)
         XCTAssertEqual((object?.attachment?[3] as? ActivityContentLinkAttachment)?.href?.absoluteString, "https://www.example.com")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }

@@ -13,7 +13,7 @@ class ActivityContentTests_VideoLink: XCTestCase {
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.VideoLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("video/mp4")
+            .withMediaType(.mp4)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
                     .withAlgorithm("keccak")
@@ -25,7 +25,7 @@ class ActivityContentTests_VideoLink: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.mediaType, "video/mp4")
+        XCTAssertEqual(object?.mediaType, .mp4)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -52,7 +52,7 @@ class ActivityContentTests_VideoLink: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.VideoLink(json: json)?.build()
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertEqual(object?.mediaType, "video/mp4")
+        XCTAssertEqual(object?.mediaType, .mp4)
         XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
     }
     

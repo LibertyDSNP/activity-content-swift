@@ -114,7 +114,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedVideoMediaType(links: [ActivityContentVideoLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedVideoMediaTypes.contains(mediaType) {
+                if self.kSupportedVideoMediaTypes.contains(mediaType.stringValue) {
                     return true
                 }
             }

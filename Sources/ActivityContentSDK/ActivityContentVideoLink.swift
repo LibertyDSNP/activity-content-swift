@@ -12,7 +12,50 @@ public class ActivityContentVideoLink: ActivityContentBaseLink {
     /**
      MIME type of href content
      */
-    public internal(set) var mediaType: String?
+    public internal(set) var mediaType: VideoMediaType?
+    public enum VideoMediaType: Codable, Equatable {
+        case mpeg
+        case ogg
+        case webm
+        case H265
+        case mp4
+        case custom(mediaType: String)
+        
+        init?(string: String?) {
+            guard let string = string else { return nil }
+            switch string {
+            case "video/mpeg":
+                self = .mpeg
+            case "video/ogg":
+                self = .ogg
+            case "video/webm":
+                self = .webm
+            case "video/H265":
+                self = .H265
+            case "video/mp4":
+                self = .mp4
+            default:
+                self = .custom(mediaType: string)
+            }
+        }
+        
+        var stringValue: String {
+            switch self {
+            case .mpeg:
+                return "video/mpeg"
+            case .ogg:
+                return "video/ogg"
+            case .webm:
+                return "video/webm"
+            case .H265:
+                return "video/H265"
+            case .mp4:
+                return "video/mp4"
+            case .custom(let mediaType):
+                return mediaType
+            }
+        }
+    }
     
     /**
      Array of hashes for linked content validation
@@ -36,7 +79,7 @@ public class ActivityContentVideoLink: ActivityContentBaseLink {
     }
     
     internal init(href: URL,
-                  mediaType: String,
+                  mediaType: VideoMediaType,
                   hash: [ActivityContentHash],
                   height: Float? = nil,
                   width: Float? = nil) {
@@ -57,7 +100,11 @@ public class ActivityContentVideoLink: ActivityContentBaseLink {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mediaType = try? container.decode(String.self, forKey: .mediaType)
+        
+        // Convert mediaType string to enum
+        let mediaTypeString = try? container.decode(String.self, forKey: .mediaType)
+        self.mediaType = VideoMediaType(string: mediaTypeString)
+        
         self.hash = try? container.decode([ActivityContentHash].self, forKey: .hash)
         self.height = try? container.decode(Float.self, forKey: .height)
         self.width = try? container.decode(Float.self, forKey: .width)
@@ -67,7 +114,9 @@ public class ActivityContentVideoLink: ActivityContentBaseLink {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.mediaType, forKey: .mediaType)
+        if let mediaType = self.mediaType {
+            try container.encode(mediaType.stringValue, forKey: .mediaType)
+        }
         try container.encode(self.hash, forKey: .hash)
         if let height = self.height {
             try container.encode(height, forKey: .height)

@@ -12,7 +12,50 @@ public class ActivityContentImageLink: ActivityContentBaseLink {
     /**
      MIME type of href content
      */
-    public internal(set) var mediaType: String?
+    public internal(set) var mediaType: ImageMediaType?
+    public enum ImageMediaType: Codable, Equatable {
+        case jpeg
+        case png
+        case svg_xml
+        case webp
+        case gif
+        case custom(mediaType: String)
+        
+        init?(string: String?) {
+            guard let string = string else { return nil }
+            switch string {
+            case "image/jpeg":
+                self = .jpeg
+            case "image/png":
+                self = .png
+            case "image/svg+xml":
+                self = .svg_xml
+            case "image/webp":
+                self = .webp
+            case "image/gif":
+                self = .gif
+            default:
+                self = .custom(mediaType: string)
+            }
+        }
+        
+        var stringValue: String {
+            switch self {
+            case .jpeg:
+                return "image/jpeg"
+            case .png:
+                return "image/png"
+            case .svg_xml:
+                return "image/svg+xml"
+            case .webp:
+                return "image/webp"
+            case .gif:
+                return "image/gif"
+            case .custom(let mediaType):
+                return mediaType
+            }
+        }
+    }
     
     /**
      Array of hashes for linked content validation
@@ -36,7 +79,7 @@ public class ActivityContentImageLink: ActivityContentBaseLink {
     }
     
     internal init(href: URL,
-                  mediaType: String,
+                  mediaType: ImageMediaType,
                   hash: [ActivityContentHash],
                   height: Float? = nil,
                   width: Float? = nil) {
@@ -57,7 +100,11 @@ public class ActivityContentImageLink: ActivityContentBaseLink {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mediaType = try? container.decode(String.self, forKey: .mediaType)
+        
+        // Convert mediaType string to enum
+        let mediaTypeString = try? container.decode(String.self, forKey: .mediaType)
+        self.mediaType = ImageMediaType(string: mediaTypeString)
+        
         self.hash = try? container.decode([ActivityContentHash].self, forKey: .hash)
         self.height = try? container.decode(Float.self, forKey: .height)
         self.width = try? container.decode(Float.self, forKey: .width)
@@ -68,7 +115,9 @@ public class ActivityContentImageLink: ActivityContentBaseLink {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.mediaType, forKey: .mediaType)
+        if let mediaType = self.mediaType {
+            try container.encode(mediaType.stringValue, forKey: .mediaType)
+        }
         try container.encode(self.hash, forKey: .hash)
         if let height = self.height {
             try container.encode(height, forKey: .height)

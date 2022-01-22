@@ -35,9 +35,9 @@ class ActivityContentNoteTests: XCTestCase {
                           name: "Sample Name",
                           published: Date(timeIntervalSince1970: 1640321788.6924329),
                           attachment: [
-                            ActivityContentImageAttachment(url: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: "image/png", hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)], name: "Image Name"),
-                            ActivityContentVideoAttachment(url: [ActivityContentVideoLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)], name: "Video Name", duration: 30),
-                            ActivityContentAudioAttachment(url: [ActivityContentAudioLink(href: URL(string: "http://www.example.com")!, mediaType: "video/mp4", hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")])], name: "Audio Name", duration: 30),
+                            ActivityContentImageAttachment(url: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: .png, hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)], name: "Image Name"),
+                            ActivityContentVideoAttachment(url: [ActivityContentVideoLink(href: URL(string: "http://www.example.com")!, mediaType: .mp4, hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)], name: "Video Name", duration: 30),
+                            ActivityContentAudioAttachment(url: [ActivityContentAudioLink(href: URL(string: "http://www.example.com")!, mediaType: .ogg, hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")])], name: "Audio Name", duration: 30),
                             ActivityContentLinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Name")
                           ],
                           tag: [ActivityContentHashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")],
@@ -99,7 +99,7 @@ class ActivityContentNoteTests: XCTestCase {
                         }
                       ],
                       "href" : "http:\\/\\/www.example.com",
-                      "mediaType" : "video\\/mp4",
+                      "mediaType" : "audio\\/ogg",
                       "type" : "Link"
                     }
                   ]

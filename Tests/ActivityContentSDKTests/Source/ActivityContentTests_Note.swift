@@ -13,12 +13,12 @@ class ActivityContentTests_Note: XCTestCase {
     
     func testBuildWithParams() {
         let hash = try? ActivityContent.Builders.Hash()
-            .withAlgorithm("keccak")
+            .withAlgorithm(.keccak)
             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
             .build()
         let imageLink = try? ActivityContent.Builders.Attachments.ImageLink()
             .withHref(URL(string: "http://www.example.com/image.png")!)
-            .withMediaType("image/png")
+            .withMediaType(.png)
             .addHashes([hash!])
             .build()
         let imageAttachment = try? ActivityContent.Builders.Attachments.Image()

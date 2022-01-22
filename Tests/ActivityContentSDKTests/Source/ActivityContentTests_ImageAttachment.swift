@@ -16,10 +16,10 @@ class ActivityContentTests_ImageAttachment: XCTestCase {
             .addImageLinks([
                 try? ActivityContent.Builders.Attachments.ImageLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("image/png")
+                    .withMediaType(.png)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
@@ -30,7 +30,7 @@ class ActivityContentTests_ImageAttachment: XCTestCase {
         
         XCTAssertEqual(object?.type, "Image")
         XCTAssertEqual(object?.name, "Image Attachment")
-        XCTAssertEqual(object?.url?.first?.mediaType, "image/png")
+        XCTAssertEqual(object?.url?.first?.mediaType, .png)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
@@ -62,7 +62,7 @@ class ActivityContentTests_ImageAttachment: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.Image(json: json)?.build()
         XCTAssertEqual(object?.type, "Image")
         XCTAssertEqual(object?.name, "Image Attachment")
-        XCTAssertEqual(object?.url?.first?.mediaType, "image/png")
+        XCTAssertEqual(object?.url?.first?.mediaType, .png)
         XCTAssertTrue(try object?.isValid() ?? false)
     }
     

@@ -14,10 +14,10 @@ class ActivityContentTests: XCTestCase {
     func testBuildAudioLink() {
         let object = try? ActivityContent.Builders.Attachments.AudioLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("audio/ogg")
+            .withMediaType(.ogg)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -26,8 +26,8 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
-        XCTAssertEqual(object?.mediaType, "audio/ogg")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
+        XCTAssertEqual(object?.mediaType, .ogg)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
@@ -37,10 +37,10 @@ class ActivityContentTests: XCTestCase {
             .addImageLinks([
                 try? ActivityContent.Builders.Attachments.ImageLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("image/png")
+                    .withMediaType(.png)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
@@ -51,18 +51,18 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Image")
         XCTAssertEqual(object?.name, "Image Attachment")
-        XCTAssertEqual(object?.url?.first?.mediaType, "image/png")
+        XCTAssertEqual(object?.url?.first?.mediaType, .png)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
     func testBuildImageLink() {
         let object = try? ActivityContent.Builders.Attachments.ImageLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("image/png")
+            .withMediaType(.png)
             .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -71,8 +71,8 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
-        XCTAssertEqual(object?.mediaType, "image/png")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
+        XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.width, 320)
         XCTAssertEqual(object?.height, 480)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
@@ -84,10 +84,10 @@ class ActivityContentTests: XCTestCase {
             .addVideoLinks([
                 try? ActivityContent.Builders.Attachments.VideoLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("video/H265")
+                    .withMediaType(.H265)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
@@ -100,18 +100,18 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Video")
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
-        XCTAssertEqual(object?.url?.first?.mediaType, "video/H265")
+        XCTAssertEqual(object?.url?.first?.mediaType, .H265)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
     func testBuildVideoLink() {
         let object = try? ActivityContent.Builders.Attachments.VideoLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("video/H265")
+            .withMediaType(.H265)
             .withSize(CGSize(width: 320, height: 480))
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -120,8 +120,8 @@ class ActivityContentTests: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
-        XCTAssertEqual(object?.mediaType, "video/H265")
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
+        XCTAssertEqual(object?.mediaType, .H265)
         XCTAssertEqual(object?.width, 320)
         XCTAssertEqual(object?.height, 480)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
@@ -195,10 +195,10 @@ class ActivityContentTests: XCTestCase {
                     .addAudioLinks([
                         try? ActivityContent.Builders.Attachments.AudioLink()
                             .withHref(URL(string: "https://www.example.com")!)
-                            .withMediaType("audio/ogg")
+                            .withMediaType(.ogg)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .withAlgorithm("keccak")
+                                    .withAlgorithm(.keccak)
                                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
@@ -209,10 +209,10 @@ class ActivityContentTests: XCTestCase {
                     .addImageLinks([
                         try? ActivityContent.Builders.Attachments.ImageLink()
                             .withHref(URL(string: "https://www.example.com")!)
-                            .withMediaType("image/png")
+                            .withMediaType(.png)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .withAlgorithm("keccak")
+                                    .withAlgorithm(.keccak)
                                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
@@ -223,10 +223,10 @@ class ActivityContentTests: XCTestCase {
                     .addVideoLinks([
                         try? ActivityContent.Builders.Attachments.VideoLink()
                             .withHref(URL(string: "https://www.example.com")!)
-                            .withMediaType("video/H265")
+                            .withMediaType(.H265)
                             .addHashes([
                                 try? ActivityContent.Builders.Hash()
-                                    .withAlgorithm("keccak")
+                                    .withAlgorithm(.keccak)
                                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                                     .build()
                             ])
@@ -263,9 +263,9 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual((object?.tag?[0] as? ActivityContentHashtag)?.name, "#hashtag")
         XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://1234")
         XCTAssertEqual(object?.attachment?.count, 4)
-        XCTAssertEqual((object?.attachment?[0] as? ActivityContentAudioAttachment)?.url?.first?.mediaType, "audio/ogg")
-        XCTAssertEqual((object?.attachment?[1] as? ActivityContentImageAttachment)?.url?.first?.mediaType, "image/png")
-        XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.url?.first?.mediaType, "video/H265")
+        XCTAssertEqual((object?.attachment?[0] as? ActivityContentAudioAttachment)?.url?.first?.mediaType, .ogg)
+        XCTAssertEqual((object?.attachment?[1] as? ActivityContentImageAttachment)?.url?.first?.mediaType, .png)
+        XCTAssertEqual((object?.attachment?[2] as? ActivityContentVideoAttachment)?.url?.first?.mediaType, .H265)
         XCTAssertEqual((object?.attachment?[3] as? ActivityContentLinkAttachment)?.href?.absoluteString, "https://www.example.com")
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
@@ -276,10 +276,10 @@ class ActivityContentTests: XCTestCase {
             .addIcons([
                 try? ActivityContent.Builders.Attachments.ImageLink()
                     .withHref(URL(string: "https://www.example.com")!)
-                    .withMediaType("image/png")
+                    .withMediaType(.png)
                     .addHashes([
                         try? ActivityContent.Builders.Hash()
-                            .withAlgorithm("keccak")
+                            .withAlgorithm(.keccak)
                             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                             .build()
                     ])
@@ -305,7 +305,7 @@ class ActivityContentTests: XCTestCase {
         XCTAssertEqual(object?.type, "Profile")
         XCTAssertEqual(object?.name, "Profile Name")
         XCTAssertEqual(object?.icon?.count, 1)
-        XCTAssertEqual(object?.icon?[0].mediaType, "image/png")
+        XCTAssertEqual(object?.icon?[0].mediaType, .png)
         XCTAssertEqual(object?.summary, "Profile Summary")
         XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.6924329)
         XCTAssertEqual(object?.location?.name, "Location Name")

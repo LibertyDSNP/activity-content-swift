@@ -37,7 +37,7 @@ public struct ActivityContent {
             }
             
             @discardableResult
-            public func withAlgorithm(_ algorithm: String) -> Self {
+            public func withAlgorithm(_ algorithm: ActivityContentHash.AlgorithmType) -> Self {
                 self.hash.algorithm = algorithm
                 return self
             }
@@ -318,7 +318,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func withMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: ActivityContentAudioLink.AudioMediaType) -> Self {
             self.audioLink.mediaType = mediaType
             return self
         }
@@ -400,7 +400,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func withMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: ActivityContentImageLink.ImageMediaType) -> Self {
             self.imageLink.mediaType = mediaType
             return self
         }
@@ -495,7 +495,7 @@ extension ActivityContent.Builders.Attachments {
         }
         
         @discardableResult
-        public func withMediaType(_ mediaType: String) -> Self {
+        public func withMediaType(_ mediaType: ActivityContentVideoLink.VideoMediaType) -> Self {
             self.videoLink.mediaType = mediaType
             return self
         }

@@ -90,7 +90,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedAudioMediaType(links: [ActivityContentAudioLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedAudioMediaTypes.contains(mediaType) {
+                if self.kSupportedAudioMediaTypes.contains(mediaType.stringValue) {
                     return true
                 }
             }
@@ -102,7 +102,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedImageMediaType(links: [ActivityContentImageLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedImageMediaTypes.contains(mediaType) {
+                if self.kSupportedImageMediaTypes.contains(mediaType.stringValue) {
                     return true
                 }
             }
@@ -114,7 +114,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedVideoMediaType(links: [ActivityContentVideoLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedVideoMediaTypes.contains(mediaType) {
+                if self.kSupportedVideoMediaTypes.contains(mediaType.stringValue) {
                     return true
                 }
             }
@@ -126,7 +126,7 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedHashAlgorithm(hashes: [ActivityContentHash]?) -> Bool {
         for hash in hashes ?? [] {
             if let algorithm = hash.algorithm {
-                if self.kSupportedHashAlgorithms.contains(algorithm) {
+                if self.kSupportedHashAlgorithms.contains(algorithm.stringValue) {
                     return true
                 }
             }

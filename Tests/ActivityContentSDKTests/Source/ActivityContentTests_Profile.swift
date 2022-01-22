@@ -13,12 +13,12 @@ class ActivityContentTests_Profile: XCTestCase {
     
     func testBuildWithParams() {
         let hash = try? ActivityContent.Builders.Hash()
-            .withAlgorithm("keccak")
+            .withAlgorithm(.keccak)
             .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
             .build()
         let imageLink = try? ActivityContent.Builders.Attachments.ImageLink()
             .withHref(URL(string: "http://www.example.com/image.png")!)
-            .withMediaType("image/png")
+            .withMediaType(.png)
             .addHashes([hash!])
             .build()
         let hashtag = try? ActivityContent.Builders.Tags.Hashtag()
@@ -50,7 +50,7 @@ class ActivityContentTests_Profile: XCTestCase {
         XCTAssertEqual(object?.context, "https://www.w3.org/ns/activitystreams")
         XCTAssertEqual(object?.name, "Profile Name")
         XCTAssertEqual(object?.icon?.count, 1)
-        XCTAssertEqual(object?.icon?[0].mediaType, "image/png")
+        XCTAssertEqual(object?.icon?[0].mediaType, .png)
         XCTAssertEqual(object?.summary, "Profile Summary")
         XCTAssertEqual(object?.published?.timeIntervalSince1970, 1640321788.6924329)
         XCTAssertNotNil(object?.location)

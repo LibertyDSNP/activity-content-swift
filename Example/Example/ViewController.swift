@@ -32,7 +32,7 @@ class ViewController: UIViewController {
                         .addImageLinks([
                             try ActivityContent.Builders.Attachments.ImageLink()
                                 .withHref(URL(string: "http://www.example.com/image.png")!)
-                                .withMediaType("image/png")
+                                .withMediaType(.png)
                                 .addHashes([
                                     try ActivityContent.Builders.Hash(keccakHashWithString: "Lorem Ipsum").build()
                                 ])
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
                 .addIcons([
                     try ActivityContent.Builders.Attachments.ImageLink()
                         .withHref(URL(string: "http://www.example.com/image.png")!)
-                        .withMediaType("image/png")
+                        .withMediaType(.png)
                         .addHashes([
                             try ActivityContent.Builders.Hash(keccakHashWithString: "Lorem Ipsum").build()
                         ])
@@ -129,7 +129,7 @@ class ViewController: UIViewController {
                     .addImageLinks([
                         try ActivityContent.Builders.Attachments.ImageLink()
                             .withHref(URL(string: "http://www.example.com/image.png")!)
-                            .withMediaType("image/png")
+                            .withMediaType(.png)
                             .addHashes([
                                 try ActivityContent.Builders.Hash(keccakHashWithString: "Lorem Ipsum").build()
                             ])
@@ -144,7 +144,7 @@ class ViewController: UIViewController {
                     .addVideoLinks([
                         try ActivityContent.Builders.Attachments.VideoLink()
                             .withHref(URL(string: "http://www.example.com/image.png")!)
-                            .withMediaType("video/mp4")
+                            .withMediaType(.mp4)
                             .addHashes([
                                 try ActivityContent.Builders.Hash(keccakHashWithString: "Lorem Ipsum").build()
                             ])
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
                     .addAudioLinks([
                         try ActivityContent.Builders.Attachments.AudioLink()
                             .withHref(URL(string: "http://www.example.com/image.png")!)
-                            .withMediaType("audio/mpeg")
+                            .withMediaType(.mpeg)
                             .addHashes([
                                 try ActivityContent.Builders.Hash(keccakHashWithString: "Lorem Ipsum").build()
                             ])

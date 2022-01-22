@@ -12,7 +12,40 @@ public class ActivityContentAudioLink: ActivityContentBaseLink {
     /**
      MIME type of href content
      */
-    public internal(set) var mediaType: String?
+    public internal(set) var mediaType: AudioMediaType?
+    public enum AudioMediaType: Codable, Equatable {
+        case mpeg
+        case ogg
+        case webm
+        case custom(mediaType: String)
+        
+        init?(string: String?) {
+            guard let string = string else { return nil }
+            switch string {
+            case "audio/mpeg":
+                self = .mpeg
+            case "audio/ogg":
+                self = .ogg
+            case "audio/webm":
+                self = .webm
+            default:
+                self = .custom(mediaType: string)
+            }
+        }
+        
+        var stringValue: String {
+            switch self {
+            case .mpeg:
+                return "audio/mpeg"
+            case .ogg:
+                return "audio/ogg"
+            case .webm:
+                return "audio/webm"
+            case .custom(let mediaType):
+                return mediaType
+            }
+        }
+    }
     
     /**
      Array of hashes for linked content validation
@@ -26,7 +59,7 @@ public class ActivityContentAudioLink: ActivityContentBaseLink {
     }
     
     internal init(href: URL,
-                  mediaType: String,
+                  mediaType: AudioMediaType,
                   hash: [ActivityContentHash]) {
         self.mediaType = mediaType
         self.hash = hash
@@ -41,7 +74,11 @@ public class ActivityContentAudioLink: ActivityContentBaseLink {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mediaType = try? container.decode(String.self, forKey: .mediaType)
+        
+        // Convert mediaType string to enum
+        let mediaTypeString = try? container.decode(String.self, forKey: .mediaType)
+        self.mediaType = AudioMediaType(string: mediaTypeString)
+        
         self.hash = try? container.decode([ActivityContentHash].self, forKey: .hash)
         try super.init(from: decoder)
     }
@@ -49,7 +86,9 @@ public class ActivityContentAudioLink: ActivityContentBaseLink {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.mediaType, forKey: .mediaType)
+        if let mediaType = self.mediaType {
+            try container.encode(mediaType.stringValue, forKey: .mediaType)
+        }
         try container.encode(self.hash, forKey: .hash)
     }
     

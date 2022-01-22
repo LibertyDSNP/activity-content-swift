@@ -13,10 +13,10 @@ class ActivityContentTests_VideoLink: XCTestCase {
     func testBuildWithParams() {
         let object = try? ActivityContent.Builders.Attachments.VideoLink()
             .withHref(URL(string: "https://www.example.com")!)
-            .withMediaType("video/mp4")
+            .withMediaType(.mp4)
             .addHashes([
                 try? ActivityContent.Builders.Hash()
-                    .withAlgorithm("keccak")
+                    .withAlgorithm(.keccak)
                     .withValue("0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")
                     .build()
             ])
@@ -25,8 +25,8 @@ class ActivityContentTests_VideoLink: XCTestCase {
         
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertEqual(object?.mediaType, "video/mp4")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
+        XCTAssertEqual(object?.mediaType, .mp4)
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
         XCTAssertEqual(object?.additionalFields["custom"] as? Bool, true)
     }
     
@@ -52,8 +52,8 @@ class ActivityContentTests_VideoLink: XCTestCase {
         let object = try? ActivityContent.Builders.Attachments.VideoLink(json: json)?.build()
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertEqual(object?.mediaType, "video/mp4")
-        XCTAssertEqual(object?.hash?.first?.algorithm, "keccak")
+        XCTAssertEqual(object?.mediaType, .mp4)
+        XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
     }
     
     func testBuildWithValidJsonInvalidObject() {

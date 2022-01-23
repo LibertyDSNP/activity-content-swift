@@ -56,20 +56,16 @@ class ActivityContentFromJsonTests: XCTestCase {
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         
         /// Verify that we can access custom values as various native types
-        let customDictionary = object?.additionalFields["custom"]
+        let customDictionary = object?.additionalFields["custom"] as? [String : Any]
         XCTAssertNotNil(customDictionary)
-        if let customDictionary = customDictionary as? [String : Any] {
-            let customBool = customDictionary["bool"] as? Bool
-            XCTAssertEqual(customBool, true)
-            let customString = customDictionary["string"] as? String
-            XCTAssertEqual(customString, "string")
-            let customInt = customDictionary["int"] as? Int
-            XCTAssertEqual(customInt, 1)
-            let customFloat = customDictionary["float"] as? Double
-            XCTAssertEqual(customFloat, 1.4)
-        } else {
-            XCTFail()
-        }
+        let customBool = customDictionary?["bool"] as? Bool
+        XCTAssertEqual(customBool, true)
+        let customString = customDictionary?["string"] as? String
+        XCTAssertEqual(customString, "string")
+        let customInt = customDictionary?["int"] as? Int
+        XCTAssertEqual(customInt, 1)
+        let customFloat = customDictionary?["float"] as? Double
+        XCTAssertEqual(customFloat, 1.4)
         
         /// Verify that additionalFields does not contain native vars
         let href = object?.additionalFields["href"]
@@ -108,23 +104,19 @@ class ActivityContentFromJsonTests: XCTestCase {
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
         
         /// Verify that we can access custom values as various native types
-        let customDictionary = object?.additionalFields["custom"]
+        let customDictionary = object?.additionalFields["custom"] as? [String : Any]
         XCTAssertNotNil(customDictionary)
-        if let customDictionary = customDictionary as? [String : Any] {
-            let customBool = customDictionary["bool"] as? Bool
-            XCTAssertEqual(customBool, true)
-            let customString = customDictionary["string"] as? String
-            XCTAssertEqual(customString, "string")
-            let customInt = customDictionary["int"] as? Int
-            XCTAssertEqual(customInt, 1)
-            let customFloat = customDictionary["float"] as? Double
-            XCTAssertEqual(customFloat, 1.4)
-        } else {
-            XCTFail()
-        }
+        let customBool = customDictionary?["bool"] as? Bool
+        XCTAssertEqual(customBool, true)
+        let customString = customDictionary?["string"] as? String
+        XCTAssertEqual(customString, "string")
+        let customInt = customDictionary?["int"] as? Int
+        XCTAssertEqual(customInt, 1)
+        let customFloat = customDictionary?["float"] as? Double
+        XCTAssertEqual(customFloat, 1.4)
         
         let boolCustom = object?.additionalFields["boolCustom"] as? Bool
         XCTAssertEqual(boolCustom, true)

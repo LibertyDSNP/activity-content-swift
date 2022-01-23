@@ -40,7 +40,7 @@ class ActivityContentTests_LinkAttachment: XCTestCase {
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.name, "Link Attachment")
         XCTAssertEqual(object?.href?.absoluteString, "https://www.example.com")
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testBuildWithValidJsonInvalidObject() {

@@ -69,7 +69,7 @@ class ActivityContentTests_VideoAttachment: XCTestCase {
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
         XCTAssertEqual(object?.url?.first?.mediaType, .mp4)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testBuildWithValidJsonInvalidObject() {

@@ -9,7 +9,7 @@ import XCTest
 @testable import ActivityContentSDK
 
 class ActivityContentVideoLinkTests: XCTestCase {
-
+    
     func testActivityContentVideoLinkEncode() {
         let object = ActivityContentVideoLink(
             href: URL(string: "http://www.example.com")!,
@@ -54,7 +54,7 @@ class ActivityContentVideoLinkTests: XCTestCase {
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, .H265)
         XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testActivityContentVideoLinkIsNotValid_MissingMediaType() {
@@ -62,10 +62,8 @@ class ActivityContentVideoLinkTests: XCTestCase {
             let object = ActivityContentVideoLink()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingMediaTypeField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingMediaTypeField)
         }
     }
     
@@ -77,10 +75,8 @@ class ActivityContentVideoLinkTests: XCTestCase {
             object.hash = [ActivityContentHash(algorithm: .custom(algorithm: "unsupported"), value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.hashesDoNotContainSupportedAlgorithm)
         }
     }
     
@@ -91,10 +87,8 @@ class ActivityContentVideoLinkTests: XCTestCase {
             object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingHrefField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingHrefField)
         }
     }
     
@@ -106,24 +100,17 @@ class ActivityContentVideoLinkTests: XCTestCase {
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidHref {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidHref)
         }
     }
     
     func testActivityContentVideoLinkIsValid() {
-        do {
-            let object = ActivityContentVideoLink()
-            object.mediaType = .H265
-            object.href = URL(string: "https://www.example.com")
-            object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentVideoLink()
+        object.mediaType = .H265
+        object.href = URL(string: "https://www.example.com")
+        object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+        XCTAssertTrue(try! object.isValid())
     }
     
     func testVideoMediaTypes() {

@@ -44,10 +44,8 @@ class ActivityContentMentionTests: XCTestCase {
             let object = ActivityContentMention()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingDsnpUserUriField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingDsnpUserUriField)
         }
     }
     
@@ -57,22 +55,15 @@ class ActivityContentMentionTests: XCTestCase {
             object.id = "dsnp://invalid"
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidDsnpUserUri {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidDsnpUserUri)
         }
     }
     
     func testMentionIsValid() {
-        do {
-            let object = ActivityContentMention()
-            object.id = "dsnp://1234"
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentMention()
+        object.id = "dsnp://1234"
+        XCTAssertTrue(try! object.isValid())
     }
 }
 

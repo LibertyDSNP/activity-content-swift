@@ -9,7 +9,7 @@ import XCTest
 @testable import ActivityContentSDK
 
 class ActivityContentVideoAttachmentTests: XCTestCase {
-
+    
     func testActivityContentVideoAttachmentEncode() {
         let link = ActivityContentVideoLink(
             href: URL(string: "http://www.example.com")!,
@@ -69,7 +69,7 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
         XCTAssertEqual(object?.name, "Video Attachment")
         XCTAssertEqual(object?.duration, 180)
         XCTAssertEqual(object?.url?.first?.mediaType, .H265)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testActivityContentVideoAttachmentIsNotValid_InvalidType() {
@@ -96,10 +96,8 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidType {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidType)
         }
     }
     
@@ -113,25 +111,18 @@ class ActivityContentVideoAttachmentTests: XCTestCase {
             object.url = [link]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.linksDoNotContainSupportedFormat {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.linksDoNotContainSupportedFormat)
         }
     }
     
     func testActivityContentVideoAttachmentIsValid() {
-        do {
-            let object = ActivityContentVideoAttachment()
-            let link = ActivityContentVideoLink(
-                href: URL(string: "http://www.example.com")!,
-                mediaType: .H265,
-                hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
-            object.url = [link]
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentVideoAttachment()
+        let link = ActivityContentVideoLink(
+            href: URL(string: "http://www.example.com")!,
+            mediaType: .H265,
+            hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+        object.url = [link]
+        XCTAssertTrue(try! object.isValid())
     }
 }

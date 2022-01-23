@@ -64,33 +64,13 @@ class ValidationUtil {
     // Activity Content Arrays typically require that at least one item
     // in array has supported type. These methods check these requirements.
     
-    static private let kSupportedHashAlgorithms = [
-        "keccak",
-    ]
-    static private let kSupportedAudioMediaTypes = [
-        "audio/mpeg",
-        "audio/ogg",
-        "audio/webm",
-    ]
-    static private let kSupportedImageMediaTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/svg+xml",
-        "image/webp",
-        "image/gif",
-    ]
-    static private let kSupportedVideoMediaTypes = [
-        "video/mpeg",
-        "video/ogg",
-        "video/webm",
-        "video/H265",
-        "video/mp4",
-    ]
-    
     static func hasAtLeastOneSupportedAudioMediaType(links: [ActivityContentAudioLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedAudioMediaTypes.contains(mediaType.stringValue) {
+                switch mediaType {
+                case .custom(_):
+                    continue
+                default:
                     return true
                 }
             }
@@ -102,7 +82,10 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedImageMediaType(links: [ActivityContentImageLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedImageMediaTypes.contains(mediaType.stringValue) {
+                switch mediaType {
+                case .custom(_):
+                    continue
+                default:
                     return true
                 }
             }
@@ -114,7 +97,10 @@ class ValidationUtil {
     static func hasAtLeastOneSupportedVideoMediaType(links: [ActivityContentVideoLink]?) -> Bool {
         for link in links ?? [] {
             if let mediaType = link.mediaType {
-                if self.kSupportedVideoMediaTypes.contains(mediaType.stringValue) {
+                switch mediaType {
+                case .custom(_):
+                    continue
+                default:
                     return true
                 }
             }
@@ -122,11 +108,14 @@ class ValidationUtil {
         
         return false
     }
-    
+
     static func hasAtLeastOneSupportedHashAlgorithm(hashes: [ActivityContentHash]?) -> Bool {
         for hash in hashes ?? [] {
             if let algorithm = hash.algorithm {
-                if self.kSupportedHashAlgorithms.contains(algorithm.stringValue) {
+                switch algorithm {
+                case .custom(_):
+                    continue
+                default:
                     return true
                 }
             }
@@ -134,5 +123,4 @@ class ValidationUtil {
         
         return false
     }
-    
 }

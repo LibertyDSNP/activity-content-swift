@@ -9,7 +9,7 @@ import XCTest
 @testable import ActivityContentSDK
 
 class ActivityContentImageLinkTests: XCTestCase {
-
+    
     func testActivityContentImageLinkEncode() {
         let object = ActivityContentImageLink(
             href: URL(string: "http://www.example.com")!,
@@ -54,7 +54,7 @@ class ActivityContentImageLinkTests: XCTestCase {
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, .png)
         XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testActivityContentImageLinkIsNotValid_MissingMediaType() {
@@ -62,10 +62,8 @@ class ActivityContentImageLinkTests: XCTestCase {
             let object = ActivityContentImageLink()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingMediaTypeField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingMediaTypeField)
         }
     }
     
@@ -76,13 +74,11 @@ class ActivityContentImageLinkTests: XCTestCase {
             object.hash = [ActivityContentHash(algorithm: .custom(algorithm: "invalid"), value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.hashesDoNotContainSupportedAlgorithm)
         }
     }
-
+    
     func testActivityContentImageLinkIsNotValid_MissingHref() {
         do {
             let object = ActivityContentImageLink()
@@ -90,10 +86,8 @@ class ActivityContentImageLinkTests: XCTestCase {
             object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingHrefField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingHrefField)
         }
     }
     
@@ -105,24 +99,17 @@ class ActivityContentImageLinkTests: XCTestCase {
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidHref {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidHref)
         }
     }
-
+    
     func testActivityContentImageLinkIsValid() {
-        do {
-            let object = ActivityContentImageLink()
-            object.mediaType = .png
-            object.href = URL(string: "https://www.example.com")
-            object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentImageLink()
+        object.mediaType = .png
+        object.href = URL(string: "https://www.example.com")
+        object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+        XCTAssertTrue(try! object.isValid())
     }
     
     func testImageMediaTypes() {

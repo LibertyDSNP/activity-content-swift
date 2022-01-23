@@ -63,7 +63,7 @@ class ActivityContentTests_ImageAttachment: XCTestCase {
         XCTAssertEqual(object?.type, "Image")
         XCTAssertEqual(object?.name, "Image Attachment")
         XCTAssertEqual(object?.url?.first?.mediaType, .png)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testBuildWithValidJsonInvalidObject() {

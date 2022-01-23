@@ -9,7 +9,7 @@ import XCTest
 @testable import ActivityContentSDK
 
 class LinkAttachmentTests: XCTestCase {
-
+    
     func testLinkAttachmentEncode() {
         let object = ActivityContentLinkAttachment(href: URL(string: "http://www.example.com")!, name: "Link Attachment")
         
@@ -38,7 +38,7 @@ class LinkAttachmentTests: XCTestCase {
         XCTAssertEqual(object?.name, "Link Attachment")
         XCTAssertEqual(object?.type, "Link")
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testActivityContentLinkAttachmentIsNotValid_InvalidType() {
@@ -53,10 +53,8 @@ class LinkAttachmentTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidType {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidType)
         }
     }
     
@@ -65,10 +63,8 @@ class LinkAttachmentTests: XCTestCase {
             let object = ActivityContentLinkAttachment()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingHrefField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingHrefField)
         }
     }
     
@@ -78,21 +74,14 @@ class LinkAttachmentTests: XCTestCase {
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidHref {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidHref)
         }
     }
     
     func testLinkAttachmentIsValid() {
-        do {
-            let object = ActivityContentLinkAttachment()
-            object.href = URL(string: "http://www.example.com")!
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentLinkAttachment()
+        object.href = URL(string: "http://www.example.com")!
+        XCTAssertTrue(try! object.isValid())
     }
 }

@@ -184,7 +184,7 @@ class ActivityContentTests_Note: XCTestCase {
         XCTAssertEqual((object?.tag?[0] as? ActivityContentHashtag)?.name, "#hashtag")
         XCTAssertEqual((object?.tag?[1] as? ActivityContentMention)?.id, "dsnp://1234")
         XCTAssertEqual(object?.type, "Note")
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testBuildWithValidJsonInvalidObject() {

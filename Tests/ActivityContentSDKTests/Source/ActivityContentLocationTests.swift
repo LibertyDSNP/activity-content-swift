@@ -26,12 +26,12 @@ class ActivityContentLocationTests: XCTestCase {
     
     func testActivityContentLocationEncodeFull() {
         let object = ActivityContentLocation(name: "Location Name",
-                              accuracy: 100,
-                              altitude: 50,
-                              latitude: 123.45,
-                              longitude: -123.45,
-                              radius: 25,
-                              units: .km)
+                                             accuracy: 100,
+                                             altitude: 50,
+                                             latitude: 123.45,
+                                             longitude: -123.45,
+                                             radius: 25,
+                                             units: .km)
         
         let json = """
             {
@@ -93,10 +93,8 @@ class ActivityContentLocationTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidType {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidType)
         }
     }
     
@@ -105,10 +103,8 @@ class ActivityContentLocationTests: XCTestCase {
             let object = ActivityContentLocation()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingNameField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingNameField)
         }
     }
     
@@ -119,21 +115,14 @@ class ActivityContentLocationTests: XCTestCase {
             object.units = nil
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingUnitsField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingUnitsField)
         }
     }
     
     func testActivityContentLocationIsValid() {
-        do {
-            let object = ActivityContentLocation()
-            object.name = "Location"
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentLocation()
+        object.name = "Location"
+        XCTAssertTrue(try! object.isValid())
     }
 }

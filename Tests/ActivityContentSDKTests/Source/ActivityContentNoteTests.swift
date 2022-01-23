@@ -307,10 +307,8 @@ class ActivityContentNoteTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidContext {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidContext)
         }
     }
     
@@ -328,10 +326,8 @@ class ActivityContentNoteTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidType {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidType)
         }
     }
     
@@ -349,10 +345,8 @@ class ActivityContentNoteTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidMediaType {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidMediaType)
         }
     }
     
@@ -361,21 +355,14 @@ class ActivityContentNoteTests: XCTestCase {
             let object = ActivityContentNote()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingContentField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingContentField)
         }
     }
     
     func testActivityContentNoteIsValid() {
-        do {
-            let object = ActivityContentNote()
-            object.content = "Hello World"
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentNote()
+        object.content = "Hello World"
+        XCTAssertTrue(try! object.isValid())
     }
 }

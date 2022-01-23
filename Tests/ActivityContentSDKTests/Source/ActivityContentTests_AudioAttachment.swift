@@ -69,7 +69,7 @@ class ActivityContentTests_AudioAttachment: XCTestCase {
         XCTAssertEqual(object?.name, "Audio Attachment")
         XCTAssertEqual(object?.duration, 180)
         XCTAssertEqual(object?.url?.first?.mediaType, .ogg)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testBuildWithValidJsonInvalidObject() {

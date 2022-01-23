@@ -9,7 +9,7 @@ import XCTest
 @testable import ActivityContentSDK
 
 class ActivityContentHashtagTests: XCTestCase {
-
+    
     func testActivityContentHashtagEncode() {
         let object = ActivityContentHashtag(name: "#hashtag")
         
@@ -38,21 +38,14 @@ class ActivityContentHashtagTests: XCTestCase {
             let object = ActivityContentHashtag()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingNameField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingNameField)
         }
     }
     
     func testActivityContentHashtagIsValid() {
-        do {
-            let object = ActivityContentHashtag()
-            object.name = "#hashtag"
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentHashtag()
+        object.name = "#hashtag"
+        XCTAssertTrue(try! object.isValid())
     }
 }

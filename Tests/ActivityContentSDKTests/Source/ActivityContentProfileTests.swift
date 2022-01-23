@@ -25,11 +25,11 @@ class ActivityContentProfileTests: XCTestCase {
     
     func testActivityContentProfileEncodeFull() {
         let object = ActivityContentProfile(name: "Profile Name",
-                             icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: .png, hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)],
-                             summary: "Profile Summary",
-                             published: Date(timeIntervalSince1970: 1640321788.6924329),
-                             location: ActivityContentLocation(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
-                             tag: [ActivityContentHashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")])
+                                            icon: [ActivityContentImageLink(href: URL(string: "http://www.example.com")!, mediaType: .png, hash: [ActivityContentHash(keccakHashWithString: "Lorem Ipsum")], height: 400, width: 400)],
+                                            summary: "Profile Summary",
+                                            published: Date(timeIntervalSince1970: 1640321788.6924329),
+                                            location: ActivityContentLocation(name: "Location Name", accuracy: 50, altitude: 25, latitude: 123.23, longitude: -45.234, radius: 100, units: .cm),
+                                            tag: [ActivityContentHashtag(name: "#hashtag"), ActivityContentMention(name: "Mention Name", id: "dsnp://1234")])
         
         let json = """
             {
@@ -155,10 +155,8 @@ class ActivityContentProfileTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidContext {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidContext)
         }
     }
     
@@ -176,10 +174,8 @@ class ActivityContentProfileTests: XCTestCase {
         do {
             try object?.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidType {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidType)
         }
     }
     
@@ -193,25 +189,18 @@ class ActivityContentProfileTests: XCTestCase {
             object.icon = [link]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.linksDoNotContainSupportedFormat {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.linksDoNotContainSupportedFormat)
         }
     }
     
     func testActivityContentProfileIsValid() {
-        do {
-            let object = ActivityContentProfile()
-            let link = ActivityContentImageLink(
-                href: URL(string: "http://www.example.com")!,
-                mediaType: .png,
-                hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
-            object.icon = [link]
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentProfile()
+        let link = ActivityContentImageLink(
+            href: URL(string: "http://www.example.com")!,
+            mediaType: .png,
+            hash: [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")])
+        object.icon = [link]
+        XCTAssertTrue(try! object.isValid())
     }
 }

@@ -54,7 +54,7 @@ class ActivityContentAudioLinkTests: XCTestCase {
         XCTAssertEqual(object?.href?.absoluteString, "http://www.example.com")
         XCTAssertEqual(object?.mediaType, .ogg)
         XCTAssertEqual(object?.hash?.first?.algorithm, .keccak)
-        XCTAssertTrue(try object?.isValid() ?? false)
+        XCTAssertTrue(try! object!.isValid())
     }
     
     func testActivityContentAudioLinkIsNotValid_MissingMediaType() {
@@ -62,10 +62,8 @@ class ActivityContentAudioLinkTests: XCTestCase {
             let object = ActivityContentAudioLink()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingMediaTypeField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingMediaTypeField)
         }
     }
     
@@ -76,10 +74,8 @@ class ActivityContentAudioLinkTests: XCTestCase {
             object.hash = [ActivityContentHash(algorithm: .custom(algorithm: "invalid"), value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.hashesDoNotContainSupportedAlgorithm {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.hashesDoNotContainSupportedAlgorithm)
         }
     }
     
@@ -90,10 +86,8 @@ class ActivityContentAudioLinkTests: XCTestCase {
             object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingHrefField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingHrefField)
         }
     }
     
@@ -105,24 +99,17 @@ class ActivityContentAudioLinkTests: XCTestCase {
             object.href = URL(string: "invalid://example.com")
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidHref {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidHref)
         }
     }
     
     func testActivityContentAudioLinkIsValid() {
-        do {
-            let object = ActivityContentAudioLink()
-            object.mediaType = .ogg
-            object.href = URL(string: "https://www.example.com")
-            object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentAudioLink()
+        object.mediaType = .ogg
+        object.href = URL(string: "https://www.example.com")
+        object.hash = [ActivityContentHash(algorithm: .keccak, value: "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7")]
+        XCTAssertTrue(try! object.isValid())
     }
     
     func testAudioMediaTypes() {

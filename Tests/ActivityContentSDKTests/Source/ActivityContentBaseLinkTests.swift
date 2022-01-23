@@ -63,11 +63,8 @@ class ActivityContentBaseLinkTests: XCTestCase {
         XCTAssertEqual(double, 3.14159)
         let dictionary = object?.additionalFields["dictionary"]
         XCTAssertNotNil(dictionary)
-        if let dictionary = dictionary as? [String : Any] {
-            let bool = dictionary["bool"] as? Bool
-            XCTAssertEqual(bool, true)
-        } else {
-            XCTFail()
-        }
+        let subdictionary = dictionary as? [String : Any]
+        let bool = subdictionary?["bool"] as? Bool
+        XCTAssertEqual(bool, true)
     }
 }

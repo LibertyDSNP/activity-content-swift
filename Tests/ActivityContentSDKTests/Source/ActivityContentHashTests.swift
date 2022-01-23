@@ -56,10 +56,8 @@ class HashTests: XCTestCase {
             let object = ActivityContentHash()
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingAlgorithmField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingAlgorithmField)
         }
     }
     
@@ -69,10 +67,8 @@ class HashTests: XCTestCase {
             object.algorithm = .custom(algorithm: "algorithm")
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.missingHashValueField {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingHashValueField)
         }
     }
     
@@ -83,23 +79,16 @@ class HashTests: XCTestCase {
             object.value = "0xinvalid"
             try object.isValid()
             XCTFail()
-        } catch ActivityContentError.invalidHash {
-            XCTAssertTrue(true)
         } catch {
-            XCTFail()
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.invalidHash)
         }
     }
     
     func testHashIsValid() {
-        do {
-            let object = ActivityContentHash()
-            object.algorithm = .custom(algorithm: "algorithm")
-            object.value = "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
-            try object.isValid()
-            XCTAssertTrue(true)
-        } catch {
-            XCTFail()
-        }
+        let object = ActivityContentHash()
+        object.algorithm = .custom(algorithm: "algorithm")
+        object.value = "0x00a63eb58f6ce7fccd93e2d004fed81da5ec1a9747b63f5f1bf80742026efea7"
+        XCTAssertTrue(try! object.isValid())
     }
     
     func testAlgorithmTypes() {

@@ -4,7 +4,7 @@
 
 ## Activity Content SDK
 
-The Activity Content SDK is a library that supports converting DSNP Activity Content data to and from JSON.
+The Activity Content SDK is a Swift Package that supports converting DSNP Activity Content data to and from JSON.
 For details on DSNP or Activity Content please see
 
 **[Activity Content DSNP Spec 1.0][1]**

@@ -43,7 +43,7 @@ public class ActivityContentHashtag: ActivityContentBaseTag {
     @discardableResult
     internal override func isValid() throws -> Bool {
         if self.name == nil {
-            throw ActivityContentError.missingNameField
+            throw ActivityContentError.missingHashtagNameField
         }
         
         return try super.isValid()

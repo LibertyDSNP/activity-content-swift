@@ -39,7 +39,7 @@ class ActivityContentHashtagTests: XCTestCase {
             try object.isValid()
             XCTFail()
         } catch {
-            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingNameField)
+            XCTAssertTrue((error as? ActivityContentError) == ActivityContentError.missingHashtagNameField)
         }
     }
     

@@ -137,7 +137,7 @@ public class ActivityContentLocation: ActivityContentItem {
         }
         
         if self.name == nil {
-            throw ActivityContentError.missingNameField
+            throw ActivityContentError.missingLocationNameField
         }
         
         if self.units == nil {
